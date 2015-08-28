@@ -1,0 +1,9 @@
+---
+# tasks/install.yaml
+nodepool_git_dest: /opt/git/openstack-infra/nodepool
+nodepool_git_uri: https://git.openstack.org/openstack-infra/nodepool
+nodepool_git_version: master
+
+nodepool_install_method: git
+
+nodepool_pip_version:

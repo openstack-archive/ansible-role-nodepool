@@ -1,0 +1,10 @@
+---
+__nodepool_build_depends:
+  - libxml2-dev
+  - libxslt1-dev
+  - python-dev
+  - zlib1g-dev
+
+__nodepool_depends:
+  - debootstrap
+  - qemu-utils

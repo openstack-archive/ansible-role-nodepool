@@ -1,0 +1,4 @@
+---
+- hosts: localhost
+  roles:
+    - { role: ansible-role-nodepool, nodepool_install_method: 'pip' }

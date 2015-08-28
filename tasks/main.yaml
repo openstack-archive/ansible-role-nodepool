@@ -1,0 +1,9 @@
+---
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yaml"
+
+- include: install.yaml
+
+- include: config.yaml
+
+- include: service.yaml
