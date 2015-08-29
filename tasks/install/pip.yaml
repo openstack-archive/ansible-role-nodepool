@@ -1,0 +1,11 @@
+---
+- name: Install nodepool using pip.
+  pip:
+    name: nodepool
+  when: nodepool_pip_version is none
+
+- name: Install nodepool using pip.
+  pip:
+    name: nodepool
+    version: "{{ nodepool_pip_version }}"
+  when: nodepool_pip_version is not none

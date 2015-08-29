@@ -12,30 +12,13 @@
 - include: install/debian.yaml
   when: ansible_os_family == 'Debian'
 
-- name: Download nodepool using git.
-  git:
-    dest: "{{ nodepool_git_dest }}"
-    repo: "{{ nodepool_git_uri }}"
-    version: "{{ nodepool_git_version }}"
+- include: install/git.yaml
   when: nodepool_install_method == 'git'
 
-- name: Install nodepool using pip.
-  pip:
-    name: "file://{{ nodepool_git_dest }}"
-  when: nodepool_install_method == 'git'
-
-- name: Install nodepool using pip.
-  pip:
-    name: nodepool
+- include: install/pip.yaml
   when: nodepool_install_method == 'pip'
 
-- name: Install nodepool using pip.
-  pip:
-    name: nodepool
-  when: nodepool_install_method == 'pip' and nodepool_pip_version is none
-
-- name: Install nodepool using pip.
-  pip:
-    name: nodepool
-    version: "{{ nodepool_pip_version }}"
-  when: nodepool_install_method == 'pip' and nodepool_pip_version is not none
+- name: Create nodepool directory.
+  file:
+    path: /etc/nodepool
+    state: directory

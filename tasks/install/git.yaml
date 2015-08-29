@@ -1,0 +1,10 @@
+---
+- name: Git clone nodepool.
+  git:
+    dest: "{{ nodepool_git_dest }}"
+    repo: "{{ nodepool_git_uri }}"
+    version: "{{ nodepool_git_version }}"
+
+- name: Pip install nodepool from local git repo.
+  pip:
+    name: "file://{{ nodepool_git_dest }}"
