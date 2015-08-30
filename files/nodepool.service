@@ -1,0 +1,12 @@
+[Unit]
+Description=Nodepool Service
+
+[Service]
+Type=simple
+User=nodepool
+Group=nodepool
+EnvironmentFile=-/etc/sysconfig/nodepool
+ExecStart=/usr/bin/nodepoold -d
+
+StandardOutput=syslog
+StandardError=syslog

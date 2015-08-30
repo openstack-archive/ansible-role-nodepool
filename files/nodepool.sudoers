@@ -1,0 +1,2 @@
+nodepool ALL=(ALL) NOPASSWD:ALL
+Defaults:nodepool !requiretty

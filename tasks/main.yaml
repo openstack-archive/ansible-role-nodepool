@@ -2,6 +2,9 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yaml"
 
+- name: Include nodepool configuration defaults.
+  include_vars: nodepool.yaml
+
 - include: install.yaml
 
 - include: config.yaml

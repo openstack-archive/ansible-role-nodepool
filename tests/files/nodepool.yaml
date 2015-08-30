@@ -19,7 +19,6 @@ diskimages:
     elements:
       - centos
       - vm
-    release: trusty
   - name: ubuntu-trusty
     elements:
       - ubuntu

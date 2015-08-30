@@ -2,4 +2,18 @@ elements-dir: {{ nodepool_config_elements_dir }}
 images-dir: {{nodepool_config_images_dir }}
 script-dir: {{ nodepool_config_script_dir }}
 
+# TODO(pabelanger): Remove hardcoded variable.
+dburi: sqlite:////var/lib/nodepool/nodepool.db
+
+{% set _zmq_publishers = { 'zmq-publishers': nodepool_config_zmq_publishers } -%}
+{{ _zmq_publishers | to_nice_yaml }}
+{% set _diskimages = { 'diskimages': diskimages } -%}
+{{ _diskimages | to_nice_yaml }}
+{% set _labels = { 'labels': labels } -%}
+{{ _labels | to_nice_yaml }}
+{% set _providers = { 'providers': providers } -%}
+{{ _providers | to_nice_yaml }}
+{% set _targets = { 'targets': targets } -%}
+{{ _targets | to_nice_yaml }}
+
 # {{ ansible_managed }}

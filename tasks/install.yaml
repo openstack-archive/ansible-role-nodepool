@@ -20,8 +20,3 @@
 
 - include: install/pip.yaml
   when: nodepool_install_method == 'pip'
-
-- name: Create nodepool directory.
-  file:
-    path: /etc/nodepool
-    state: directory

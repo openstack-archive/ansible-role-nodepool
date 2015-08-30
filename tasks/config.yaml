@@ -1,5 +1,29 @@
 ---
+- name: Create system user account.
+  user:
+    createhome: yes
+    home: /var/lib/nodepool
+    name: nodepool
+
+- name: Create required directories.
+  file:
+    group: nodepool
+    owner: nodepool
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/nodepool
+    - "{{ nodepool_config_images_dir }}"
+    - /var/lib/nodepool
+    - /var/log/nodepool
+
 - name: Template nodepool configuration file.
   template:
     dest: /etc/nodepool/nodepool.yaml
     src: nodepool.yaml.j2
+
+- name: Copy sudoers file into place.
+  copy:
+    dest: /etc/sudoers.d/nodepool
+    src: nodepool.sudoers
+    validate: 'visudo -cf %s'
