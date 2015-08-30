@@ -34,3 +34,5 @@ script:
 
   # Create a ubuntu trusty dib using nodepool.
   - "nodepool -c tests/files/nodepool.yaml image-build ubuntu-trusty"
+  # Create a centos 6 dib using nodepool.
+  - "nodepool -c tests/files/nodepool.yaml image-build centos-6"
