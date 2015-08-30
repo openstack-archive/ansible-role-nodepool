@@ -1,0 +1,50 @@
+script-dir: .
+elements-dir: .
+images-dir: /tmp/nodepool_dib
+dburi: 'mysql+pymysql://root@localhost/nodepool'
+
+cron:
+  check: '*/15 * * * *'
+  cleanup: '*/1 * * * *'
+  image-update: '14 2 * * *'
+
+zmq-publishers:
+  - tcp://localhost:8881
+
+gearman-servers:
+  - host: localhost
+
+diskimages:
+  - name: foobar-dib-image
+    elements:
+      - ubuntu
+      - vm
+    release: trusty
+
+labels:
+  - name: foobar-dib-image
+    image: foobar-dib-image
+    min-ready: 2
+    providers:
+      - name: foobar-provider
+
+providers:
+  - name: foobar-provider
+    keypair: 'if-present-use-this-keypair'
+    region-name: 'foobar-region'
+    username: 'foobar'
+    password: 'foobar'
+    auth-url: 'foobar'
+    project-id: 'foobar'
+    max-servers: 96
+    images:
+      - name: foobar-dib-image
+        min-ram: 8192
+        diskimage: foobar-dib-image
+
+targets:
+  - name: foobar-jenkins
+    jenkins:
+      url: https://jenkins.foobar.org/
+      user: 
+      apikey: foobar

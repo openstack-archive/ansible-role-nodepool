@@ -11,6 +11,8 @@ env:
 
 before_install:
   - sudo apt-get update -qq
+  # Create nodepool database.
+  - mysql -e 'create database nodepool;'
 
 install:
   # Install Ansible.
@@ -29,3 +31,6 @@ script:
     || grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
+
+  # Create a ubuntu trusty dib using nodepool.
+  - "nodepool -c tests/files/nodepool.yaml image-build foobar-dib-image"
