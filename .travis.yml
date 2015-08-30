@@ -33,4 +33,4 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Create a ubuntu trusty dib using nodepool.
-  - "nodepool -c tests/files/nodepool.yaml image-build foobar-dib-image"
+  - "nodepool -c tests/files/nodepool.yaml image-build ubuntu-trusty"

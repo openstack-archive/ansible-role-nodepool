@@ -15,15 +15,15 @@ gearman-servers:
   - host: localhost
 
 diskimages:
-  - name: foobar-dib-image
+  - name: ubuntu-trusty
     elements:
       - ubuntu
       - vm
     release: trusty
 
 labels:
-  - name: foobar-dib-image
-    image: foobar-dib-image
+  - name: ubuntu-trusty
+    image: ubuntu-trusty
     min-ready: 2
     providers:
       - name: foobar-provider
@@ -38,9 +38,9 @@ providers:
     project-id: 'foobar'
     max-servers: 96
     images:
-      - name: foobar-dib-image
+      - name: ubuntu-trusty
         min-ram: 8192
-        diskimage: foobar-dib-image
+        diskimage: ubuntu-trusty
 
 targets:
   - name: foobar-jenkins
