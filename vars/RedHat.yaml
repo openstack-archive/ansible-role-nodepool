@@ -1,0 +1,15 @@
+---
+__nodepool_build_depends:
+  - gcc
+  - gcc-c++
+  - libffi-devel
+  - libxml2-devel
+  - libxslt-devel
+  - openssl-devel
+  - python-devel
+  - python-pip
+  - zlib-devel
+
+__nodepool_depends:
+  - debootstrap
+  - qemu-img

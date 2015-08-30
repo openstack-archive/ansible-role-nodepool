@@ -12,6 +12,9 @@
 - include: install/debian.yaml
   when: ansible_os_family == 'Debian'
 
+- include: install/redhat.yaml
+  when: ansible_os_family == 'RedHat'
+
 - include: install/git.yaml
   when: nodepool_install_method == 'git'
 
