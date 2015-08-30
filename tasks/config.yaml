@@ -1,1 +1,5 @@
 ---
+- name: Template nodepool configuration file.
+  template:
+    dest: /etc/nodepool/nodepool.yaml
+    src: nodepool.yaml.j2

@@ -1,4 +1,9 @@
 ---
+# tasks/config.yaml
+nodepool_config_elements_dir: /etc/nodepool/elements
+nodepool_config_images_dir: /opt/nodepool/images
+nodepool_config_script_dir: /etc/nodepool/scripts
+
 # tasks/install.yaml
 nodepool_git_dest: /opt/git/openstack-infra/nodepool
 nodepool_git_uri: https://git.openstack.org/openstack-infra/nodepool
