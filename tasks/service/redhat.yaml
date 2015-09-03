@@ -1,0 +1,16 @@
+---
+- name: Copy systemd file into place.
+  copy:
+    dest: /etc/systemd/system
+    src: ../files/nodepool.service
+
+- name: Copy sysconfig file into place.
+  copy:
+    dest: /etc/sysconfig/nodepool
+    src: ../files/nodepool.sysconfig
+
+- name: Enable nodepool service.
+  service:
+    enabled: yes
+    name: nodepool
+    state: started
