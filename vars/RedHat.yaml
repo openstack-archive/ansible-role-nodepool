@@ -12,4 +12,5 @@ __nodepool_build_depends:
 
 __nodepool_depends:
   - debootstrap
+  - kpartx
   - qemu-img
