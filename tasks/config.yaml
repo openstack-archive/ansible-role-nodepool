@@ -25,5 +25,8 @@
 - name: Copy sudoers file into place.
   copy:
     dest: /etc/sudoers.d/nodepool
+    group: root
+    mode: 0440
+    owner: root
     src: nodepool.sudoers
     validate: 'visudo -cf %s'
