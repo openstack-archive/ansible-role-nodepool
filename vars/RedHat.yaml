@@ -2,6 +2,7 @@
 __nodepool_build_depends:
   - gcc
   - gcc-c++
+  - git
   - libffi-devel
   - libxml2-devel
   - libxslt-devel
