@@ -6,7 +6,10 @@
   include_vars: nodepool.yaml
 
 - include: install.yaml
+  sudo: yes
 
 - include: config.yaml
+  sudo: yes
 
 - include: service.yaml
+  sudo: yes
