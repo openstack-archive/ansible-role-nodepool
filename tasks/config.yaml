@@ -14,13 +14,19 @@
   with_items:
     - /etc/nodepool
     - "{{ nodepool_config_images_dir }}"
-    - /var/lib/nodepool
     - /var/log/nodepool
 
-- name: Template nodepool configuration file.
+- name: Template secure configuration file.
   template:
-    dest: /etc/nodepool/nodepool.yaml
-    src: nodepool.yaml.j2
+    dest: "{{ nodepool_template_secure_conf_dest }}"
+    src: "{{ nodepool_template_secure_conf_src }}"
+  notify: Restart nodepool
+
+- name: Template yaml configuration file.
+  template:
+    dest: "{{ nodepool_template_nodepool_yaml_dest }}"
+    src: "{{ nodepool_template_nodepool_yaml_src }}"
+  notify: Restart nodepool
 
 - name: Copy sudoers file into place.
   copy:
@@ -30,3 +36,9 @@
     owner: root
     src: nodepool.sudoers
     validate: 'visudo -cf %s'
+
+- name: Copy logging configuration file.
+  copy:
+    dest: "{{ nodepool_config_log_config }}"
+    src: "{{ nodepool_file_logging_conf }}"
+  notify: Restart nodepool

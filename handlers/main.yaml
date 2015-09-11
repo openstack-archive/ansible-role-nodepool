@@ -1,2 +1,6 @@
 ---
-# handlers file for nodepool
+- name: Restart nodepool
+  service:
+    name: nodepool
+    state: restarted
+  sudo: yes

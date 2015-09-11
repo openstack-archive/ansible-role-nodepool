@@ -1,9 +1,27 @@
 ---
 # tasks/config.yaml
+nodepool_config_database_dburi: sqlite:////var/lib/nodepool/nodepool.db
 nodepool_config_elements_dir: /etc/nodepool/elements
+nodepool_config_gearman_servers: []
 nodepool_config_images_dir: /opt/nodepool/images
+nodepool_config_log_config: /etc/nodepool/logging.conf
+nodepool_config_secure_config: /etc/nodepool/secure.conf
 nodepool_config_script_dir: /etc/nodepool/scripts
 nodepool_config_zmq_publishers: []
+
+nodepool_file_logging_conf: etc/nodepool/logging.conf
+
+nodepool_template_nodepool_yaml_contents: |
+  diskimages: []
+  labels: []
+  providers: []
+  targets: []
+nodepool_template_nodepool_yaml_dest: /etc/nodepool/nodepool.yaml
+nodepool_template_nodepool_yaml_src: etc/nodepool/nodepool.yaml.j2
+
+nodepool_template_secure_conf_contents: ""
+nodepool_template_secure_conf_dest: /etc/nodepool/secure.conf
+nodepool_template_secure_conf_src: etc/nodepool/secure.conf.j2
 
 # tasks/install.yaml
 nodepool_git_dest: /opt/git/openstack-infra/nodepool

@@ -6,7 +6,7 @@ Type=simple
 User=nodepool
 Group=nodepool
 EnvironmentFile=-/etc/sysconfig/nodepool
-ExecStart=/usr/bin/nodepoold -d
+ExecStart=/usr/bin/nodepoold -d -l /etc/nodepool/logging.conf
 
 StandardOutput=syslog
 StandardError=syslog
