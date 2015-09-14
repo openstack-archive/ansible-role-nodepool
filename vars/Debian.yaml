@@ -6,9 +6,3 @@ __nodepool_build_depends:
   - python-dev
   - python-pip
   - zlib1g-dev
-
-__nodepool_depends:
-  - debootstrap
-  - kpartx
-  - qemu-utils
-  - uuid-runtime

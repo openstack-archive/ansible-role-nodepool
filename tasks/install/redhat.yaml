@@ -10,7 +10,3 @@
   yum: "pkg={{ item }} state=installed"
   with_items: nodepool_build_depends
   when: nodepool_install_method == 'git' or nodepool_install_method == 'pip'
-
-- name: Ensure dependencies are installed.
-  yum: "pkg={{ item }} state=installed"
-  with_items: nodepool_depends

@@ -4,11 +4,6 @@
     nodepool_build_depends: "{{ __nodepool_build_depends | list }}"
   when: nodepool_build_depends is not defined
 
-- name: Define nodepool_depends.
-  set_fact:
-    nodepool_depends: "{{ __nodepool_depends | list }}"
-  when: nodepool_depends is not defined
-
 - include: install/debian.yaml
   when: ansible_os_family == 'Debian'
 

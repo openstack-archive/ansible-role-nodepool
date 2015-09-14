@@ -10,8 +10,3 @@ __nodepool_build_depends:
   - python-devel
   - python-pip
   - zlib-devel
-
-__nodepool_depends:
-  - debootstrap
-  - kpartx
-  - qemu-img

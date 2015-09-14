@@ -13,4 +13,5 @@
   service:
     enabled: yes
     name: nodepool
-    state: started
+  notify:
+    - Restart nodepool
