@@ -30,4 +30,5 @@ nodepool_git_version: master
 
 nodepool_install_method: git
 
+nodepool_pip_name: nodepool
 nodepool_pip_version:
