@@ -28,5 +28,4 @@ galaxy_info:
     - 7
   categories:
   - cloud
-dependencies:
-  - role: ansible-role-diskimage-builder
+dependencies: []
