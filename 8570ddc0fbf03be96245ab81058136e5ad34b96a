@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: Paul Belanger <pabelanger@redhat.com>
+Workflow+1: Paul Belanger <pabelanger@redhat.com>
+Submitted-by: Jenkins
+Submitted-at: Sat, 14 Nov 2015 03:39:02 +0000
+Reviewed-on: https://review.openstack.org/245387
+Project: openstack/ansible-role-nodepool
+Branch: refs/heads/master
