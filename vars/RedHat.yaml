@@ -22,5 +22,4 @@ __nodepool_build_depends:
   - openssl-devel
   - python-devel
   - python-pip
-  - qemu-img
   - zlib-devel
