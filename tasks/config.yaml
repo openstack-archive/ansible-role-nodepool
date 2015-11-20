@@ -27,7 +27,14 @@
   with_items:
     - /etc/nodepool
     - "{{ nodepool_config_images_dir }}"
+    - /var/lib/nodepool/.config/openstack
     - /var/log/nodepool
+
+- name: Template clouds yaml file.
+  template:
+    dest: "{{ nodepool_template_clouds_yaml_dest }}"
+    src: "{{ nodepool_template_clouds_yaml_src }}"
+  notify: Restart nodepool
 
 - name: Template secure configuration file.
   template:

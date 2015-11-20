@@ -24,6 +24,10 @@ nodepool_config_zmq_publishers: []
 
 nodepool_file_logging_conf: etc/nodepool/logging.conf
 
+nodepool_template_clouds_yaml_contents: ""
+nodepool_template_clouds_yaml_dest: /var/lib/nodepool/.config/openstack/clouds.yaml
+nodepool_template_clouds_yaml_src: var/lib/nodepool/.config/openstack/clouds.yaml.j2
+
 nodepool_template_nodepool_yaml_contents: |
   diskimages: []
   labels: []
