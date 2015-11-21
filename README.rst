@@ -1,5 +1,16 @@
-nodepool
-========
+=====================
+ansible-role-nodepool
+=====================
+
+Ansible role to manage Nodepool
+
+* License: Apache License, Version 2.0
+* Documentation: https://ansible-role-nodepool.readthedocs.org
+* Source: https://git.openstack.org/cgit/openstack/ansible-role-nodepool
+* Bugs: https://bugs.launchpad.net/ansible-role-nodepool
+
+Description
+-----------
 
 Nodepool is a system for launching single-use test nodes on demand based on
 images built with cached data. It is designed to work with any OpenStack based
@@ -18,21 +29,9 @@ Dependencies
 Example Playbook
 ----------------
 
-License
--------
-  Copyright 2015 Red Hat, Inc.
+.. code-block:: yaml
 
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-
-Author Information
-------------------
+    - name: Install nodepool
+      hosts: nodepool
+      roles:
+        - ansible-role-nodepool
