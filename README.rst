@@ -1,5 +1,5 @@
-nodepool
-========
+ansible-role-nodepool
+=====================
 
 Nodepool is a system for launching single-use test nodes on demand based on
 images built with cached data. It is designed to work with any OpenStack based
