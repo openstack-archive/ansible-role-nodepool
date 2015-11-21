@@ -12,8 +12,19 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- include: service/debian.yaml
-  when: ansible_os_family == 'Debian'
+- name: Copy upstart file into place.
+  copy:
+    dest: /etc/init
+    src: ../../files/etc/init/nodepool.conf
 
-- include: service/redhat.yaml
-  when: ansible_os_family == 'RedHat'
+- name: Copy default file into place.
+  copy:
+    dest: /etc/default/nodepool
+    src: ../../files/etc/default/nodepool
+
+- name: Enable nodepool service.
+  service:
+    enabled: yes
+    name: nodepool
+  notify:
+    - Restart nodepool
