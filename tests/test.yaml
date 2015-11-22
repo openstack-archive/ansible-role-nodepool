@@ -17,3 +17,12 @@
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
   roles:
     - "{{ rolename }}"
+  post_tasks:
+    - name: Sleep 5
+      shell: cat /var/log/nodepool/debug.log
+    - name: Ensure nodepool is running.
+      command: /usr/sbin/service nodepool status
+      register: nodepool_status
+      failed_when: nodepool_status.rc != 0
+      tags:
+        - skip_ansible_lint
