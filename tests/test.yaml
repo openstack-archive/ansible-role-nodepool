@@ -13,6 +13,9 @@
 # under the License.
 ---
 - hosts: localhost
+  pre_tasks:
+    - apt:
+        update_cache: yes
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
   roles:
