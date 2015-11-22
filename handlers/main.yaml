@@ -12,6 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+- name: Reload systemd
+  command: /usr/bin/systemctl daemon-reload
+  sudo: yes
+
 - name: Restart nodepool
   service:
     name: nodepool
