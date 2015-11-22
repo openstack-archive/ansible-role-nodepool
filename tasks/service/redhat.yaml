@@ -21,10 +21,3 @@
   copy:
     dest: /etc/sysconfig/nodepool
     src: ../../files/nodepool.sysconfig
-
-- name: Enable nodepool service.
-  service:
-    enabled: yes
-    name: nodepool
-  notify:
-    - Restart nodepool

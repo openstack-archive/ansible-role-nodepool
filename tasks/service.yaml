@@ -17,3 +17,10 @@
 
 - include: service/redhat.yaml
   when: ansible_os_family == 'RedHat'
+
+- name: Enable nodepool service.
+  service:
+    enabled: yes
+    name: nodepool
+  notify:
+    - Restart nodepool

@@ -21,10 +21,3 @@
   copy:
     dest: /etc/default/nodepool
     src: ../../files/etc/default/nodepool
-
-- name: Enable nodepool service.
-  service:
-    enabled: yes
-    name: nodepool
-  notify:
-    - Restart nodepool
