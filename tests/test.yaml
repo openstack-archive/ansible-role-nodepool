@@ -17,3 +17,8 @@
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
   roles:
     - "{{ rolename }}"
+  post_tasks:
+    - name: Ensure nodepool is running.
+      command: service nodepool status
+      register: nodepool_status
+      failed_when: nodepool_status.rc != 0
