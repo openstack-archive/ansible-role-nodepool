@@ -15,7 +15,13 @@
 - name: Copy systemd file into place.
   copy:
     dest: /etc/systemd/system
+    group: root
+    mode: 0644
+    owner: root
     src: ../../files/nodepool.service
+  notify:
+    - Reload systemd
+    - Reload nodepool
 
 - name: Copy sysconfig file into place.
   copy:
