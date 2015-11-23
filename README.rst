@@ -20,6 +20,11 @@ including Jenkins and Zuul.
 Requirements
 ------------
 
+Packages
+~~~~~~~~
+
+Repo index files should be up to date before using this role.
+
 Role Variables
 --------------
 
