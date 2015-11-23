@@ -41,7 +41,7 @@ nodepool_template_secure_conf_dest: /etc/nodepool/secure.conf
 nodepool_template_secure_conf_src: etc/nodepool/secure.conf.j2
 
 # tasks/install.yaml
-nodepool_git_dest: /opt/git/openstack-infra/nodepool
+nodepool_git_dest: /opt/ansible-role-nodepool/git/openstack-infra/nodepool
 nodepool_git_uri: https://git.openstack.org/openstack-infra/nodepool
 nodepool_git_version: master
 
