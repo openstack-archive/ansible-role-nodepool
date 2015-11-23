@@ -15,5 +15,18 @@
 - hosts: localhost
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+  pre_tasks:
+    # Make sure OS does not have a stale package cache.
+    - name: Update apt cache.
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+
+    # Make sure OS does not have stale package cache.
+    - name: Update yum cache.
+      yum:
+        update_cache: yes
+      when: ansible_os_family == 'RedHat'
+
   roles:
     - "{{ rolename }}"
