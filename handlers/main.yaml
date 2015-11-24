@@ -16,4 +16,3 @@
   service:
     name: nodepool
     state: restarted
-  sudo: yes
