@@ -16,6 +16,7 @@
   sudo: yes
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+    nodepool_file_elements_dir: files/elements/
   pre_tasks:
     # Make sure OS does not have a stale package cache.
     - name: Update apt cache.
