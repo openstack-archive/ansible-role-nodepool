@@ -43,6 +43,14 @@ Role Variables
     # Default: /var/lib/nodepool
     nodepool_user_home: /var/lib/nodepool
 
+    # Path to diskimage-builder elements used by nodepool.
+    # Default: ""
+    nodepool_file_elements_dir: ""
+
+    # Path to the scripts nodepool will uploads to Jenkin slaves.
+    # Default: ""
+    nodepool_file_scripts_dir: ""
+
 Dependencies
 ------------
 
