@@ -12,22 +12,27 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Create system user account.
+- name: Create group account.
+  group:
+    name: "{{ nodepool_user_group }}"
+
+- name: Create user account.
   user:
     createhome: yes
-    home: /var/lib/nodepool
-    name: nodepool
+    home: "{{ nodepool_user_home }}"
+    group: "{{ nodepool_user_group }}"
+    name: "{{ nodepool_user_name }}"
 
 - name: Create required directories.
   file:
-    group: nodepool
-    owner: nodepool
+    group: "{{ nodepool_user_group }}"
+    owner: "{{ nodepool_user_name }}"
     path: "{{ item }}"
     state: directory
   with_items:
     - /etc/nodepool
     - "{{ nodepool_config_images_dir }}"
-    - /var/lib/nodepool/.config/openstack
+    - "{{ nodepool_user_home }}/.config/openstack"
     - /var/log/nodepool
 
 - name: Template clouds yaml file.
