@@ -42,6 +42,22 @@
         that:
           - nodepool_user_home_getent.stdout == '/var/lib/nodepool'
 
+    - name: Register nodepool_file_elements_dir_stat.
+      stat:
+        path: /var/etc/nodepool/elements
+      register: nodepool_file_elements_dir_stat
+
+    - name: Assert nodepool_file_elements_dir tests.
+      assert:
+        that:
+          - nodepool_file_elements_dir_stat.stat.exists
+          - nodepool_file_elements_dir_stat.stat.isdir
+            # NOTE(pabelanger): This means we are hardcoded to the
+            # openstack-infra jenkins user in nodepool.
+          - nodepool_file_elements_dir_stat.stat.pw_name == 'jenkins'
+          - nodepool_file_elements_dir_stat.stat.gr_name == 'jenkins'
+          - nodepool_file_elements_dir_stat.stat.mode == '0775'
+
     - name: Register nodepool_user_home_stat.
       stat:
         path: /var/lib/nodepool
