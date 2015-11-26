@@ -43,6 +43,10 @@ Role Variables
     # Default: /var/lib/nodepool
     nodepool_user_home: /var/lib/nodepool
 
+    # Path to diskimage-builder elements used by nodepool.
+    # Default: ""
+    nodepool_file_elements_dir: ""
+
 Dependencies
 ------------
 
