@@ -13,7 +13,11 @@
 # under the License.
 ---
 # tasks/config.yaml
-nodepool_config_database_dburi: sqlite:////var/lib/nodepool/nodepool.db
+nodepool_user_name: nodepool
+nodepool_user_group: "{{ nodepool_user_name }}"
+nodepool_user_home: "/var/lib/{{ nodepool_user_name }}"
+
+nodepool_config_database_dburi: "sqlite:///{{ nodepool_user_home }}/nodepool.db"
 nodepool_config_elements_dir: /etc/nodepool/elements
 nodepool_config_gearman_servers: []
 nodepool_config_images_dir: /opt/nodepool/images
@@ -25,7 +29,7 @@ nodepool_config_zmq_publishers: []
 nodepool_file_logging_conf: etc/nodepool/logging.conf
 
 nodepool_template_clouds_yaml_contents: ""
-nodepool_template_clouds_yaml_dest: /var/lib/nodepool/.config/openstack/clouds.yaml
+nodepool_template_clouds_yaml_dest: "{{ nodepool_user_home }}/.config/openstack/clouds.yaml"
 nodepool_template_clouds_yaml_src: var/lib/nodepool/.config/openstack/clouds.yaml.j2
 
 nodepool_template_nodepool_yaml_contents: |
