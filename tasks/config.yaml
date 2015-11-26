@@ -35,6 +35,16 @@
     - "{{ nodepool_user_home }}/.config/openstack"
     - /var/log/nodepool
 
+- name: Create required directories for rsync.
+  file:
+    group: "{{ ansible_ssh_user }}"
+    mode: 0755
+    owner: "{{ ansible_ssh_user }}"
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ nodepool_file_config_dir_dest }}"
+
 - name: Template clouds yaml file.
   template:
     dest: "{{ nodepool_template_clouds_yaml_dest }}"
@@ -66,4 +76,15 @@
   copy:
     dest: "{{ nodepool_config_log_config }}"
     src: "{{ nodepool_file_logging_conf }}"
+  notify: Restart nodepool
+
+- name: Rsync nodepool config directory.
+  sudo: no
+  synchronize:
+    dest: "{{ nodepool_file_config_dir_dest }}"
+    src: "{{ nodepool_file_config_dir }}"
+    rsync_opts:
+      - '--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r'
+      - '--delete'
+  when: nodepool_file_config_dir != ""
   notify: Restart nodepool
