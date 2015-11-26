@@ -25,3 +25,41 @@
 
   roles:
     - "{{ rolename }}"
+
+  post_tasks:
+    - name: Ensure nodepool_user_name is nodepool.
+      shell: /usr/bin/getent passwd nodepool
+
+    - name: Ensure nodepool_user_group is nodepool.
+      shell: /usr/bin/getent group nodepool
+
+    - name: Register nodepool_user_home_getent.
+      shell: '/usr/bin/getent passwd nodepool | cut -d: -f6'
+      register: nodepool_user_home_getent
+
+    - name: Assert nodepool_user_home is /var/lib/nodepool.
+      assert:
+        that:
+          - nodepool_user_home_getent.stdout == '/var/lib/nodepool'
+
+    - name: Register nodepool_user_home_stat.
+      stat:
+        path: /var/lib/nodepool
+      register: nodepool_user_home_stat
+
+    - name: Assert nodepool_user_home tests.
+      assert:
+        that:
+          - nodepool_user_home_stat.stat.exists
+          - nodepool_user_home_stat.stat.isdir
+
+    - name: Register nodepool_git_dest_stat.
+      stat:
+        path: /opt/ansible-role-nodepool/git/openstack-infra/nodepool
+      register: nodepool_git_dest_stat
+
+    - name: Assert nodepool_git_dest tests.
+      assert:
+        that:
+          - nodepool_git_dest_stat.stat.exists
+          - nodepool_git_dest_stat.stat.isdir
