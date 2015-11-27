@@ -71,7 +71,7 @@
 - name: Create nodepool project config directory.
   file:
     group: "{{ ansible_ssh_user }}"
-    mode: 0755
+    mode: 0775
     owner: "{{ ansible_ssh_user }}"
     path: "{{ item }}"
     state: directory
@@ -82,8 +82,8 @@
   sudo: no
   synchronize:
     dest: "{{ nodepool_project_config_dir_dest }}"
-    src: "{{ nodepool_project_config_dir }}"
+    perms: yes
     rsync_opts:
-      - '--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r'
       - '--delete'
+    src: "{{ nodepool_project_config_dir }}"
   when: nodepool_project_config_dir != ""

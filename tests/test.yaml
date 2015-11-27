@@ -56,7 +56,7 @@
             # openstack-infra jenkins user in nodepool.
           - nodepool_project_config_dir_dest_stat.stat.pw_name == 'jenkins'
           - nodepool_project_config_dir_dest_stat.stat.gr_name == 'jenkins'
-          - nodepool_project_config_dir_dest_stat.stat.mode == '0755'
+          - nodepool_project_config_dir_dest_stat.stat.mode == '0775'
 
     - name: Ensure /etc/nodepool/config is empty.
       shell: "ls -1 /etc/nodepool/config | wc -l"
