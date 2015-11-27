@@ -87,4 +87,3 @@
       - '--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r'
       - '--delete'
   when: nodepool_project_config_dir != ""
-  notify: Restart nodepool
