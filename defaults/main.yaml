@@ -23,7 +23,7 @@ nodepool_config_gearman_servers: []
 nodepool_config_images_dir: /opt/nodepool/images
 nodepool_config_log_config: /etc/nodepool/logging.conf
 nodepool_config_secure_config: /etc/nodepool/secure.conf
-nodepool_config_script_dir: /etc/nodepool/scripts
+nodepool_config_scripts_dir: /etc/nodepool/scripts
 nodepool_config_zmq_publishers: []
 
 nodepool_file_logging_conf: etc/nodepool/logging.conf

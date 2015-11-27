@@ -3,7 +3,7 @@
 #
 elements-dir: {{ nodepool_config_elements_dir }}
 images-dir: {{ nodepool_config_images_dir }}
-script-dir: {{ nodepool_config_script_dir }}
+script-dir: {{ nodepool_config_scripts_dir }}
 
 {% set _gearman_servers = { 'gearman-servers': nodepool_config_gearman_servers } -%}
 {{ _gearman_servers | to_nice_yaml }}
