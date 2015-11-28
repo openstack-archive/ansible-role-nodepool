@@ -10,4 +10,3 @@ script-dir: {{ nodepool_config_scripts_dir }}
 {% set _zmq_publishers = { 'zmq-publishers': nodepool_config_zmq_publishers } -%}
 {{ _zmq_publishers | to_nice_yaml }}
 {{ nodepool_template_nodepool_yaml_contents }}
-# {{ ansible_managed }}
