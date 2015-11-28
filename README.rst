@@ -45,7 +45,11 @@ Role Variables
 
     # Path to folder containing elements/ and scripts/ used by nodepool.
     # Default: ""
-    nodepool_project_config_dir: ""
+    nodepool_elements_dir: ""
+
+    # Path to folder containing elements/ and scripts/ used by nodepool.
+    # Default: ""
+    nodepool_scripts_dir: ""
 
 Dependencies
 ------------
