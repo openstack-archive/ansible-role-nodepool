@@ -17,16 +17,19 @@ nodepool_user_name: nodepool
 nodepool_user_group: "{{ nodepool_user_name }}"
 nodepool_user_home: "/var/lib/{{ nodepool_user_name }}"
 
-nodepool_project_config_dir: ""
-nodepool_project_config_dir_dest: /etc/nodepool/config
+nodepool_elements_dir: ""
+nodepool_elements_dir_dest: /etc/nodepool/elements
+
+nodepool_scripts_dir: ""
+nodepool_scripts_dir_dest: /etc/nodepool/scripts
 
 nodepool_config_database_dburi: "sqlite:///{{ nodepool_user_home }}/nodepool.db"
-nodepool_config_elements_dir: "{{ nodepool_project_config_dir_dest }}/elements"
+nodepool_config_elements_dir: "{{ nodepool_elements_dir_dest }}"
 nodepool_config_gearman_servers: []
 nodepool_config_images_dir: /opt/nodepool/images
 nodepool_config_log_config: /etc/nodepool/logging.conf
 nodepool_config_secure_config: /etc/nodepool/secure.conf
-nodepool_config_scripts_dir: "{{ nodepool_project_config_dir_dest }}/scripts"
+nodepool_config_scripts_dir: "{{ nodepool_scripts_dir_dest }}"
 nodepool_config_zmq_publishers: []
 
 nodepool_file_logging_conf: etc/nodepool/logging.conf

@@ -68,7 +68,7 @@
     src: "{{ nodepool_file_logging_conf }}"
   notify: Restart nodepool
 
-- name: Create nodepool project config directory.
+- name: Create nodepool elements directory.
   file:
     group: "{{ ansible_ssh_user }}"
     mode: 0775
@@ -76,14 +76,34 @@
     path: "{{ item }}"
     state: directory
   with_items:
-    - "{{ nodepool_project_config_dir_dest }}"
+    - "{{ nodepool_elements_dir_dest }}"
 
-- name: Rsync nodepool project config directory.
+- name: Rsync nodepool elements directory.
   sudo: no
   synchronize:
-    dest: "{{ nodepool_project_config_dir_dest }}"
+    dest: "{{ nodepool_elements_dir_dest }}"
     perms: yes
     rsync_opts:
       - '--delete'
-    src: "{{ nodepool_project_config_dir }}"
-  when: nodepool_project_config_dir != ""
+    src: "{{ nodepool_elements_dir }}"
+  when: nodepool_elements_dir != ""
+
+- name: Create nodepool scripts directory.
+  file:
+    group: "{{ ansible_ssh_user }}"
+    mode: 0775
+    owner: "{{ ansible_ssh_user }}"
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ nodepool_scripts_dir_dest }}"
+
+- name: Rsync nodepool scripts directory.
+  sudo: no
+  synchronize:
+    dest: "{{ nodepool_scripts_dir_dest }}"
+    perms: yes
+    rsync_opts:
+      - '--delete'
+    src: "{{ nodepool_scripts_dir }}"
+  when: nodepool_scripts_dir != ""
