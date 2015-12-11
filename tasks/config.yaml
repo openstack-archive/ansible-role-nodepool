@@ -53,15 +53,6 @@
     src: "{{ nodepool_template_nodepool_yaml_src }}"
   notify: Restart nodepool
 
-- name: Copy sudoers file into place.
-  copy:
-    dest: /etc/sudoers.d/nodepool
-    group: root
-    mode: 0440
-    owner: root
-    src: nodepool.sudoers
-    validate: '/usr/sbin/visudo -cf %s'
-
 - name: Copy logging configuration file.
   copy:
     dest: "{{ nodepool_config_log_config }}"
