@@ -26,6 +26,12 @@ Packages
 Package repository index files should be up to date before using this role, we
 do not manage them.
 
+Sudo
+~~~~
+
+You will be required to create the appropriate suders for nodepool if you plan
+on creating DIBs.
+
 Role Variables
 --------------
 
