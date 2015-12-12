@@ -39,25 +39,21 @@
   template:
     dest: "{{ nodepool_template_clouds_yaml_dest }}"
     src: "{{ nodepool_template_clouds_yaml_src }}"
-  notify: Restart nodepool
 
 - name: Template secure configuration file.
   template:
     dest: "{{ nodepool_template_secure_conf_dest }}"
     src: "{{ nodepool_template_secure_conf_src }}"
-  notify: Restart nodepool
 
 - name: Template yaml configuration file.
   template:
     dest: "{{ nodepool_template_nodepool_yaml_dest }}"
     src: "{{ nodepool_template_nodepool_yaml_src }}"
-  notify: Restart nodepool
 
 - name: Copy logging configuration file.
   copy:
     dest: "{{ nodepool_config_log_config }}"
     src: "{{ nodepool_file_logging_conf }}"
-  notify: Restart nodepool
 
 - name: Create nodepool elements directory.
   file:
