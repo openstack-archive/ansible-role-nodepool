@@ -23,3 +23,6 @@ __nodepool_build_depends:
   - python-devel
   - python-pip
   - zlib-devel
+
+__nodepool_file_nodepool_service_dest: /etc/systemd/system
+__nodepool_file_nodepool_service_src: ../../files/etc/systemd/system/nodepool.service

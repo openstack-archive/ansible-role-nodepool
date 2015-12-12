@@ -12,11 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Copy upstart file into place.
-  copy:
-    dest: /etc/init
-    src: ../../files/etc/init/nodepool.conf
-
 - name: Copy default file into place.
   copy:
     dest: /etc/default/nodepool

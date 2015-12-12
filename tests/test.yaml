@@ -105,3 +105,24 @@
         that:
           - nodepool_git_dest_stat.stat.exists
           - nodepool_git_dest_stat.stat.isdir
+
+    - name: Register /etc/systemd/system/nodepool.service
+      stat:
+        path: /etc/systemd/system/nodepool.service
+      register: nodepool_service_stat
+      when: ansible_os_family == 'RedHat'
+
+    - name: Register /etc/init/nodepool.conf
+      stat:
+        path: /etc/init/nodepool.conf
+      register: nodepool_service_stat
+      when: ansible_os_family == 'Debian'
+
+    - name: Assert nodepool_service_stat tests.
+      assert:
+        that:
+          - nodepool_service_stat.stat.exists
+          - nodepool_service_stat.stat.isreg
+          - nodepool_service_stat.stat.pw_name == 'root'
+          - nodepool_service_stat.stat.gr_name == 'root'
+          - nodepool_service_stat.stat.mode == '0644'
