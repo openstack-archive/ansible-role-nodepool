@@ -59,3 +59,8 @@ nodepool_install_method: git
 
 nodepool_pip_name: nodepool
 nodepool_pip_version:
+
+# tasks/service.yaml
+nodepool_file_nodepool_service_group: root
+nodepool_file_nodepool_service_mode: "0644"
+nodepool_file_nodepool_service_owner: root
