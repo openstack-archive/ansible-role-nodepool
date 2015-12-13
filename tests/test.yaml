@@ -17,6 +17,17 @@
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
   pre_tasks:
+    # Setup SSH to localhost
+    - name: Generate SSH keys.
+      command: ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -P ""
+      delegate_to: localhost
+    - name: Setup authorized_keys
+      command: cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+      delegate_to: localhost
+    - name: keyscan
+      command: ssh-keyscan -H localhost >> ~/.ssh/known_hosts
+      delegate_to: localhost
+
     # Make sure OS does not have a stale package cache.
     - name: Update apt cache.
       apt:
