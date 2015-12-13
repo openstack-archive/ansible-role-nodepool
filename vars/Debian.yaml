@@ -33,5 +33,6 @@ __nodepool_build_depends:
   - python-pip
   - zlib1g-dev
 
-__nodepool_file_nodepool_service_dest: /etc/init/nodepool.conf
-__nodepool_file_nodepool_service_src: ../files/etc/init/nodepool.conf
+__nodepool_file_nodepool_service_dest: /etc/init.d/nodepool
+__nodepool_file_nodepool_service_mode: "0755"
+__nodepool_file_nodepool_service_src: ../files/etc/init.d/nodepool
