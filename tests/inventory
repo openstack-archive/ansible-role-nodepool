@@ -1,2 +1,5 @@
-[all]
-localhost ansible_connection=local
+[jenkins]
+localhost
+
+[localhost]
+localhost
