@@ -25,4 +25,5 @@ __nodepool_build_depends:
   - zlib-devel
 
 __nodepool_file_nodepool_service_dest: /etc/systemd/system/nodepool.service
+__nodepool_file_nodepool_service_mode: "0644"
 __nodepool_file_nodepool_service_src: ../files/etc/systemd/system/nodepool.service
