@@ -152,3 +152,7 @@
           - redhat_nodepool_service_stat.stat.gr_name == 'root'
           - redhat_nodepool_service_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
+
+    - name: Ensure nodepoold is running.
+      shell: /usr/sbin/service nodepool status
+      tags: skip_ansible_lint
