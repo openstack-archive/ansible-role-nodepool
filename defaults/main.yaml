@@ -62,9 +62,9 @@ nodepool_pip_version:
 
 # tasks/service.yaml
 nodepool_file_nodepool_service_group: root
-nodepool_file_nodepool_service_mode: "0644"
+
 nodepool_file_nodepool_service_owner: root
 
 nodepool_service_enabled: yes
 nodepool_service_name: nodepool
-nodepool_service_state: started
+nodepool_service_state: stopped

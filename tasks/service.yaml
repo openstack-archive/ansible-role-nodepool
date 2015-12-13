@@ -17,6 +17,11 @@
     nodepool_file_nodepool_service_dest: "{{ __nodepool_file_nodepool_service_dest }}"
   when: nodepool_file_nodepool_service_dest is not defined
 
+- name: Define nodepool_file_nodepool_service_mode.
+  set_fact:
+    nodepool_file_nodepool_service_mode: "{{ __nodepool_file_nodepool_service_mode }}"
+  when: nodepool_file_nodepool_service_mode is not defined
+
 - name: Define nodepool_file_nodepool_service_src.
   set_fact:
     nodepool_file_nodepool_service_src: "{{ __nodepool_file_nodepool_service_src }}"
