@@ -36,7 +36,7 @@
     owner: "{{ nodepool_file_nodepool_service_owner }}"
     src: "{{ nodepool_file_nodepool_service_src }}"
 
-- name: Enable nodepool service.
+- name: Configure nodepool service.
   service:
     enabled: "{{ nodepool_service_enabled }}"
     name: "{{ nodepool_service_name }}"
