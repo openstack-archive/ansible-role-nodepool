@@ -22,6 +22,7 @@
       apt:
         update_cache: yes
       when: ansible_os_family == 'Debian'
+      delegate_to: 127.0.0.1
 
   roles:
     - "{{ rolename }}"
@@ -137,3 +138,10 @@
           - redhat_nodepool_service_stat.stat.gr_name == 'root'
           - redhat_nodepool_service_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
+
+    - name: which
+      command: which nodepoold
+
+    - name: Ensure nodepoold is running.
+      command: /usr/sbin/service nodepool status
+      tags: skip_ansible_lint
