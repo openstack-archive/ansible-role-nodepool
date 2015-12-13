@@ -42,6 +42,23 @@
         that:
           - nodepool_user_home_getent.stdout == '/var/lib/nodepool'
 
+    - name: whereis
+      command: nodepoold --h
+
+    - name: Register /usr/bin/nodepoold
+      stat:
+        path: /usr/bin/nodepoold
+      register: nodepoold_stat
+
+    - name: Assert nodepoold_stat tests.
+      assert:
+        that:
+          - nodepoold_stat.stat.exists
+          - nodepoold_stat.stat.isreg
+          - nodepoold_stat.stat.pw_name == 'root'
+          - nodepoold_stat.stat.gr_name == 'root'
+          - nodepoold_stat.stat.mode == '0755'
+
     - name: Register nodepool_elements_dir_dest_stat.
       stat:
         path: /etc/nodepool/elements
@@ -137,3 +154,7 @@
           - redhat_nodepool_service_stat.stat.gr_name == 'root'
           - redhat_nodepool_service_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
+
+    - name: Ensure nodepool service is running.
+      command: /usr/sbin/service nodepool status
+      tags: skip_ansible_lint
