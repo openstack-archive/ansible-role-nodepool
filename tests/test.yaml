@@ -12,6 +12,23 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+- hosts: jenkins
+  gather_facts: no
+  pre_tasks:
+    # Setup SSH to localhost
+    - name: Generate SSH keys.
+      command: ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -P ""
+      delegate_to: localhost
+    - name: touch
+      command: touch ~/.ssh/authorized_keys
+      delegate_to: localhost
+    - name: Setup authorized_keys
+      command: cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
+      delegate_to: localhost
+    - name: keyscan
+      command: ssh-keyscan -H localhost >> ~/.ssh/known_hosts
+      delegate_to: localhost
+
 - hosts: localhost
   sudo: yes
   vars:
