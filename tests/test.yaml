@@ -13,6 +13,23 @@
 # under the License.
 ---
 - hosts: localhost
+  gather_facts: no
+  pre_tasks:
+    # Setup SSH to localhost
+    - name: Generate SSH keys.
+      shell: ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -P ""
+      delegate_to: localhost
+    - name: touch
+      shell: touch ~/.ssh/authorized_keys
+      delegate_to: localhost
+    - name: Setup authorized_keys
+      shell: cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+      delegate_to: localhost
+    - name: keyscan
+      shell: ssh-keyscan -H localhost >> ~/.ssh/known_hosts
+      delegate_to: localhost
+
+- hosts: localhost
   sudo: yes
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
@@ -137,3 +154,10 @@
           - redhat_nodepool_service_stat.stat.gr_name == 'root'
           - redhat_nodepool_service_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
+
+    - name: which
+      command: which nodepoold
+
+    - name: Ensure nodepoold is running.
+      command: /usr/bin/service nodepool status
+      tags: skip_ansible_list
