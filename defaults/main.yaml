@@ -67,4 +67,4 @@ nodepool_file_nodepool_service_owner: root
 
 nodepool_service_enabled: yes
 nodepool_service_name: nodepool
-nodepool_service_state: started
+nodepool_service_state: stopped
