@@ -38,5 +38,6 @@
 
 - name: Enable nodepool service.
   service:
-    enabled: yes
-    name: nodepool
+    enabled: "{{ nodepool_service_enabled }}"
+    name: "{{ nodepool_service_name }}"
+    state: "{{ nodepool_service_state }}"
