@@ -1,5 +1,6 @@
 [Unit]
 Description=Nodepool Service
+After=syslog.target network.target
 
 [Service]
 Type=simple
@@ -8,5 +9,5 @@ Group=nodepool
 EnvironmentFile=-/etc/sysconfig/nodepool
 ExecStart=/usr/bin/nodepoold -d -l /etc/nodepool/logging.conf
 
-StandardOutput=syslog
-StandardError=syslog
+[Install]
+WantedBy=multi-user.target
