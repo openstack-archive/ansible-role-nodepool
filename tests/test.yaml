@@ -47,6 +47,8 @@
         path: /etc/nodepool/elements
       register: nodepool_elements_dir_dest_stat
 
+    - debug: var=nodepool_elements_dir_dist_stat.stat
+
     - name: Assert nodepool_elements_dir_dest tests.
       assert:
         that:
