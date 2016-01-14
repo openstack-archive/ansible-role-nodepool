@@ -13,10 +13,12 @@
 # under the License.
 ---
 - name: Create group account.
+  become: yes
   group:
     name: "{{ nodepool_user_group }}"
 
 - name: Create user account.
+  become: yes
   user:
     createhome: yes
     home: "{{ nodepool_user_home }}"
@@ -24,6 +26,7 @@
     name: "{{ nodepool_user_name }}"
 
 - name: Create required directories.
+  become: yes
   file:
     group: "{{ nodepool_user_group }}"
     owner: "{{ nodepool_user_name }}"
@@ -36,37 +39,42 @@
     - /var/log/nodepool
 
 - name: Template clouds yaml file.
+  become: yes
   template:
     dest: "{{ nodepool_template_clouds_yaml_dest }}"
     src: "{{ nodepool_template_clouds_yaml_src }}"
 
 - name: Template secure configuration file.
+  become: yes
   template:
     dest: "{{ nodepool_template_secure_conf_dest }}"
     src: "{{ nodepool_template_secure_conf_src }}"
 
 - name: Template yaml configuration file.
+  become: yes
   template:
     dest: "{{ nodepool_template_nodepool_yaml_dest }}"
     src: "{{ nodepool_template_nodepool_yaml_src }}"
 
 - name: Copy logging configuration file.
+  become: yes
   copy:
     dest: "{{ nodepool_config_log_config }}"
     src: "{{ nodepool_file_logging_conf }}"
 
 - name: Create nodepool elements directory.
+  become: no
   file:
-    group: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_user }}"
     mode: 0775
-    owner: "{{ ansible_ssh_user }}"
+    owner: "{{ ansible_user }}"
     path: "{{ item }}"
     state: directory
   with_items:
     - "{{ nodepool_elements_dir_dest }}"
 
 - name: Rsync nodepool elements directory.
-  sudo: no
+  become: no
   synchronize:
     dest: "{{ nodepool_elements_dir_dest }}"
     perms: yes
@@ -76,17 +84,18 @@
   when: nodepool_elements_dir != ""
 
 - name: Create nodepool scripts directory.
+  become: no
   file:
-    group: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_user }}"
     mode: 0775
-    owner: "{{ ansible_ssh_user }}"
+    owner: "{{ ansible_user }}"
     path: "{{ item }}"
     state: directory
   with_items:
     - "{{ nodepool_scripts_dir_dest }}"
 
 - name: Rsync nodepool scripts directory.
-  sudo: no
+  become: no
   synchronize:
     dest: "{{ nodepool_scripts_dir_dest }}"
     perms: yes
