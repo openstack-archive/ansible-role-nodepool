@@ -57,16 +57,16 @@
 
 - name: Create nodepool elements directory.
   file:
-    group: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_user }}"
     mode: 0775
-    owner: "{{ ansible_ssh_user }}"
+    owner: "{{ ansible_user }}"
     path: "{{ item }}"
     state: directory
   with_items:
     - "{{ nodepool_elements_dir_dest }}"
 
 - name: Rsync nodepool elements directory.
-  sudo: no
+  become: no
   synchronize:
     dest: "{{ nodepool_elements_dir_dest }}"
     perms: yes
@@ -77,16 +77,16 @@
 
 - name: Create nodepool scripts directory.
   file:
-    group: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_user }}"
     mode: 0775
-    owner: "{{ ansible_ssh_user }}"
+    owner: "{{ ansible_user }}"
     path: "{{ item }}"
     state: directory
   with_items:
     - "{{ nodepool_scripts_dir_dest }}"
 
 - name: Rsync nodepool scripts directory.
-  sudo: no
+  become: no
   synchronize:
     dest: "{{ nodepool_scripts_dir_dest }}"
     perms: yes
