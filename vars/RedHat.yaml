@@ -27,3 +27,7 @@ __nodepool_build_depends:
 __nodepool_file_nodepool_service_dest: /etc/systemd/system/nodepool.service
 __nodepool_file_nodepool_service_mode: "0644"
 __nodepool_file_nodepool_service_src: etc/systemd/system/nodepool.service
+
+__nodepool_file_nodepool_builder_service_dest: /etc/systemd/system/nodepool-builder.service
+__nodepool_file_nodepool_builder_service_mode: "0644"
+__nodepool_file_nodepool_builder_service_src: etc/systemd/system/nodepool-builder.service

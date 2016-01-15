@@ -33,7 +33,7 @@
 - include: service/redhat.yaml
   when: ansible_os_family == 'RedHat'
 
-- name: Copy services scripts into place.
+- name: Copy nodepool services scripts into place.
   copy:
     dest: "{{ nodepool_file_nodepool_service_dest }}"
     group: "{{ nodepool_file_nodepool_service_group }}"
@@ -41,8 +41,22 @@
     owner: "{{ nodepool_file_nodepool_service_owner }}"
     src: "{{ nodepool_file_nodepool_service_src }}"
 
+- name: Copy nodepool-builder services scripts into place.
+  copy:
+    dest: "{{ nodepool_file_nodepool_builder_service_dest }}"
+    group: "{{ nodepool_file_nodepool_builder_service_group }}"
+    mode: "{{ nodepool_file_nodepool_builder_service_mode }}"
+    owner: "{{ nodepool_file_nodepool_builder_service_owner }}"
+    src: "{{ nodepool_file_nodepool_builder_service_src }}"
+
 - name: Enable nodepool service.
   service:
-    enabled: "{{ nodepool_service_enabled }}"
-    name: "{{ nodepool_service_name }}"
-    state: "{{ nodepool_service_state }}"
+    enabled: "{{ nodepool_service_nodepool_enabled }}"
+    name: "{{ nodepool_service_nodepool_name }}"
+    state: "{{ nodepool_service_nodepool_state }}"
+
+- name: Enable nodepool-builder service.
+  service:
+    enabled: "{{ nodepool_service_nodepool_builder_enabled }}"
+    name: "{{ nodepool_service_nodepool_builder_name }}"
+    state: "{{ nodepool_service_nodepool_builder_state }}"
