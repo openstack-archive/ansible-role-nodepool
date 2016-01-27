@@ -15,4 +15,4 @@
 - name: Copy default file into place.
   copy:
     dest: /etc/default/nodepool
-    src: ../../files/etc/default/nodepool
+    src: etc/default/nodepool
