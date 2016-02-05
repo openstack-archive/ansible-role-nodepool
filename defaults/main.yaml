@@ -73,9 +73,11 @@ nodepool_file_nodepool_builder_service_group: root
 nodepool_file_nodepool_builder_service_owner: root
 
 nodepool_service_nodepool_enabled: yes
+nodepool_service_nodepool_manage: true
 nodepool_service_nodepool_name: nodepool
 nodepool_service_nodepool_state: started
 
 nodepool_service_nodepool_builder_enabled: yes
+nodepool_service_nodepool_builder_manage: true
 nodepool_service_nodepool_builder_name: nodepool-builder
 nodepool_service_nodepool_builder_state: started
