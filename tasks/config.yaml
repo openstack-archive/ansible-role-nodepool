@@ -63,7 +63,7 @@
     src: "{{ nodepool_file_logging_conf }}"
 
 - name: Create nodepool elements directory.
-  become: no
+  become: yes
   file:
     group: "{{ ansible_user }}"
     mode: 0775
@@ -84,7 +84,7 @@
   when: nodepool_elements_dir != ""
 
 - name: Create nodepool scripts directory.
-  become: no
+  become: yes
   file:
     group: "{{ ansible_user }}"
     mode: 0775
