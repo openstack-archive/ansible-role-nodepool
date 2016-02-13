@@ -14,14 +14,14 @@
 ---
 # tasks/config.yaml
 nodepool_user_name: nodepool
-nodepool_user_group: "{{ nodepool_user_name }}"
-nodepool_user_home: "/var/lib/{{ nodepool_user_name }}"
+nodepool_user_group: nodepool
+nodepool_user_home: /var/lib/nodepool
 
 nodepool_elements_dir: ""
-nodepool_elements_dir_dest: /etc/nodepool/elements
+nodepool_elements_dir_dest: "{{ nodepool_user_home }}/elements"
 
 nodepool_scripts_dir: ""
-nodepool_scripts_dir_dest: /etc/nodepool/scripts
+nodepool_scripts_dir_dest: "{{ nodepool_user_home }}/scripts"
 
 nodepool_config_database_dburi: "sqlite:///{{ nodepool_user_home }}/nodepool.db"
 nodepool_config_elements_dir: "{{ nodepool_elements_dir_dest }}"

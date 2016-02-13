@@ -44,7 +44,7 @@
 
     - name: Register nodepool_elements_dir_dest_stat.
       stat:
-        path: /etc/nodepool/elements
+        path: /var/lib/nodepool/elements
       register: nodepool_elements_dir_dest_stat
 
     - name: Assert nodepool_elements_dir_dest tests.
@@ -58,14 +58,14 @@
           - nodepool_elements_dir_dest_stat.stat.gr_name == 'jenkins'
           - nodepool_elements_dir_dest_stat.stat.mode == '0775'
 
-    - name: Ensure /etc/nodepool/elements is empty.
-      shell: "ls -1 /etc/nodepool/elements | wc -l"
+    - name: Ensure /var/lib/nodepool/elements is empty.
+      shell: "ls -1 /var/lib/nodepool/elements | wc -l"
       register: result
       failed_when: result.stdout != "0"
 
     - name: Register nodepool_scripts_dir_dest_stat.
       stat:
-        path: /etc/nodepool/scripts
+        path: /var/lib/nodepool/scripts
       register: nodepool_scripts_dir_dest_stat
 
     - name: Assert nodepool_scripts_dir_dest tests.
@@ -79,8 +79,8 @@
           - nodepool_scripts_dir_dest_stat.stat.gr_name == 'jenkins'
           - nodepool_scripts_dir_dest_stat.stat.mode == '0775'
 
-    - name: Ensure /etc/nodepool/scripts is empty.
-      shell: "ls -1 /etc/nodepool/scripts | wc -l"
+    - name: Ensure /var/lib/nodepool/scripts is empty.
+      shell: "ls -1 /var/lib/nodepool/scripts | wc -l"
       register: result
       failed_when: result.stdout != "0"
 
