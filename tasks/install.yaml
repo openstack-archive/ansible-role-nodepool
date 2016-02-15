@@ -32,8 +32,4 @@
   with_items: nodepool_build_depends
   when: nodepool_install_method == 'git' or nodepool_install_method == 'pip'
 
-- include: install/git.yaml
-  when: nodepool_install_method == 'git'
-
-- include: install/pip.yaml
-  when: nodepool_install_method == 'pip'
+- include: "install/{{ nodepool_install_method }}.yaml"
