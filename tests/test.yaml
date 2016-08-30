@@ -29,13 +29,16 @@
   post_tasks:
     - name: Ensure nodepool_user_name is nodepool.
       shell: /usr/bin/getent passwd nodepool
+      tags: skip_ansible_lint
 
     - name: Ensure nodepool_user_group is nodepool.
       shell: /usr/bin/getent group nodepool
+      tags: skip_ansible_lint
 
     - name: Register nodepool_user_home_getent.
       shell: '/usr/bin/getent passwd nodepool | cut -d: -f6'
       register: nodepool_user_home_getent
+      tags: skip_ansible_lint
 
     - name: Assert nodepool_user_home is /var/lib/nodepool.
       assert:
@@ -62,6 +65,7 @@
       shell: "ls -1 /etc/nodepool/elements | wc -l"
       register: result
       failed_when: result.stdout != "0"
+      tags: skip_ansible_lint
 
     - name: Register nodepool_scripts_dir_dest_stat.
       stat:
@@ -83,6 +87,7 @@
       shell: "ls -1 /etc/nodepool/scripts | wc -l"
       register: result
       failed_when: result.stdout != "0"
+      tags: skip_ansible_lint
 
     - name: Register nodepool_user_home_stat.
       stat:
