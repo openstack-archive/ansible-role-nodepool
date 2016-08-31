@@ -74,6 +74,9 @@ nodepool_file_nodepool_service_config_owner: root
 nodepool_file_nodepool_builder_service_group: root
 nodepool_file_nodepool_builder_service_owner: root
 
+nodepool_file_nodepool_builder_service_config_group: root
+nodepool_file_nodepool_builder_service_config_owner: root
+
 nodepool_service_nodepool_enabled: yes
 nodepool_service_nodepool_manage: true
 nodepool_service_nodepool_name: nodepool
