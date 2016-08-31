@@ -12,21 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Define nodepool_file_nodepool_service_config_dest.
-  set_fact:
-    nodepool_file_nodepool_service_config_dest: "{{ __nodepool_file_nodepool_service_config_dest  }}"
-  when: nodepool_file_nodepool_service_config_dest is not defined
-
-- name: Define nodepool_file_nodepool_service_config_mode.
-  set_fact:
-    nodepool_file_nodepool_service_config_mode: "{{ __nodepool_file_nodepool_service_config_mode  }}"
-  when: nodepool_file_nodepool_service_config_mode is not defined
-
-- name: Define nodepool_file_nodepool_service_config_src.
-  set_fact:
-    nodepool_file_nodepool_service_config_src: "{{ __nodepool_file_nodepool_service_config_src  }}"
-  when: nodepool_file_nodepool_service_config_src is not defined
-
 - name: Define nodepool_file_nodepool_service_dest.
   set_fact:
     nodepool_file_nodepool_service_dest: "{{ __nodepool_file_nodepool_service_dest }}"
@@ -41,6 +26,21 @@
   set_fact:
     nodepool_file_nodepool_service_src: "{{ __nodepool_file_nodepool_service_src }}"
   when: nodepool_file_nodepool_service_src is not defined
+
+- name: Define nodepool_file_nodepool_service_config_dest.
+  set_fact:
+    nodepool_file_nodepool_service_config_dest: "{{ __nodepool_file_nodepool_service_config_dest  }}"
+  when: nodepool_file_nodepool_service_config_dest is not defined
+
+- name: Define nodepool_file_nodepool_service_config_mode.
+  set_fact:
+    nodepool_file_nodepool_service_config_mode: "{{ __nodepool_file_nodepool_service_config_mode  }}"
+  when: nodepool_file_nodepool_service_config_mode is not defined
+
+- name: Define nodepool_file_nodepool_service_config_src.
+  set_fact:
+    nodepool_file_nodepool_service_config_src: "{{ __nodepool_file_nodepool_service_config_src  }}"
+  when: nodepool_file_nodepool_service_config_src is not defined
 
 - name: Define nodepool_file_nodepool_builder_service_dest.
   set_fact:
@@ -57,13 +57,20 @@
     nodepool_file_nodepool_builder_service_src: "{{ __nodepool_file_nodepool_builder_service_src }}"
   when: nodepool_file_nodepool_builder_service_src is not defined
 
-- name: Copy nodepool service config into place.
-  copy:
-    dest: "{{ nodepool_file_nodepool_service_config_dest  }}"
-    group: "{{ nodepool_file_nodepool_service_config_group  }}"
-    mode: "{{ nodepool_file_nodepool_service_config_mode  }}"
-    owner: "{{ nodepool_file_nodepool_service_config_owner  }}"
-    src: "{{ nodepool_file_nodepool_service_config_src  }}"
+- name: Define nodepool_file_nodepool_builder_service_config_dest.
+  set_fact:
+    nodepool_file_nodepool_builder_service_config_dest: "{{ __nodepool_file_nodepool_builder_service_config_dest  }}"
+  when: nodepool_file_nodepool_builder_service_config_dest is not defined
+
+- name: Define nodepool_file_nodepool_builder_service_config_mode.
+  set_fact:
+    nodepool_file_nodepool_builder_service_config_mode: "{{ __nodepool_file_nodepool_builder_service_config_mode  }}"
+  when: nodepool_file_nodepool_builder_service_config_mode is not defined
+
+- name: Define nodepool_file_nodepool_builder_service_config_src.
+  set_fact:
+    nodepool_file_nodepool_builder_service_config_src: "{{ __nodepool_file_nodepool_builder_service_config_src  }}"
+  when: nodepool_file_nodepool_builder_service_config_src is not defined
 
 - name: Copy nodepool services scripts into place.
   copy:
@@ -73,6 +80,14 @@
     owner: "{{ nodepool_file_nodepool_service_owner }}"
     src: "{{ nodepool_file_nodepool_service_src }}"
 
+- name: Copy nodepool service config into place.
+  copy:
+    dest: "{{ nodepool_file_nodepool_service_config_dest  }}"
+    group: "{{ nodepool_file_nodepool_service_config_group  }}"
+    mode: "{{ nodepool_file_nodepool_service_config_mode  }}"
+    owner: "{{ nodepool_file_nodepool_service_config_owner  }}"
+    src: "{{ nodepool_file_nodepool_service_config_src  }}"
+
 - name: Copy nodepool-builder services scripts into place.
   copy:
     dest: "{{ nodepool_file_nodepool_builder_service_dest }}"
@@ -80,6 +95,14 @@
     mode: "{{ nodepool_file_nodepool_builder_service_mode }}"
     owner: "{{ nodepool_file_nodepool_builder_service_owner }}"
     src: "{{ nodepool_file_nodepool_builder_service_src }}"
+
+- name: Copy nodepool service config into place.
+  copy:
+    dest: "{{ nodepool_file_nodepool_builder_service_config_dest  }}"
+    group: "{{ nodepool_file_nodepool_builder_service_config_group  }}"
+    mode: "{{ nodepool_file_nodepool_builder_service_config_mode  }}"
+    owner: "{{ nodepool_file_nodepool_builder_service_config_owner  }}"
+    src: "{{ nodepool_file_nodepool_builder_service_config_src  }}"
 
 - name: Enable nodepool service.
   service:

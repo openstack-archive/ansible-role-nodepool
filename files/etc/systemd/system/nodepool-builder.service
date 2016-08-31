@@ -6,7 +6,7 @@ After=syslog.target network.target
 Type=simple
 User=nodepool
 Group=nodepool
-EnvironmentFile=-/etc/sysconfig/nodepool
+EnvironmentFile=-/etc/sysconfig/nodepool-builder
 ExecStart=/usr/bin/nodepool-builder -d -l /etc/nodepool/logging.conf
 
 [Install]
