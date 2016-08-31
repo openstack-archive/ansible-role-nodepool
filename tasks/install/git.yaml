@@ -20,4 +20,6 @@
 
 - name: Pip install nodepool from local git repo.
   pip:
+    extra_args: "{{ nodepool_pip_extra_args|default(omit) }}"
     name: "file://{{ nodepool_git_dest }}"
+    virtualenv: "{{ nodepool_pip_virtualenv|default(omit) }}"
