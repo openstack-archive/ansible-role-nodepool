@@ -60,7 +60,9 @@ nodepool_git_version: master
 nodepool_install_method: git
 
 nodepool_pip_name: nodepool
-nodepool_pip_version:
+#nodepool_pip_extra_args:
+#nodepool_pip_version:
+#nodepool_pip_virtualenv:
 
 # tasks/service.yaml
 nodepool_file_nodepool_service_group: root

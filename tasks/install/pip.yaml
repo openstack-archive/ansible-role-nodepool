@@ -14,11 +14,7 @@
 ---
 - name: Install nodepool using pip.
   pip:
+    extra_args: "{{ nodepool_pip_extra_args|default(omit) }}"
     name: "{{ nodepool_pip_name }}"
-  when: nodepool_pip_version is none
-
-- name: Install nodepool using pip.
-  pip:
-    name: "{{ nodepool_pip_name }}"
-    version: "{{ nodepool_pip_version }}"
-  when: nodepool_pip_version is not none
+    version: "{{ nodepool_pip_version|default(omit) }}"
+    virtualenv: "{{ nodepool_pip_virtualenv|default(omit) }}"
