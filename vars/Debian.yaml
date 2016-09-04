@@ -30,7 +30,6 @@ __nodepool_build_depends:
   - libxml2-dev
   - libxslt1-dev
   - python-dev
-  - python-pip
   - zlib1g-dev
 
 __nodepool_file_nodepool_service_dest: /etc/init.d/nodepool
