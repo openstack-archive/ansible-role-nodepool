@@ -13,12 +13,14 @@
 # under the License.
 ---
 - name: Git clone nodepool.
+  become: yes
   git:
     dest: "{{ nodepool_git_dest }}"
     repo: "{{ nodepool_git_uri }}"
     version: "{{ nodepool_git_version }}"
 
 - name: Pip install nodepool from local git repo.
+  become: yes
   pip:
     extra_args: "{{ nodepool_pip_extra_args|default(omit) }}"
     name: "file://{{ nodepool_git_dest }}"

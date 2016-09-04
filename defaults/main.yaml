@@ -12,6 +12,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+# tasks/main.yaml
+nodepool_task_manager:
+  - pre
+  - install
+  - config
+  - service
+
 # tasks/config.yaml
 nodepool_user_name: nodepool
 nodepool_user_group: nodepool

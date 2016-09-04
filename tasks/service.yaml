@@ -73,6 +73,7 @@
   when: nodepool_file_nodepool_builder_service_config_src is not defined
 
 - name: Copy nodepool services scripts into place.
+  become: yes
   copy:
     dest: "{{ nodepool_file_nodepool_service_dest }}"
     group: "{{ nodepool_file_nodepool_service_group }}"
@@ -81,6 +82,7 @@
     src: "{{ nodepool_file_nodepool_service_src }}"
 
 - name: Copy nodepool service config into place.
+  become: yes
   copy:
     dest: "{{ nodepool_file_nodepool_service_config_dest  }}"
     group: "{{ nodepool_file_nodepool_service_config_group  }}"
@@ -89,6 +91,7 @@
     src: "{{ nodepool_file_nodepool_service_config_src  }}"
 
 - name: Copy nodepool-builder services scripts into place.
+  become: yes
   copy:
     dest: "{{ nodepool_file_nodepool_builder_service_dest }}"
     group: "{{ nodepool_file_nodepool_builder_service_group }}"
@@ -97,6 +100,7 @@
     src: "{{ nodepool_file_nodepool_builder_service_src }}"
 
 - name: Copy nodepool service config into place.
+  become: yes
   copy:
     dest: "{{ nodepool_file_nodepool_builder_service_config_dest  }}"
     group: "{{ nodepool_file_nodepool_builder_service_config_group  }}"
@@ -105,6 +109,7 @@
     src: "{{ nodepool_file_nodepool_builder_service_config_src  }}"
 
 - name: Enable nodepool service.
+  become: yes
   service:
     enabled: "{{ nodepool_service_nodepool_enabled }}"
     name: "{{ nodepool_service_nodepool_name }}"
@@ -112,6 +117,7 @@
   when: nodepool_service_nodepool_manage
 
 - name: Enable nodepool-builder service.
+  become: yes
   service:
     enabled: "{{ nodepool_service_nodepool_builder_enabled }}"
     name: "{{ nodepool_service_nodepool_builder_name }}"
