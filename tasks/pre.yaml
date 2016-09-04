@@ -1,4 +1,4 @@
-# Copyright 2015 Red Hat, Inc.
+# Copyright 2016 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,15 +12,15 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yaml"
-
-- include: pre.yaml
-
-- include: install.yaml
+- name: Create group account.
   become: yes
+  group:
+    name: "{{ nodepool_user_group }}"
 
-- include: config.yaml
-
-- include: service.yaml
+- name: Create user account.
   become: yes
+  user:
+    createhome: yes
+    group: "{{ nodepool_user_group }}"
+    home: "{{ nodepool_user_home }}"
+    name: "{{ nodepool_user_name }}"

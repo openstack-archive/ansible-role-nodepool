@@ -12,19 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Create group account.
-  become: yes
-  group:
-    name: "{{ nodepool_user_group }}"
-
-- name: Create user account.
-  become: yes
-  user:
-    createhome: yes
-    home: "{{ nodepool_user_home }}"
-    group: "{{ nodepool_user_group }}"
-    name: "{{ nodepool_user_name }}"
-
 - name: Create required directories.
   become: yes
   file:
