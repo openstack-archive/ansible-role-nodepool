@@ -25,12 +25,6 @@
     - "{{ nodepool_user_home }}/.config/openstack"
     - /var/log/nodepool
 
-- name: Template clouds yaml file.
-  become: yes
-  template:
-    dest: "{{ nodepool_template_clouds_yaml_dest }}"
-    src: "{{ nodepool_template_clouds_yaml_src }}"
-
 - name: Template secure configuration file.
   become: yes
   template:

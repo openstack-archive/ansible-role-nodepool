@@ -45,10 +45,6 @@ nodepool_config_scripts_dir: "{{ nodepool_scripts_dir_dest }}"
 
 nodepool_file_logging_conf: etc/nodepool/logging.conf
 
-nodepool_template_clouds_yaml_contents: ""
-nodepool_template_clouds_yaml_dest: "{{ nodepool_user_home }}/.config/openstack/clouds.yaml"
-nodepool_template_clouds_yaml_src: var/lib/nodepool/.config/openstack/clouds.yaml.j2
-
 nodepool_template_secure_conf_contents: ""
 nodepool_template_secure_conf_dest: /etc/nodepool/secure.conf
 nodepool_template_secure_conf_src: etc/nodepool/secure.conf.j2
