@@ -24,6 +24,12 @@ nodepool_user_name: nodepool
 nodepool_user_group: nodepool
 nodepool_user_home: /var/lib/nodepool
 
+nodepool_file_nodepool_elements_dest: /etc/nodepool/elements
+nodepool_file_nodepool_elements_group: "{{ nodepool_user_group }}"
+nodepool_file_nodepool_elements_mode: 0755
+nodepool_file_nodepool_elements_owner: "{{ nodepool_user_name }}"
+nodepool_file_nodepool_elements_src: etc/nodepool/elements/
+
 nodepool_file_nodepool_yaml_dest: /etc/nodepool/nodepool.yaml
 nodepool_file_nodepool_yaml_group: "{{ nodepool_user_group }}"
 nodepool_file_nodepool_yaml_mode: 0644
@@ -36,13 +42,9 @@ nodepool_file_secure_conf_mode: 0600
 nodepool_file_secure_conf_owner: "{{ nodepool_user_name }}"
 nodepool_file_secure_conf_src: etc/nodepool/secure.conf
 
-nodepool_elements_dir: ""
-nodepool_elements_dir_dest: /etc/nodepool/elements
-
 nodepool_scripts_dir: ""
 nodepool_scripts_dir_dest: /etc/nodepool/scripts
 
-nodepool_config_elements_dir: "{{ nodepool_elements_dir_dest }}"
 nodepool_config_images_dir: /opt/nodepool/images
 nodepool_config_log_config: /etc/nodepool/logging.conf
 nodepool_config_scripts_dir: "{{ nodepool_scripts_dir_dest }}"
