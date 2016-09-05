@@ -45,6 +45,19 @@
         that:
           - nodepool_user_home_getent.stdout == '/var/lib/nodepool'
 
+    - name: Register /etc/nodepool/nodepool.yaml
+      stat:
+        path: /etc/nodepool/nodepool.yaml
+      register: nodepool_yaml_stat
+
+    - name: Assert nodepool_yaml_stat tests.
+      assert:
+        that:
+          - nodepool_yaml_stat.stat.exists
+          - nodepool_yaml_stat.stat.isreg
+          - nodepool_yaml_stat.stat.pw_name == 'nodepool'
+          - nodepool_yaml_stat.stat.gr_name == 'nodepool'
+
     - name: Register nodepool_elements_dir_dest_stat.
       stat:
         path: /etc/nodepool/elements
