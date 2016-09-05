@@ -37,11 +37,14 @@
     dest: "{{ nodepool_template_secure_conf_dest }}"
     src: "{{ nodepool_template_secure_conf_src }}"
 
-- name: Template yaml configuration file.
+- name: Copy nodepool configuration.
   become: yes
-  template:
-    dest: "{{ nodepool_template_nodepool_yaml_dest }}"
-    src: "{{ nodepool_template_nodepool_yaml_src }}"
+  copy:
+    dest: "{{ nodepool_file_nodepool_yaml_dest }}"
+    group: "{{ nodepool_file_nodepool_yaml_group }}"
+    mode: "{{ nodepool_file_nodepool_yaml_mode }}"
+    owner: "{{nodepool_file_nodepool_yaml_owner }}"
+    src: "{{ nodepool_file_nodepool_yaml_src }}"
 
 - name: Copy logging configuration file.
   become: yes
