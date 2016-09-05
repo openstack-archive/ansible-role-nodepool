@@ -49,26 +49,14 @@
     dest: "{{ nodepool_config_log_config }}"
     src: "{{ nodepool_file_logging_conf }}"
 
-- name: Create nodepool elements directory.
+- name: Copy nodepool elements directory.
   become: yes
-  file:
-    group: "{{ ansible_user }}"
-    mode: 0775
-    owner: "{{ ansible_user }}"
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - "{{ nodepool_elements_dir_dest }}"
-
-- name: Rsync nodepool elements directory.
-  become: no
-  synchronize:
-    dest: "{{ nodepool_elements_dir_dest }}"
-    perms: yes
-    rsync_opts:
-      - '--delete'
-    src: "{{ nodepool_elements_dir }}"
-  when: nodepool_elements_dir != ""
+  copy:
+    dest: "{{ nodepool_file_nodepool_elements_dest }}"
+    group: "{{ nodepool_file_nodepool_elements_group }}"
+    mode: "{{ nodepool_file_nodepool_elements_mode }}"
+    owner: "{{nodepool_file_nodepool_elements_owner }}"
+    src: "{{ nodepool_file_nodepool_elements_src }}"
 
 - name: Create nodepool scripts directory.
   become: yes
