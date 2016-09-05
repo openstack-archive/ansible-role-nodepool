@@ -25,12 +25,6 @@
     - "{{ nodepool_user_home }}/.config/openstack"
     - /var/log/nodepool
 
-- name: Template secure configuration file.
-  become: yes
-  template:
-    dest: "{{ nodepool_template_secure_conf_dest }}"
-    src: "{{ nodepool_template_secure_conf_src }}"
-
 - name: Copy nodepool configuration.
   become: yes
   copy:
@@ -39,6 +33,15 @@
     mode: "{{ nodepool_file_nodepool_yaml_mode }}"
     owner: "{{nodepool_file_nodepool_yaml_owner }}"
     src: "{{ nodepool_file_nodepool_yaml_src }}"
+
+- name: Copy nodepool secure configuration.
+  become: yes
+  copy:
+    dest: "{{ nodepool_file_secure_conf_dest }}"
+    group: "{{ nodepool_file_secure_conf_group }}"
+    mode: "{{ nodepool_file_secure_conf_mode }}"
+    owner: "{{nodepool_file_secure_conf_owner }}"
+    src: "{{ nodepool_file_secure_conf_src }}"
 
 - name: Copy logging configuration file.
   become: yes

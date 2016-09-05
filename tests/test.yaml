@@ -57,6 +57,21 @@
           - nodepool_yaml_stat.stat.isreg
           - nodepool_yaml_stat.stat.pw_name == 'nodepool'
           - nodepool_yaml_stat.stat.gr_name == 'nodepool'
+          - nodepool_yaml_stat.stat.mode == '0644'
+
+    - name: Register /etc/nodepool/secure.conf
+      stat:
+        path: /etc/nodepool/secure.conf
+      register: secure_conf_stat
+
+    - name: Assert secure_conf_stat tests.
+      assert:
+        that:
+          - secure_conf_stat.stat.exists
+          - secure_conf_stat.stat.isreg
+          - secure_conf_stat.stat.pw_name == 'nodepool'
+          - secure_conf_stat.stat.gr_name == 'nodepool'
+          - secure_conf_stat.stat.mode == '0600'
 
     - name: Register nodepool_elements_dir_dest_stat.
       stat:
