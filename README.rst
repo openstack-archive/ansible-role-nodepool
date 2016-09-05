@@ -49,10 +49,6 @@ Role Variables
     # Default: /var/lib/nodepool
     nodepool_user_home: /var/lib/nodepool
 
-    # Path to folder containing scripts used by nodepool.
-    # Default: ""
-    nodepool_scripts_dir: ""
-
 Dependencies
 ------------
 

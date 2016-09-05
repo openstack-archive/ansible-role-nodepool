@@ -97,17 +97,9 @@
         that:
           - nodepool_scripts_dir_dest_stat.stat.exists
           - nodepool_scripts_dir_dest_stat.stat.isdir
-            # NOTE(pabelanger): This means we are hardcoded to the
-            # openstack-infra jenkins user in nodepool.
-          - nodepool_scripts_dir_dest_stat.stat.pw_name == 'jenkins'
-          - nodepool_scripts_dir_dest_stat.stat.gr_name == 'jenkins'
-          - nodepool_scripts_dir_dest_stat.stat.mode == '0775'
-
-    - name: Ensure /etc/nodepool/scripts is empty.
-      shell: "ls -1 /etc/nodepool/scripts | wc -l"
-      register: result
-      failed_when: result.stdout != "0"
-      tags: skip_ansible_lint
+          - nodepool_scripts_dir_dest_stat.stat.pw_name == 'nodepool'
+          - nodepool_scripts_dir_dest_stat.stat.gr_name == 'nodepool'
+          - nodepool_scripts_dir_dest_stat.stat.mode == '0755'
 
     - name: Register nodepool_user_home_stat.
       stat:

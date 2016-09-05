@@ -60,21 +60,9 @@
 
 - name: Create nodepool scripts directory.
   become: yes
-  file:
-    group: "{{ ansible_user }}"
-    mode: 0775
-    owner: "{{ ansible_user }}"
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - "{{ nodepool_scripts_dir_dest }}"
-
-- name: Rsync nodepool scripts directory.
-  become: no
-  synchronize:
-    dest: "{{ nodepool_scripts_dir_dest }}"
-    perms: yes
-    rsync_opts:
-      - '--delete'
-    src: "{{ nodepool_scripts_dir }}"
-  when: nodepool_scripts_dir != ""
+  copy:
+    dest: "{{ nodepool_file_nodepool_scripts_dest }}"
+    group: "{{ nodepool_file_nodepool_scripts_group }}"
+    mode: "{{ nodepool_file_nodepool_scripts_mode }}"
+    owner: "{{nodepool_file_nodepool_scripts_owner }}"
+    src: "{{ nodepool_file_nodepool_scripts_src }}"
