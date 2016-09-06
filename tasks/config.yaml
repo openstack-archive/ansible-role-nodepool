@@ -21,8 +21,6 @@
     state: directory
   with_items:
     - /etc/nodepool
-    - "{{ nodepool_config_images_dir }}"
-    - "{{ nodepool_user_home }}/.config/openstack"
     - /var/log/nodepool
 
 - name: Copy nodepool configuration.

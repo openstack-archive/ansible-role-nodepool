@@ -48,7 +48,6 @@ nodepool_file_secure_conf_mode: 0600
 nodepool_file_secure_conf_owner: "{{ nodepool_user_name }}"
 nodepool_file_secure_conf_src: etc/nodepool/secure.conf
 
-nodepool_config_images_dir: /opt/nodepool/images
 nodepool_config_log_config: /etc/nodepool/logging.conf
 
 nodepool_file_logging_conf: etc/nodepool/logging.conf
