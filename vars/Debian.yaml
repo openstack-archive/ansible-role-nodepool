@@ -27,6 +27,8 @@
 ---
 __nodepool_build_depends:
   - git
+  - libffi-dev
+  - libssl-dev
   - libxml2-dev
   - libxslt1-dev
   - python-dev
