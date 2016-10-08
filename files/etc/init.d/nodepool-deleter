@@ -18,7 +18,10 @@ SCRIPTNAME=/etc/init.d/$NAME
 USER=nodepool
 
 # Read configuration variable file if it is present
-[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+if ! [ -x "$DAEMON" ]; then
+    echo "$DAEMON: command not found"
+    exit 5
+fi
 
 DAEMON=$PREFIX/bin/nodepoold
 
