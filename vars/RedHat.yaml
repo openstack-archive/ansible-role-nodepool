@@ -38,3 +38,11 @@ __nodepool_file_nodepool_builder_service_src: etc/systemd/system/nodepool-builde
 __nodepool_file_nodepool_builder_service_config_dest: /etc/sysconfig/nodepool-builder
 __nodepool_file_nodepool_builder_service_config_mode: 0644
 __nodepool_file_nodepool_builder_service_config_src: etc/sysconfig/nodepool-builder
+
+__nodepool_file_nodepool_deleter_service_dest: /etc/systemd/system/nodepool-deleter.service
+__nodepool_file_nodepool_deleter_service_mode: 0644
+__nodepool_file_nodepool_deleter_service_src: etc/systemd/system/nodepool-deleter.service
+
+__nodepool_file_nodepool_deleter_service_config_dest: /etc/sysconfig/nodepool-deleter
+__nodepool_file_nodepool_deleter_service_config_mode: 0644
+__nodepool_file_nodepool_deleter_service_config_src: etc/sysconfig/nodepool-deleter

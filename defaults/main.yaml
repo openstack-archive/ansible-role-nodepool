@@ -60,6 +60,12 @@ nodepool_file_builder_logging_conf_mode: 0644
 nodepool_file_builder_logging_conf_owner: "{{ nodepool_user_name }}"
 nodepool_file_builder_logging_conf_src: etc/nodepool/builder-logging.conf
 
+nodepool_file_deleter_logging_conf_dest: /etc/nodepool/deleter-logging.conf
+nodepool_file_deleter_logging_conf_group: "{{ nodepool_user_group }}"
+nodepool_file_deleter_logging_conf_mode: 0644
+nodepool_file_deleter_logging_conf_owner: "{{ nodepool_user_name }}"
+nodepool_file_deleter_logging_conf_src: etc/nodepool/deleter-logging.conf
+
 # tasks/install.yaml
 nodepool_git_dest: /opt/ansible-role-nodepool/git/openstack-infra/nodepool
 nodepool_git_uri: https://git.openstack.org/openstack-infra/nodepool
@@ -85,6 +91,12 @@ nodepool_file_nodepool_builder_service_owner: root
 nodepool_file_nodepool_builder_service_config_group: root
 nodepool_file_nodepool_builder_service_config_owner: root
 
+nodepool_file_nodepool_deleter_service_group: root
+nodepool_file_nodepool_deleter_service_owner: root
+
+nodepool_file_nodepool_deleter_service_config_group: root
+nodepool_file_nodepool_deleter_service_config_owner: root
+
 nodepool_service_nodepool_enabled: yes
 nodepool_service_nodepool_manage: true
 nodepool_service_nodepool_name: nodepool
@@ -94,3 +106,8 @@ nodepool_service_nodepool_builder_enabled: yes
 nodepool_service_nodepool_builder_manage: true
 nodepool_service_nodepool_builder_name: nodepool-builder
 nodepool_service_nodepool_builder_state: started
+
+nodepool_service_nodepool_deleter_enabled: yes
+nodepool_service_nodepool_deleter_manage: true
+nodepool_service_nodepool_deleter_name: nodepool-deleter
+nodepool_service_nodepool_deleter_state: started
