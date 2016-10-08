@@ -54,6 +54,12 @@ nodepool_file_logging_conf_mode: 0644
 nodepool_file_logging_conf_owner: "{{ nodepool_user_name }}"
 nodepool_file_logging_conf_src: etc/nodepool/logging.conf
 
+nodepool_file_builder_logging_conf_dest: /etc/nodepool/builder-logging.conf
+nodepool_file_builder_logging_conf_group: "{{ nodepool_user_group }}"
+nodepool_file_builder_logging_conf_mode: 0644
+nodepool_file_builder_logging_conf_owner: "{{ nodepool_user_name }}"
+nodepool_file_builder_logging_conf_src: etc/nodepool/builder-logging.conf
+
 # tasks/install.yaml
 nodepool_git_dest: /opt/ansible-role-nodepool/git/openstack-infra/nodepool
 nodepool_git_uri: https://git.openstack.org/openstack-infra/nodepool

@@ -33,6 +33,7 @@
           - nodepool_file_nodepool_yaml
           - nodepool_file_secure_conf
           - nodepool_file_logging_conf
+          - nodepool_file_builder_logging_conf
           - nodepool_file_nodepool_elements
           - nodepool_file_nodepool_scripts
           - nodepool_file_nodepool_service
@@ -87,6 +88,20 @@
           - logging_conf_stat.stat.pw_name == 'nodepool'
           - logging_conf_stat.stat.gr_name == 'nodepool'
           - logging_conf_stat.stat.mode == '0644'
+
+    - name: Register /etc/nodepool/builder-logging.conf
+      stat:
+        path: /etc/nodepool/builder-logging.conf
+      register: builder_logging_conf_stat
+
+    - name: Assert buidler_logging_conf_stat tests.
+      assert:
+        that:
+          - builder_logging_conf_stat.stat.exists
+          - builder_logging_conf_stat.stat.isreg
+          - builder_logging_conf_stat.stat.pw_name == 'nodepool'
+          - builder_logging_conf_stat.stat.gr_name == 'nodepool'
+          - builder_logging_conf_stat.stat.mode == '0644'
 
     - name: Register /etc/nodepool/secure.conf
       stat:
