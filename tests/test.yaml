@@ -59,6 +59,20 @@
           - nodepool_yaml_stat.stat.gr_name == 'nodepool'
           - nodepool_yaml_stat.stat.mode == '0644'
 
+    - name: Register /etc/nodepool/logging.conf
+      stat:
+        path: /etc/nodepool/logging.conf
+      register: logging_conf_stat
+
+    - name: Assert logging_conf_stat tests.
+      assert:
+        that:
+          - logging_conf_stat.stat.exists
+          - logging_conf_stat.stat.isreg
+          - logging_conf_stat.stat.pw_name == 'nodepool'
+          - logging_conf_stat.stat.gr_name == 'nodepool'
+          - logging_conf_stat.stat.mode == '0644'
+
     - name: Register /etc/nodepool/secure.conf
       stat:
         path: /etc/nodepool/secure.conf
