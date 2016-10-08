@@ -35,6 +35,7 @@
           - nodepool_file_logging_conf
           - nodepool_file_builder_logging_conf
           - nodepool_file_deleter_logging_conf
+          - nodepool_file_launcher_logging_conf
           - nodepool_file_nodepool_elements
           - nodepool_file_nodepool_scripts
           - nodepool_file_nodepool_service
@@ -43,9 +44,12 @@
           - nodepool_file_nodepool_builder_service_config
           - nodepool_file_nodepool_deleter_service
           - nodepool_file_nodepool_deleter_service_config
+          - nodepool_file_nodepool_launcher_service
+          - nodepool_file_nodepool_launcher_service_config
           - nodepool_service_nodepool
           - nodepool_service_nodepool_builder
           - nodepool_service_nodepool_deleter
+          - nodepool_service_nodepool_launcher
 
     - name: Ensure nodepool_user_name is nodepool.
       shell: /usr/bin/getent passwd nodepool
@@ -120,6 +124,20 @@
           - deleter_logging_conf_stat.stat.pw_name == 'nodepool'
           - deleter_logging_conf_stat.stat.gr_name == 'nodepool'
           - deleter_logging_conf_stat.stat.mode == '0644'
+
+    - name: Register /etc/nodepool/launcher-logging.conf
+      stat:
+        path: /etc/nodepool/launcher-logging.conf
+      register: launcher_logging_conf_stat
+
+    - name: Assert buidler_logging_conf_stat tests.
+      assert:
+        that:
+          - launcher_logging_conf_stat.stat.exists
+          - launcher_logging_conf_stat.stat.isreg
+          - launcher_logging_conf_stat.stat.pw_name == 'nodepool'
+          - launcher_logging_conf_stat.stat.gr_name == 'nodepool'
+          - launcher_logging_conf_stat.stat.mode == '0644'
 
     - name: Register /etc/nodepool/secure.conf
       stat:
@@ -390,4 +408,73 @@
     - name: Ensure nodepool-deleter is running.
       become: yes
       shell: /usr/sbin/service nodepool-deleter status
+      tags: skip_ansible_lint
+
+    - name: Register /etc/default/nodepool-launcher
+      stat:
+        path: /etc/default/nodepool
+      register: debian_nodepool_launcher_sysconfig_stat
+      when: ansible_os_family == 'Debian'
+
+    - name: Assert debian_nodepool_launcher_sysconfig_stat tests.
+      assert:
+        that:
+          - debian_nodepool_launcher_sysconfig_stat.stat.exists
+          - debian_nodepool_launcher_sysconfig_stat.stat.isreg
+          - debian_nodepool_launcher_sysconfig_stat.stat.pw_name == 'root'
+          - debian_nodepool_launcher_sysconfig_stat.stat.gr_name == 'root'
+          - debian_nodepool_launcher_sysconfig_stat.stat.mode == '0644'
+      when: ansible_os_family == 'Debian'
+
+    - name: Register /etc/sysconfig/nodepool-launcher
+      stat:
+        path: /etc/sysconfig/nodepool-launcher
+      register: redhat_nodepool_launcher_sysconfig_stat
+      when: ansible_os_family == 'RedHat'
+
+    - name: Assert redhat_nodepool_launcher_sysconfig_stat tests.
+      assert:
+        that:
+          - redhat_nodepool_launcher_sysconfig_stat.stat.exists
+          - redhat_nodepool_launcher_sysconfig_stat.stat.isreg
+          - redhat_nodepool_launcher_sysconfig_stat.stat.pw_name == 'root'
+          - redhat_nodepool_launcher_sysconfig_stat.stat.gr_name == 'root'
+          - redhat_nodepool_launcher_sysconfig_stat.stat.mode == '0644'
+      when: ansible_os_family == 'RedHat'
+
+    - name: Register /etc/init.d/nodepool-launcher
+      stat:
+        path: /etc/init.d/nodepool-launcher
+      register: debian_nodepool_launcher_service_stat
+      when: ansible_os_family == 'Debian'
+
+    - name: Assert debian_nodepool_launcher_service_stat tests.
+      assert:
+        that:
+          - debian_nodepool_launcher_service_stat.stat.exists
+          - debian_nodepool_launcher_service_stat.stat.isreg
+          - debian_nodepool_launcher_service_stat.stat.pw_name == 'root'
+          - debian_nodepool_launcher_service_stat.stat.gr_name == 'root'
+          - debian_nodepool_launcher_service_stat.stat.mode == '0755'
+      when: ansible_os_family == 'Debian'
+
+    - name: Register /etc/systemd/system/nodepool-launcher.service
+      stat:
+        path: /etc/systemd/system/nodepool-launcher.service
+      register: redhat_nodepool_launcher_service_stat
+      when: ansible_os_family == 'RedHat'
+
+    - name: Assert redhat_nodepool_launcher_service_stat tests.
+      assert:
+        that:
+          - redhat_nodepool_launcher_service_stat.stat.exists
+          - redhat_nodepool_launcher_service_stat.stat.isreg
+          - redhat_nodepool_launcher_service_stat.stat.pw_name == 'root'
+          - redhat_nodepool_launcher_service_stat.stat.gr_name == 'root'
+          - redhat_nodepool_launcher_service_stat.stat.mode == '0644'
+      when: ansible_os_family == 'RedHat'
+
+    - name: Ensure nodepool-launcher is running.
+      become: yes
+      shell: /usr/sbin/service nodepool-launcher status
       tags: skip_ansible_lint
