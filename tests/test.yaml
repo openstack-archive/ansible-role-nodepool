@@ -34,14 +34,18 @@
           - nodepool_file_secure_conf
           - nodepool_file_logging_conf
           - nodepool_file_builder_logging_conf
+          - nodepool_file_deleter_logging_conf
           - nodepool_file_nodepool_elements
           - nodepool_file_nodepool_scripts
           - nodepool_file_nodepool_service
           - nodepool_file_nodepool_service_config
           - nodepool_file_nodepool_builder_service
           - nodepool_file_nodepool_builder_service_config
+          - nodepool_file_nodepool_deleter_service
+          - nodepool_file_nodepool_deleter_service_config
           - nodepool_service_nodepool
           - nodepool_service_nodepool_builder
+          - nodepool_service_nodepool_deleter
 
     - name: Ensure nodepool_user_name is nodepool.
       shell: /usr/bin/getent passwd nodepool
@@ -102,6 +106,20 @@
           - builder_logging_conf_stat.stat.pw_name == 'nodepool'
           - builder_logging_conf_stat.stat.gr_name == 'nodepool'
           - builder_logging_conf_stat.stat.mode == '0644'
+
+    - name: Register /etc/nodepool/deleter-logging.conf
+      stat:
+        path: /etc/nodepool/deleter-logging.conf
+      register: deleter_logging_conf_stat
+
+    - name: Assert buidler_logging_conf_stat tests.
+      assert:
+        that:
+          - deleter_logging_conf_stat.stat.exists
+          - deleter_logging_conf_stat.stat.isreg
+          - deleter_logging_conf_stat.stat.pw_name == 'nodepool'
+          - deleter_logging_conf_stat.stat.gr_name == 'nodepool'
+          - deleter_logging_conf_stat.stat.mode == '0644'
 
     - name: Register /etc/nodepool/secure.conf
       stat:
@@ -236,7 +254,7 @@
       shell: /usr/sbin/service nodepool status
       tags: skip_ansible_lint
 
-    - name: Register /etc/default/nodepool
+    - name: Register /etc/default/nodepool-builder
       stat:
         path: /etc/default/nodepool
       register: debian_nodepool_builder_sysconfig_stat
@@ -303,4 +321,73 @@
     - name: Ensure nodepool-builder is running.
       become: yes
       shell: /usr/sbin/service nodepool-builder status
+      tags: skip_ansible_lint
+
+    - name: Register /etc/default/nodepool-deleter
+      stat:
+        path: /etc/default/nodepool
+      register: debian_nodepool_deleter_sysconfig_stat
+      when: ansible_os_family == 'Debian'
+
+    - name: Assert debian_nodepool_deleter_sysconfig_stat tests.
+      assert:
+        that:
+          - debian_nodepool_deleter_sysconfig_stat.stat.exists
+          - debian_nodepool_deleter_sysconfig_stat.stat.isreg
+          - debian_nodepool_deleter_sysconfig_stat.stat.pw_name == 'root'
+          - debian_nodepool_deleter_sysconfig_stat.stat.gr_name == 'root'
+          - debian_nodepool_deleter_sysconfig_stat.stat.mode == '0644'
+      when: ansible_os_family == 'Debian'
+
+    - name: Register /etc/sysconfig/nodepool-deleter
+      stat:
+        path: /etc/sysconfig/nodepool-deleter
+      register: redhat_nodepool_deleter_sysconfig_stat
+      when: ansible_os_family == 'RedHat'
+
+    - name: Assert redhat_nodepool_deleter_sysconfig_stat tests.
+      assert:
+        that:
+          - redhat_nodepool_deleter_sysconfig_stat.stat.exists
+          - redhat_nodepool_deleter_sysconfig_stat.stat.isreg
+          - redhat_nodepool_deleter_sysconfig_stat.stat.pw_name == 'root'
+          - redhat_nodepool_deleter_sysconfig_stat.stat.gr_name == 'root'
+          - redhat_nodepool_deleter_sysconfig_stat.stat.mode == '0644'
+      when: ansible_os_family == 'RedHat'
+
+    - name: Register /etc/init.d/nodepool-deleter
+      stat:
+        path: /etc/init.d/nodepool-deleter
+      register: debian_nodepool_deleter_service_stat
+      when: ansible_os_family == 'Debian'
+
+    - name: Assert debian_nodepool_deleter_service_stat tests.
+      assert:
+        that:
+          - debian_nodepool_deleter_service_stat.stat.exists
+          - debian_nodepool_deleter_service_stat.stat.isreg
+          - debian_nodepool_deleter_service_stat.stat.pw_name == 'root'
+          - debian_nodepool_deleter_service_stat.stat.gr_name == 'root'
+          - debian_nodepool_deleter_service_stat.stat.mode == '0755'
+      when: ansible_os_family == 'Debian'
+
+    - name: Register /etc/systemd/system/nodepool-deleter.service
+      stat:
+        path: /etc/systemd/system/nodepool-deleter.service
+      register: redhat_nodepool_deleter_service_stat
+      when: ansible_os_family == 'RedHat'
+
+    - name: Assert redhat_nodepool_deleter_service_stat tests.
+      assert:
+        that:
+          - redhat_nodepool_deleter_service_stat.stat.exists
+          - redhat_nodepool_deleter_service_stat.stat.isreg
+          - redhat_nodepool_deleter_service_stat.stat.pw_name == 'root'
+          - redhat_nodepool_deleter_service_stat.stat.gr_name == 'root'
+          - redhat_nodepool_deleter_service_stat.stat.mode == '0644'
+      when: ansible_os_family == 'RedHat'
+
+    - name: Ensure nodepool-deleter is running.
+      become: yes
+      shell: /usr/sbin/service nodepool-deleter status
       tags: skip_ansible_lint

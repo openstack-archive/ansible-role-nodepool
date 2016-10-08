@@ -63,6 +63,16 @@
     src: "{{ nodepool_file_builder_logging_conf_src }}"
   register: nodepool_file_builder_logging_conf
 
+- name: Copy deleter logging configuration file.
+  become: yes
+  copy:
+    dest: "{{ nodepool_file_deleter_logging_conf_dest }}"
+    group: "{{ nodepool_file_deleter_logging_conf_group }}"
+    mode: "{{ nodepool_file_deleter_logging_conf_mode }}"
+    owner: "{{nodepool_file_deleter_logging_conf_owner }}"
+    src: "{{ nodepool_file_deleter_logging_conf_src }}"
+  register: nodepool_file_deleter_logging_conf
+
 - name: Copy nodepool elements directory.
   become: yes
   copy:
