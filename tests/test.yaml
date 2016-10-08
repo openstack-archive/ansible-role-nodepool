@@ -27,6 +27,21 @@
     - "{{ rolename }}"
 
   post_tasks:
+    - name: Assert results are registered.
+      assert:
+        that:
+          - nodepool_file_nodepool_yaml
+          - nodepool_file_secure_conf
+          - nodepool_file_logging_conf
+          - nodepool_file_nodepool_elements
+          - nodepool_file_nodepool_scripts
+          - nodepool_file_nodepool_service
+          - nodepool_file_nodepool_service_config
+          - nodepool_file_nodepool_builder_service
+          - nodepool_file_nodepool_builder_service_config
+          - nodepool_service_nodepool
+          - nodepool_service_nodepool_builder
+
     - name: Ensure nodepool_user_name is nodepool.
       shell: /usr/bin/getent passwd nodepool
       tags: skip_ansible_lint

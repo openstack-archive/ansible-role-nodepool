@@ -80,6 +80,7 @@
     mode: "{{ nodepool_file_nodepool_service_mode }}"
     owner: "{{ nodepool_file_nodepool_service_owner }}"
     src: "{{ nodepool_file_nodepool_service_src }}"
+  register: nodepool_file_nodepool_service
 
 - name: Copy nodepool service config into place.
   become: yes
@@ -89,6 +90,7 @@
     mode: "{{ nodepool_file_nodepool_service_config_mode  }}"
     owner: "{{ nodepool_file_nodepool_service_config_owner  }}"
     src: "{{ nodepool_file_nodepool_service_config_src  }}"
+  register: nodepool_file_nodepool_service_config
 
 - name: Copy nodepool-builder services scripts into place.
   become: yes
@@ -98,6 +100,7 @@
     mode: "{{ nodepool_file_nodepool_builder_service_mode }}"
     owner: "{{ nodepool_file_nodepool_builder_service_owner }}"
     src: "{{ nodepool_file_nodepool_builder_service_src }}"
+  register: nodepool_file_nodepool_builder_service
 
 - name: Copy nodepool service config into place.
   become: yes
@@ -107,6 +110,7 @@
     mode: "{{ nodepool_file_nodepool_builder_service_config_mode  }}"
     owner: "{{ nodepool_file_nodepool_builder_service_config_owner  }}"
     src: "{{ nodepool_file_nodepool_builder_service_config_src  }}"
+  register: nodepool_file_nodepool_builder_service_config
 
 - name: Enable nodepool service.
   become: yes
@@ -114,6 +118,7 @@
     enabled: "{{ nodepool_service_nodepool_enabled }}"
     name: "{{ nodepool_service_nodepool_name }}"
     state: "{{ nodepool_service_nodepool_state }}"
+  register: nodepool_service_nodepool
   when: nodepool_service_nodepool_manage
 
 - name: Enable nodepool-builder service.
@@ -122,4 +127,5 @@
     enabled: "{{ nodepool_service_nodepool_builder_enabled }}"
     name: "{{ nodepool_service_nodepool_builder_name }}"
     state: "{{ nodepool_service_nodepool_builder_state }}"
+  register: nodepool_service_nodepool_builder
   when: nodepool_service_nodepool_builder_manage

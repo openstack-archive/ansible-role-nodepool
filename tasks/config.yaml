@@ -31,6 +31,7 @@
     mode: "{{ nodepool_file_nodepool_yaml_mode }}"
     owner: "{{nodepool_file_nodepool_yaml_owner }}"
     src: "{{ nodepool_file_nodepool_yaml_src }}"
+  register: nodepool_file_nodepool_yaml
 
 - name: Copy nodepool secure configuration.
   become: yes
@@ -40,6 +41,7 @@
     mode: "{{ nodepool_file_secure_conf_mode }}"
     owner: "{{nodepool_file_secure_conf_owner }}"
     src: "{{ nodepool_file_secure_conf_src }}"
+  register: nodepool_file_secure_conf
 
 - name: Copy logging configuration file.
   become: yes
@@ -49,6 +51,7 @@
     mode: "{{ nodepool_file_logging_conf_mode }}"
     owner: "{{nodepool_file_logging_conf_owner }}"
     src: "{{ nodepool_file_logging_conf_src }}"
+  register: nodepool_file_logging_conf
 
 - name: Copy nodepool elements directory.
   become: yes
@@ -58,6 +61,7 @@
     mode: "{{ nodepool_file_nodepool_elements_mode }}"
     owner: "{{nodepool_file_nodepool_elements_owner }}"
     src: "{{ nodepool_file_nodepool_elements_src }}"
+  register: nodepool_file_nodepool_elements
 
 - name: Create nodepool scripts directory.
   become: yes
@@ -67,3 +71,4 @@
     mode: "{{ nodepool_file_nodepool_scripts_mode }}"
     owner: "{{nodepool_file_nodepool_scripts_owner }}"
     src: "{{ nodepool_file_nodepool_scripts_src }}"
+  register: nodepool_file_nodepool_scripts
