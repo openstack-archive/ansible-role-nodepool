@@ -4,9 +4,8 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-User=nodepool
-Group=nodepool
 EnvironmentFile=-/etc/sysconfig/nodepool-launcher
+User=${RUNASUSER:-nodepool}
 ExecStart=/bin/sh -c "${PREFIX}/bin/nodepoold -d ${ARGS}"
 
 [Install]
