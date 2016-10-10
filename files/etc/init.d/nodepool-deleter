@@ -15,12 +15,12 @@ DESC="Nodepool Deleter"
 NAME=nodepool-deleter
 PIDFILE=/var/run/$NAME/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-USER=nodepool
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
 DAEMON=$PREFIX/bin/nodepoold
+USER=${RUNASUSER:-nodepool}
 
 # Exit if the package is not installed
 if ! [ -x "$DAEMON" ]; then

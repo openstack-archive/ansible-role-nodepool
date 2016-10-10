@@ -9,4 +9,7 @@ PREFIX=/usr
 # Options to pass to nodepool-builder.
 ARGS="-l /etc/nodepool/builder-logging.conf"
 
+# The user used to nodepool-builder service.
+RUNASUSER=nodepool-builder
+
 DIB_IMAGE_CACHE=/opt/nodepool/cache
