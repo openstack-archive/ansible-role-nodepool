@@ -7,7 +7,7 @@ Type=simple
 User=nodepool
 Group=nodepool
 EnvironmentFile=-/etc/sysconfig/nodepool
-ExecStart=/bin/sh -c "${PREFIX}/bin/nodepoold -d --no-builder ${ARGS}"
+ExecStart=/bin/sh -c "${PREFIX}/bin/nodepoold -d ${ARGS}"
 
 [Install]
 WantedBy=multi-user.target
