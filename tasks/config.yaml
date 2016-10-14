@@ -23,9 +23,9 @@
     - /etc/nodepool
     - /var/log/nodepool
 
-- name: Copy nodepool configuration.
+- name: Install nodepool configuration.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_nodepool_yaml_dest }}"
     group: "{{ nodepool_file_nodepool_yaml_group }}"
     mode: "{{ nodepool_file_nodepool_yaml_mode }}"
@@ -33,9 +33,9 @@
     src: "{{ nodepool_file_nodepool_yaml_src }}"
   register: nodepool_file_nodepool_yaml
 
-- name: Copy nodepool secure configuration.
+- name: Install nodepool secure configuration.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_secure_conf_dest }}"
     group: "{{ nodepool_file_secure_conf_group }}"
     mode: "{{ nodepool_file_secure_conf_mode }}"
@@ -43,9 +43,9 @@
     src: "{{ nodepool_file_secure_conf_src }}"
   register: nodepool_file_secure_conf
 
-- name: Copy logging configuration file.
+- name: Install logging configuration file.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_logging_conf_dest }}"
     group: "{{ nodepool_file_logging_conf_group }}"
     mode: "{{ nodepool_file_logging_conf_mode }}"
@@ -53,9 +53,9 @@
     src: "{{ nodepool_file_logging_conf_src }}"
   register: nodepool_file_logging_conf
 
-- name: Copy builder logging configuration file.
+- name: Install builder logging configuration file.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_builder_logging_conf_dest }}"
     group: "{{ nodepool_file_builder_logging_conf_group }}"
     mode: "{{ nodepool_file_builder_logging_conf_mode }}"
@@ -63,9 +63,9 @@
     src: "{{ nodepool_file_builder_logging_conf_src }}"
   register: nodepool_file_builder_logging_conf
 
-- name: Copy deleter logging configuration file.
+- name: Install deleter logging configuration file.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_deleter_logging_conf_dest }}"
     group: "{{ nodepool_file_deleter_logging_conf_group }}"
     mode: "{{ nodepool_file_deleter_logging_conf_mode }}"
@@ -73,9 +73,9 @@
     src: "{{ nodepool_file_deleter_logging_conf_src }}"
   register: nodepool_file_deleter_logging_conf
 
-- name: Copy launcher logging configuration file.
+- name: Install launcher logging configuration file.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_launcher_logging_conf_dest }}"
     group: "{{ nodepool_file_launcher_logging_conf_group }}"
     mode: "{{ nodepool_file_launcher_logging_conf_mode }}"
@@ -83,7 +83,7 @@
     src: "{{ nodepool_file_launcher_logging_conf_src }}"
   register: nodepool_file_launcher_logging_conf
 
-- name: Copy nodepool elements directory.
+- name: Install nodepool elements directory.
   become: yes
   copy:
     dest: "{{ nodepool_file_nodepool_elements_dest }}"
