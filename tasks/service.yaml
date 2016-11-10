@@ -218,6 +218,7 @@
     enabled: "{{ nodepool_service_nodepool_enabled }}"
     name: "{{ nodepool_service_nodepool_name }}"
     state: "{{ nodepool_service_nodepool_state }}"
+    use: "{{ nodepool_service_nodepool_use }}"
   register: nodepool_service_nodepool
   when: nodepool_service_nodepool_manage
 
@@ -227,6 +228,7 @@
     enabled: "{{ nodepool_service_nodepool_builder_enabled }}"
     name: "{{ nodepool_service_nodepool_builder_name }}"
     state: "{{ nodepool_service_nodepool_builder_state }}"
+    use: "{{ nodepool_service_nodepool_builder_use }}"
   register: nodepool_service_nodepool_builder
   when: nodepool_service_nodepool_builder_manage
 
@@ -236,6 +238,7 @@
     enabled: "{{ nodepool_service_nodepool_deleter_enabled }}"
     name: "{{ nodepool_service_nodepool_deleter_name }}"
     state: "{{ nodepool_service_nodepool_deleter_state }}"
+    use: "{{ nodepool_service_nodepool_deleter_use }}"
   register: nodepool_service_nodepool_deleter
   when: nodepool_service_nodepool_deleter_manage
 
@@ -245,5 +248,6 @@
     enabled: "{{ nodepool_service_nodepool_launcher_enabled }}"
     name: "{{ nodepool_service_nodepool_launcher_name }}"
     state: "{{ nodepool_service_nodepool_launcher_state }}"
+    use: "{{ nodepool_service_nodepool_launcher_use }}"
   register: nodepool_service_nodepool_launcher
   when: nodepool_service_nodepool_launcher_manage
