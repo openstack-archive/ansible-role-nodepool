@@ -27,6 +27,11 @@
     nodepool_file_nodepool_service_src: "{{ __nodepool_file_nodepool_service_src }}"
   when: nodepool_file_nodepool_service_src is not defined
 
+- name: Define nodepool_file_nodepool_service_use.
+  set_fact:
+    nodepool_file_nodepool_service_use: "{{ __nodepool_file_nodepool_service_use }}"
+  when: nodepool_file_nodepool_service_use is not defined
+
 - name: Define nodepool_file_nodepool_service_config_dest.
   set_fact:
     nodepool_file_nodepool_service_config_dest: "{{ __nodepool_file_nodepool_service_config_dest  }}"
@@ -56,6 +61,11 @@
   set_fact:
     nodepool_file_nodepool_builder_service_src: "{{ __nodepool_file_nodepool_builder_service_src }}"
   when: nodepool_file_nodepool_builder_service_src is not defined
+
+- name: Define nodepool_file_nodepool_builder_service_use.
+  set_fact:
+    nodepool_file_nodepool_builder_service_use: "{{ __nodepool_file_nodepool_builder_service_use }}"
+  when: nodepool_file_nodepool_builder_service_use is not defined
 
 - name: Define nodepool_file_nodepool_builder_service_config_dest.
   set_fact:
@@ -87,6 +97,11 @@
     nodepool_file_nodepool_deleter_service_src: "{{ __nodepool_file_nodepool_deleter_service_src }}"
   when: nodepool_file_nodepool_deleter_service_src is not defined
 
+- name: Define nodepool_file_nodepool_deleter_service_use.
+  set_fact:
+    nodepool_file_nodepool_deleter_service_use: "{{ __nodepool_file_nodepool_deleter_service_use }}"
+  when: nodepool_file_nodepool_deleter_service_use is not defined
+
 - name: Define nodepool_file_nodepool_deleter_service_config_dest.
   set_fact:
     nodepool_file_nodepool_deleter_service_config_dest: "{{ __nodepool_file_nodepool_deleter_service_config_dest  }}"
@@ -117,6 +132,11 @@
     nodepool_file_nodepool_launcher_service_src: "{{ __nodepool_file_nodepool_launcher_service_src }}"
   when: nodepool_file_nodepool_launcher_service_src is not defined
 
+- name: Define nodepool_file_nodepool_launcher_service_use.
+  set_fact:
+    nodepool_file_nodepool_launcher_service_use: "{{ __nodepool_file_nodepool_launcher_service_use }}"
+  when: nodepool_file_nodepool_launcher_service_use is not defined
+
 - name: Define nodepool_file_nodepool_launcher_service_config_dest.
   set_fact:
     nodepool_file_nodepool_launcher_service_config_dest: "{{ __nodepool_file_nodepool_launcher_service_config_dest  }}"
@@ -140,6 +160,7 @@
     mode: "{{ nodepool_file_nodepool_service_mode }}"
     owner: "{{ nodepool_file_nodepool_service_owner }}"
     src: "{{ nodepool_file_nodepool_service_src }}"
+    use: "{{ nodepool_file_nodepool_service_use }}"
   register: nodepool_file_nodepool_service
 
 - name: Copy nodepool service config into place.
@@ -160,6 +181,7 @@
     mode: "{{ nodepool_file_nodepool_builder_service_mode }}"
     owner: "{{ nodepool_file_nodepool_builder_service_owner }}"
     src: "{{ nodepool_file_nodepool_builder_service_src }}"
+    use: "{{ nodepool_file_nodepool_builder_service_use }}"
   register: nodepool_file_nodepool_builder_service
 
 - name: Copy nodepool-builder service config into place.
@@ -180,6 +202,7 @@
     mode: "{{ nodepool_file_nodepool_deleter_service_mode }}"
     owner: "{{ nodepool_file_nodepool_deleter_service_owner }}"
     src: "{{ nodepool_file_nodepool_deleter_service_src }}"
+    use: "{{ nodepool_file_nodepool_deleter_service_use }}"
   register: nodepool_file_nodepool_deleter_service
 
 - name: Copy nodepool-deleter service config into place.
@@ -200,6 +223,7 @@
     mode: "{{ nodepool_file_nodepool_launcher_service_mode }}"
     owner: "{{ nodepool_file_nodepool_launcher_service_owner }}"
     src: "{{ nodepool_file_nodepool_launcher_service_src }}"
+    use: "{{ nodepool_file_nodepool_launcher_service_use }}"
   register: nodepool_file_nodepool_launcher_service
 
 - name: Copy nodepool-launcher service config into place.
