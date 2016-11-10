@@ -113,18 +113,22 @@ nodepool_service_nodepool_enabled: yes
 nodepool_service_nodepool_manage: true
 nodepool_service_nodepool_name: nodepool
 nodepool_service_nodepool_state: started
+nodepool_service_nodepool_use: service
 
 nodepool_service_nodepool_builder_enabled: yes
 nodepool_service_nodepool_builder_manage: true
 nodepool_service_nodepool_builder_name: nodepool-builder
 nodepool_service_nodepool_builder_state: started
+nodepool_service_nodepool_builder_use: service
 
 nodepool_service_nodepool_deleter_enabled: yes
 nodepool_service_nodepool_deleter_manage: true
 nodepool_service_nodepool_deleter_name: nodepool-deleter
 nodepool_service_nodepool_deleter_state: started
+nodepool_service_nodepool_deleter_use: service
 
 nodepool_service_nodepool_launcher_enabled: yes
 nodepool_service_nodepool_launcher_manage: true
 nodepool_service_nodepool_launcher_name: nodepool-launcher
 nodepool_service_nodepool_launcher_state: started
+nodepool_service_nodepool_launcher_use: service
