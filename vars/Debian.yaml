@@ -37,6 +37,7 @@ __nodepool_build_depends:
 __nodepool_file_nodepool_service_dest: /etc/init.d/nodepool
 __nodepool_file_nodepool_service_mode: 0755
 __nodepool_file_nodepool_service_src: etc/init.d/nodepool
+__nodepool_file_nodepool_service_use: service
 
 __nodepool_file_nodepool_service_config_dest: /etc/default/nodepool
 __nodepool_file_nodepool_service_config_mode: 0644
@@ -45,6 +46,7 @@ __nodepool_file_nodepool_service_config_src: etc/default/nodepool
 __nodepool_file_nodepool_builder_service_dest: /etc/init.d/nodepool-builder
 __nodepool_file_nodepool_builder_service_mode: 0755
 __nodepool_file_nodepool_builder_service_src: etc/init.d/nodepool-builder
+__nodepool_file_nodepool_builder_service_use: service
 
 __nodepool_file_nodepool_builder_service_config_dest: /etc/default/nodepool-builder
 __nodepool_file_nodepool_builder_service_config_mode: 0644
@@ -53,6 +55,7 @@ __nodepool_file_nodepool_builder_service_config_src: etc/default/nodepool-builde
 __nodepool_file_nodepool_deleter_service_dest: /etc/init.d/nodepool-deleter
 __nodepool_file_nodepool_deleter_service_mode: 0755
 __nodepool_file_nodepool_deleter_service_src: etc/init.d/nodepool-deleter
+__nodepool_file_nodepool_deleter_service_use: service
 
 __nodepool_file_nodepool_deleter_service_config_dest: /etc/default/nodepool-deleter
 __nodepool_file_nodepool_deleter_service_config_mode: 0644
@@ -61,6 +64,7 @@ __nodepool_file_nodepool_deleter_service_config_src: etc/default/nodepool-delete
 __nodepool_file_nodepool_launcher_service_dest: /etc/init.d/nodepool-launcher
 __nodepool_file_nodepool_launcher_service_mode: 0755
 __nodepool_file_nodepool_launcher_service_src: etc/init.d/nodepool-launcher
+__nodepool_file_nodepool_launcher_service_use: service
 
 __nodepool_file_nodepool_launcher_service_config_dest: /etc/default/nodepool-launcher
 __nodepool_file_nodepool_launcher_service_config_mode: 0644
