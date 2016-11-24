@@ -1,0 +1,13 @@
+[Unit]
+Description=Nodepool Launcher Service
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=nodepool
+Group=nodepool
+EnvironmentFile=-/etc/default/nodepool-launcher
+ExecStart=/bin/sh -c "${PREFIX}/bin/nodepoold -d ${ARGS}"
+
+[Install]
+WantedBy=multi-user.target
