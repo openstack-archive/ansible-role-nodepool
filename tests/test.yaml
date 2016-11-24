@@ -238,18 +238,22 @@
     - name: Register /etc/init.d/nodepool
       stat:
         path: /etc/init.d/nodepool
-      register: debian_nodepool_service_stat
-      when: ansible_os_family == 'Debian'
+      register: _nodepool_service_initd_stat
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
-    - name: Assert debian_nodepool_service_stat tests.
+    - name: Assert _nodepool_service_initd_stat tests.
       assert:
         that:
-          - debian_nodepool_service_stat.stat.exists
-          - debian_nodepool_service_stat.stat.isreg
-          - debian_nodepool_service_stat.stat.pw_name == 'root'
-          - debian_nodepool_service_stat.stat.gr_name == 'root'
-          - debian_nodepool_service_stat.stat.mode == '0755'
-      when: ansible_os_family == 'Debian'
+          - _nodepool_service_initd_stat.stat.exists
+          - _nodepool_service_initd_stat.stat.isreg
+          - _nodepool_service_initd_stat.stat.pw_name == 'root'
+          - _nodepool_service_initd_stat.stat.gr_name == 'root'
+          - _nodepool_service_initd_stat.stat.mode == '0755'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Register /etc/systemd/system/nodepool.service
       stat:
@@ -307,18 +311,22 @@
     - name: Register /etc/init.d/nodepool-builder
       stat:
         path: /etc/init.d/nodepool-builder
-      register: debian_nodepool_builder_service_stat
-      when: ansible_os_family == 'Debian'
+      register: _nodepool_builder_service_initd_stat
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
-    - name: Assert debian_nodepool_builder_service_stat tests.
+    - name: Assert _nodepool_builder_service_initd_stat tests.
       assert:
         that:
-          - debian_nodepool_builder_service_stat.stat.exists
-          - debian_nodepool_builder_service_stat.stat.isreg
-          - debian_nodepool_builder_service_stat.stat.pw_name == 'root'
-          - debian_nodepool_builder_service_stat.stat.gr_name == 'root'
-          - debian_nodepool_builder_service_stat.stat.mode == '0755'
-      when: ansible_os_family == 'Debian'
+          - _nodepool_builder_service_initd_stat.stat.exists
+          - _nodepool_builder_service_initd_stat.stat.isreg
+          - _nodepool_builder_service_initd_stat.stat.pw_name == 'root'
+          - _nodepool_builder_service_initd_stat.stat.gr_name == 'root'
+          - _nodepool_builder_service_initd_stat.stat.mode == '0755'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Register /etc/systemd/system/nodepool-builder.service
       stat:
@@ -376,18 +384,22 @@
     - name: Register /etc/init.d/nodepool-deleter
       stat:
         path: /etc/init.d/nodepool-deleter
-      register: debian_nodepool_deleter_service_stat
-      when: ansible_os_family == 'Debian'
+      register: _nodepool_deleter_service_initd_stat
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
-    - name: Assert debian_nodepool_deleter_service_stat tests.
+    - name: Assert _nodepool_deleter_service_initd_stat tests.
       assert:
         that:
-          - debian_nodepool_deleter_service_stat.stat.exists
-          - debian_nodepool_deleter_service_stat.stat.isreg
-          - debian_nodepool_deleter_service_stat.stat.pw_name == 'root'
-          - debian_nodepool_deleter_service_stat.stat.gr_name == 'root'
-          - debian_nodepool_deleter_service_stat.stat.mode == '0755'
-      when: ansible_os_family == 'Debian'
+          - _nodepool_deleter_service_initd_stat.stat.exists
+          - _nodepool_deleter_service_initd_stat.stat.isreg
+          - _nodepool_deleter_service_initd_stat.stat.pw_name == 'root'
+          - _nodepool_deleter_service_initd_stat.stat.gr_name == 'root'
+          - _nodepool_deleter_service_initd_stat.stat.mode == '0755'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Register /etc/systemd/system/nodepool-deleter.service
       stat:
@@ -445,18 +457,22 @@
     - name: Register /etc/init.d/nodepool-launcher
       stat:
         path: /etc/init.d/nodepool-launcher
-      register: debian_nodepool_launcher_service_stat
-      when: ansible_os_family == 'Debian'
+      register: _nodepool_launcher_service_initd_stat
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
-    - name: Assert debian_nodepool_launcher_service_stat tests.
+    - name: Assert _nodepool_launcher_service_initd_stat tests.
       assert:
         that:
-          - debian_nodepool_launcher_service_stat.stat.exists
-          - debian_nodepool_launcher_service_stat.stat.isreg
-          - debian_nodepool_launcher_service_stat.stat.pw_name == 'root'
-          - debian_nodepool_launcher_service_stat.stat.gr_name == 'root'
-          - debian_nodepool_launcher_service_stat.stat.mode == '0755'
-      when: ansible_os_family == 'Debian'
+          - _nodepool_launcher_service_initd_stat.stat.exists
+          - _nodepool_launcher_service_initd_stat.stat.isreg
+          - _nodepool_launcher_service_initd_stat.stat.pw_name == 'root'
+          - _nodepool_launcher_service_initd_stat.stat.gr_name == 'root'
+          - _nodepool_launcher_service_initd_stat.stat.mode == '0755'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Register /etc/systemd/system/nodepool-launcher.service
       stat:
