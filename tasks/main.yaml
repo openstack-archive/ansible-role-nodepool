@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yaml"
+  include_vars: "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yaml"
 
 - include: "{{ nodepool_task }}.yaml"
   with_items: "{{ nodepool_task_manager }}"
