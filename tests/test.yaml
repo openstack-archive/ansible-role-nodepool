@@ -69,6 +69,20 @@
         that:
           - nodepool_user_home_getent.stdout == '/var/lib/nodepool'
 
+    - name: Register /opt/nodepool/images
+      stat:
+        path: /opt/nodepool/images
+      register: _nodepool_images_dir_stat
+
+    - name: Assert /opt/nodepool/images tests.
+      assert:
+        that:
+          - _nodepool_images_dir_stat.stat.exists
+          - _nodepool_images_dir_stat.stat.isdir
+          - _nodepool_images_dir_stat.stat.pw_name == 'nodepool'
+          - _nodepool_images_dir_stat.stat.gr_name == 'nodepool'
+          - _nodepool_images_dir_stat.mode == '0755'
+
     - name: Register /etc/nodepool/nodepool.yaml
       stat:
         path: /etc/nodepool/nodepool.yaml
