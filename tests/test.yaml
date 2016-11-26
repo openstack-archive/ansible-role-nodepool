@@ -273,6 +273,23 @@
       when: (ansible_os_family == 'RedHat') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
+    - name: Register /var/run/nodepool/nodepool.pid
+      stat:
+        path: /var/run/nodepool/nodepool.pid
+      register: _nodepool_service_pid_stat
+
+    - name: Assert /var/run/nodepool-builder/nodepool-builder.pid tests
+      assert:
+        that:
+          - _nodepool_service_pid_stat.stat.exists
+          - _nodepool_service_pid_stat.stat.isreg
+          - _nodepool_service_pid_stat.stat.pw_name == 'nodepool'
+          - _nodepool_service_pid_stat.stat.gr_name == 'nodepool'
+          - _nodepool_service_pid_stat.stat.mode == '0644'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
+
     - name: Ensure nodepoold is running.
       become: yes
       shell: /usr/sbin/service nodepool status
@@ -347,6 +364,23 @@
           - _nodepool_builder_service_systemd_stat.stat.mode == '0644'
       when: (ansible_os_family == 'RedHat') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
+
+    - name: Register /var/run/nodepool-builder/nodepool-builder.pid
+      stat:
+        path: /var/run/nodepool-builder/nodepool-builder.pid
+      register: _nodepool_builder_service_pid_stat
+
+    - name: Assert /var/run/nodepool-builder/nodepool-builder.pid tests
+      assert:
+        that:
+          - _nodepool_builder_service_pid_stat.stat.exists
+          - _nodepool_builder_service_pid_stat.stat.isreg
+          - _nodepool_builder_service_pid_stat.stat.pw_name == 'nodepool'
+          - _nodepool_builder_service_pid_stat.stat.gr_name == 'nodepool'
+          - _nodepool_builder_service_pid_stat.stat.mode == '0644'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Ensure nodepool-builder is running.
       become: yes
@@ -423,6 +457,23 @@
       when: (ansible_os_family == 'RedHat') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
+    - name: Register /var/run/nodepool-deleter/nodepool-deleter.pid
+      stat:
+        path: /var/run/nodepool-deleter/nodepool-deleter.pid
+      register: _nodepool_deleter_service_pid_stat
+
+    - name: Assert /var/run/nodepool-deleter/nodepool-deleter.pid tests
+      assert:
+        that:
+          - _nodepool_deleter_service_pid_stat.stat.exists
+          - _nodepool_deleter_service_pid_stat.stat.isreg
+          - _nodepool_deleter_service_pid_stat.stat.pw_name == 'nodepool'
+          - _nodepool_deleter_service_pid_stat.stat.gr_name == 'nodepool'
+          - _nodepool_deleter_service_pid_stat.stat.mode == '0644'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
+
     - name: Ensure nodepool-deleter is running.
       become: yes
       shell: /usr/sbin/service nodepool-deleter status
@@ -497,6 +548,23 @@
           - _nodepool_launcher_service_systemd_stat.stat.mode == '0644'
       when: (ansible_os_family == 'RedHat') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
+
+    - name: Register /var/run/nodepool-launcher/nodepool-launcher.pid
+      stat:
+        path: /var/run/nodepool-launcher/nodepool-launcher.pid
+      register: _nodepool_launcher_service_pid_stat
+
+    - name: Assert /var/run/nodepool-launcher/nodepool-launcher.pid tests
+      assert:
+        that:
+          - _nodepool_launcher_service_pid_stat.stat.exists
+          - _nodepool_launcher_service_pid_stat.stat.isreg
+          - _nodepool_launcher_service_pid_stat.stat.pw_name == 'nodepool'
+          - _nodepool_launcher_service_pid_stat.stat.gr_name == 'nodepool'
+          - _nodepool_launcher_service_pid_stat.stat.mode == '0644'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Ensure nodepool-launcher is running.
       become: yes
