@@ -348,6 +348,20 @@
       when: (ansible_os_family == 'RedHat') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
+    - name: Register /var/run/nodepool-builder/nodepool-builder.pid
+      stat:
+        path: /var/run/nodepool-builder/nodepool-builder.pid
+      register: _nodepool_builder_service_pid_stat
+
+    - name: Assert /var/run/nodepool-builder/nodepool-builder.pid tests
+      assert:
+        that:
+          - _nodepool_builder_service_pid_stat.stat.exists
+          - _nodepool_builder_service_pid_stat.stat.isreg
+          - _nodepool_builder_service_pid_stat.stat.pw_name == 'nodepool'
+          - _nodepool_builder_service_pid_stat.stat.gr_name == 'nodepool'
+          - _nodepool_builder_service_pid_stat.stat.mode == '0644'
+
     - name: Ensure nodepool-builder is running.
       become: yes
       shell: /usr/sbin/service nodepool-builder status
