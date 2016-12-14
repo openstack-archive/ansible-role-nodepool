@@ -7,7 +7,7 @@
 PREFIX=/usr/local
 
 # Options to pass to nodepoold.
-ARGS="-l /etc/nodepool/logging.conf --no-builder --no-deletes --no-launches"
+ARGS="-l /etc/nodepool/logging.conf --no-builder --no-launches"
 
 # The user used to nodepool service.
 RUNASUSER=nodepool
