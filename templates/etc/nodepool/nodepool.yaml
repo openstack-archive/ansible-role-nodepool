@@ -5,6 +5,10 @@ elements-dir: /etc/nodepool/elements
 images-dir: /opt/nodepool/images
 script-dir: /etc/nodepool/scripts
 
+zookeeper-servers:
+  - host: 127.0.0.1
+    port: 2181
+
 gearman-servers: []
 
 zmq-publishers: []
