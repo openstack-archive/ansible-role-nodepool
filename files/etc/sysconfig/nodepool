@@ -7,6 +7,6 @@
 PREFIX=/usr
 
 # Options to pass to nodepoold.
-ARGS="-l /etc/nodepool/logging.conf --no-builder --no-deletes --no-launches"
+ARGS="-l /etc/nodepool/logging.conf --no-builder --no-launches"
 
 DIB_IMAGE_CACHE=/opt/nodepool/cache
