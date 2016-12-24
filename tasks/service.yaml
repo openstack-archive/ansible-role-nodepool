@@ -132,9 +132,9 @@
     nodepool_file_nodepool_launcher_service_config_src: "{{ __nodepool_file_nodepool_launcher_service_config_src  }}"
   when: nodepool_file_nodepool_launcher_service_config_src is not defined
 
-- name: Copy nodepool services scripts into place.
+- name: Install nodepool service script into place.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_nodepool_service_dest }}"
     group: "{{ nodepool_file_nodepool_service_group }}"
     mode: "{{ nodepool_file_nodepool_service_mode }}"
@@ -142,9 +142,9 @@
     src: "{{ nodepool_file_nodepool_service_src }}"
   register: nodepool_file_nodepool_service
 
-- name: Copy nodepool service config into place.
+- name: Install nodepool service config into place.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_nodepool_service_config_dest  }}"
     group: "{{ nodepool_file_nodepool_service_config_group  }}"
     mode: "{{ nodepool_file_nodepool_service_config_mode  }}"
@@ -152,9 +152,9 @@
     src: "{{ nodepool_file_nodepool_service_config_src  }}"
   register: nodepool_file_nodepool_service_config
 
-- name: Copy nodepool-builder services scripts into place.
+- name: Install nodepool-builder service script into place.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_nodepool_builder_service_dest }}"
     group: "{{ nodepool_file_nodepool_builder_service_group }}"
     mode: "{{ nodepool_file_nodepool_builder_service_mode }}"
@@ -162,9 +162,9 @@
     src: "{{ nodepool_file_nodepool_builder_service_src }}"
   register: nodepool_file_nodepool_builder_service
 
-- name: Copy nodepool-builder service config into place.
+- name: Install nodepool-builder service config into place.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_nodepool_builder_service_config_dest  }}"
     group: "{{ nodepool_file_nodepool_builder_service_config_group  }}"
     mode: "{{ nodepool_file_nodepool_builder_service_config_mode  }}"
@@ -172,9 +172,9 @@
     src: "{{ nodepool_file_nodepool_builder_service_config_src  }}"
   register: nodepool_file_nodepool_builder_service_config
 
-- name: Copy nodepool-deleter services scripts into place.
+- name: Install nodepool-deleter service script into place.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_nodepool_deleter_service_dest }}"
     group: "{{ nodepool_file_nodepool_deleter_service_group }}"
     mode: "{{ nodepool_file_nodepool_deleter_service_mode }}"
@@ -182,9 +182,9 @@
     src: "{{ nodepool_file_nodepool_deleter_service_src }}"
   register: nodepool_file_nodepool_deleter_service
 
-- name: Copy nodepool-deleter service config into place.
+- name: Install nodepool-deleter service config into place.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_nodepool_deleter_service_config_dest  }}"
     group: "{{ nodepool_file_nodepool_deleter_service_config_group  }}"
     mode: "{{ nodepool_file_nodepool_deleter_service_config_mode  }}"
@@ -192,9 +192,9 @@
     src: "{{ nodepool_file_nodepool_deleter_service_config_src  }}"
   register: nodepool_file_nodepool_deleter_service_config
 
-- name: Copy nodepool-launcher services scripts into place.
+- name: Install nodepool-launcher service script into place.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_nodepool_launcher_service_dest }}"
     group: "{{ nodepool_file_nodepool_launcher_service_group }}"
     mode: "{{ nodepool_file_nodepool_launcher_service_mode }}"
@@ -202,9 +202,9 @@
     src: "{{ nodepool_file_nodepool_launcher_service_src }}"
   register: nodepool_file_nodepool_launcher_service
 
-- name: Copy nodepool-launcher service config into place.
+- name: Install nodepool-launcher service config into place.
   become: yes
-  copy:
+  template:
     dest: "{{ nodepool_file_nodepool_launcher_service_config_dest  }}"
     group: "{{ nodepool_file_nodepool_launcher_service_config_group  }}"
     mode: "{{ nodepool_file_nodepool_launcher_service_config_mode  }}"
