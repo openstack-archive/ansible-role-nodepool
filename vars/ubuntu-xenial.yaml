@@ -26,7 +26,6 @@
 # under the License.
 ---
 __nodepool_build_depends:
-  - git
   - libffi-dev
   - libssl-dev
   - libxml2-dev
