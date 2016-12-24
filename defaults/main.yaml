@@ -30,12 +30,6 @@ nodepool_file_nodepool_elements_mode: 0755
 nodepool_file_nodepool_elements_owner: "{{ nodepool_user_name }}"
 nodepool_file_nodepool_elements_src: etc/nodepool/elements/
 
-nodepool_file_nodepool_scripts_dest: /etc/nodepool/scripts
-nodepool_file_nodepool_scripts_group: "{{ nodepool_user_group }}"
-nodepool_file_nodepool_scripts_mode: 0755
-nodepool_file_nodepool_scripts_owner: "{{ nodepool_user_name }}"
-nodepool_file_nodepool_scripts_src: etc/nodepool/scripts/
-
 nodepool_file_nodepool_yaml_dest: /etc/nodepool/nodepool.yaml
 nodepool_file_nodepool_yaml_group: "{{ nodepool_user_group }}"
 nodepool_file_nodepool_yaml_mode: 0644

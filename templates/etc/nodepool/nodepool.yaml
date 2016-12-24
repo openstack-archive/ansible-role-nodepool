@@ -3,7 +3,6 @@
 #
 elements-dir: /etc/nodepool/elements
 images-dir: /opt/nodepool/images
-script-dir: /etc/nodepool/scripts
 
 zookeeper-servers:
   - host: localhost

@@ -93,13 +93,3 @@
     owner: "{{nodepool_file_nodepool_elements_owner }}"
     src: "{{ nodepool_file_nodepool_elements_src }}"
   register: nodepool_file_nodepool_elements
-
-- name: Create nodepool scripts directory.
-  become: yes
-  copy:
-    dest: "{{ nodepool_file_nodepool_scripts_dest }}"
-    group: "{{ nodepool_file_nodepool_scripts_group }}"
-    mode: "{{ nodepool_file_nodepool_scripts_mode }}"
-    owner: "{{nodepool_file_nodepool_scripts_owner }}"
-    src: "{{ nodepool_file_nodepool_scripts_src }}"
-  register: nodepool_file_nodepool_scripts
