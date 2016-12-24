@@ -36,7 +36,6 @@
           - nodepool_file_builder_logging_conf
           - nodepool_file_deleter_logging_conf
           - nodepool_file_launcher_logging_conf
-          - nodepool_file_nodepool_elements
           - nodepool_file_nodepool_service
           - nodepool_file_nodepool_service_config
           - nodepool_file_nodepool_builder_service
@@ -165,20 +164,6 @@
           - secure_conf_stat.stat.pw_name == 'nodepool'
           - secure_conf_stat.stat.gr_name == 'nodepool'
           - secure_conf_stat.stat.mode == '0600'
-
-    - name: Register nodepool_elements_dir_dest_stat.
-      stat:
-        path: /etc/nodepool/elements
-      register: nodepool_elements_dir_dest_stat
-
-    - name: Assert nodepool_elements_dir_dest tests.
-      assert:
-        that:
-          - nodepool_elements_dir_dest_stat.stat.exists
-          - nodepool_elements_dir_dest_stat.stat.isdir
-          - nodepool_elements_dir_dest_stat.stat.pw_name == 'nodepool'
-          - nodepool_elements_dir_dest_stat.stat.gr_name == 'nodepool'
-          - nodepool_elements_dir_dest_stat.stat.mode == '0755'
 
     - name: Register nodepool_user_home_stat.
       stat:

@@ -83,13 +83,3 @@
     owner: "{{nodepool_file_launcher_logging_conf_owner }}"
     src: "{{ nodepool_file_launcher_logging_conf_src }}"
   register: nodepool_file_launcher_logging_conf
-
-- name: Install nodepool elements directory.
-  become: yes
-  copy:
-    dest: "{{ nodepool_file_nodepool_elements_dest }}"
-    group: "{{ nodepool_file_nodepool_elements_group }}"
-    mode: "{{ nodepool_file_nodepool_elements_mode }}"
-    owner: "{{nodepool_file_nodepool_elements_owner }}"
-    src: "{{ nodepool_file_nodepool_elements_src }}"
-  register: nodepool_file_nodepool_elements
