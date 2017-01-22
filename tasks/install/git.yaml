@@ -16,8 +16,9 @@
   become: yes
   git:
     dest: "{{ nodepool_git_dest }}"
+    refspec: "{{ nodepool_git_refspec|default(omit) }}"
     repo: "{{ nodepool_git_uri }}"
-    version: "{{ nodepool_git_version }}"
+    version: "{{ nodepool_git_version|default(omit) }}"
 
 - name: Set nodepool_pip_name to local git repo.
   set_fact:
