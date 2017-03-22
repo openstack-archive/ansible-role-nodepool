@@ -23,6 +23,7 @@
     - /etc/nodepool
     - /opt/nodepool/images
     - /var/log/nodepool
+    - /var/log/nodepool/images
 
 - name: Install nodepool configuration.
   become: yes
