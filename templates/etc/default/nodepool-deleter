@@ -7,7 +7,7 @@
 PREFIX=/usr/local
 
 # Options to pass to nodepool-deleter.
-ARGS="-l /etc/nodepool/deleter-logging.conf --no-builder --no-launches --no-webapp"
+ARGS="-l /etc/nodepool/deleter-logging.conf --no-launches --no-webapp"
 
 # The user used to nodepool-deleter service.
 RUNASUSER=nodepool
