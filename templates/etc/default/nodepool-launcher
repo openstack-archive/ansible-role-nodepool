@@ -7,7 +7,7 @@
 PREFIX=/usr/local
 
 # Options to pass to nodepool-launcher.
-ARGS="-l /etc/nodepool/launcher-logging.conf --no-deletes --no-webapp"
+ARGS="-l /etc/nodepool/launcher-logging.conf --no-webapp"
 
 # The user used to nodepool-launcher service.
 RUNASUSER=nodepool

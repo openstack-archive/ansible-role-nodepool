@@ -65,16 +65,6 @@
     src: "{{ nodepool_file_builder_logging_conf_src }}"
   register: nodepool_file_builder_logging_conf
 
-- name: Install deleter logging configuration file.
-  become: yes
-  template:
-    dest: "{{ nodepool_file_deleter_logging_conf_dest }}"
-    group: "{{ nodepool_file_deleter_logging_conf_group }}"
-    mode: "{{ nodepool_file_deleter_logging_conf_mode }}"
-    owner: "{{nodepool_file_deleter_logging_conf_owner }}"
-    src: "{{ nodepool_file_deleter_logging_conf_src }}"
-  register: nodepool_file_deleter_logging_conf
-
 - name: Install launcher logging configuration file.
   become: yes
   template:
