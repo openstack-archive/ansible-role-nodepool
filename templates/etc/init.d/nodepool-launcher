@@ -19,7 +19,7 @@ SCRIPTNAME=/etc/init.d/$NAME
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
-DAEMON=$PREFIX/bin/nodepoold
+DAEMON=$PREFIX/bin/nodepool-launcher
 USER=${RUNASUSER:-nodepool}
 
 # Exit if the package is not installed

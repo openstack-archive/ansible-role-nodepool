@@ -7,7 +7,7 @@ Type=simple
 User=nodepool
 Group=nodepool
 EnvironmentFile=-/etc/default/nodepool-launcher
-ExecStart=/bin/sh -c "${PREFIX}/bin/nodepoold -d ${ARGS}"
+ExecStart=/bin/sh -c "${PREFIX}/bin/nodepool-launcher -d ${ARGS}"
 
 [Install]
 WantedBy=multi-user.target
