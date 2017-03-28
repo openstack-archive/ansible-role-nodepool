@@ -7,6 +7,6 @@
 PREFIX=/usr
 
 # Options to pass to nodepool-launcher.
-ARGS="-l /etc/nodepool/launcher-logging.conf --no-deletes --no-webapp"
+ARGS="-l /etc/nodepool/launcher-logging.conf --no-webapp"
 
 DIB_IMAGE_CACHE=/opt/nodepool/cache
