@@ -12,36 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Define nodepool_file_nodepool_service_dest.
-  set_fact:
-    nodepool_file_nodepool_service_dest: "{{ __nodepool_file_nodepool_service_dest }}"
-  when: nodepool_file_nodepool_service_dest is not defined
-
-- name: Define nodepool_file_nodepool_service_mode.
-  set_fact:
-    nodepool_file_nodepool_service_mode: "{{ __nodepool_file_nodepool_service_mode }}"
-  when: nodepool_file_nodepool_service_mode is not defined
-
-- name: Define nodepool_file_nodepool_service_src.
-  set_fact:
-    nodepool_file_nodepool_service_src: "{{ __nodepool_file_nodepool_service_src }}"
-  when: nodepool_file_nodepool_service_src is not defined
-
-- name: Define nodepool_file_nodepool_service_config_dest.
-  set_fact:
-    nodepool_file_nodepool_service_config_dest: "{{ __nodepool_file_nodepool_service_config_dest  }}"
-  when: nodepool_file_nodepool_service_config_dest is not defined
-
-- name: Define nodepool_file_nodepool_service_config_mode.
-  set_fact:
-    nodepool_file_nodepool_service_config_mode: "{{ __nodepool_file_nodepool_service_config_mode  }}"
-  when: nodepool_file_nodepool_service_config_mode is not defined
-
-- name: Define nodepool_file_nodepool_service_config_src.
-  set_fact:
-    nodepool_file_nodepool_service_config_src: "{{ __nodepool_file_nodepool_service_config_src  }}"
-  when: nodepool_file_nodepool_service_config_src is not defined
-
 - name: Define nodepool_file_nodepool_builder_service_dest.
   set_fact:
     nodepool_file_nodepool_builder_service_dest: "{{ __nodepool_file_nodepool_builder_service_dest }}"
@@ -71,36 +41,6 @@
   set_fact:
     nodepool_file_nodepool_builder_service_config_src: "{{ __nodepool_file_nodepool_builder_service_config_src  }}"
   when: nodepool_file_nodepool_builder_service_config_src is not defined
-
-- name: Define nodepool_file_nodepool_deleter_service_dest.
-  set_fact:
-    nodepool_file_nodepool_deleter_service_dest: "{{ __nodepool_file_nodepool_deleter_service_dest }}"
-  when: nodepool_file_nodepool_deleter_service_dest is not defined
-
-- name: Define nodepool_file_nodepool_deleter_service_mode.
-  set_fact:
-    nodepool_file_nodepool_deleter_service_mode: "{{ __nodepool_file_nodepool_deleter_service_mode }}"
-  when: nodepool_file_nodepool_deleter_service_mode is not defined
-
-- name: Define nodepool_file_nodepool_deleter_service_src.
-  set_fact:
-    nodepool_file_nodepool_deleter_service_src: "{{ __nodepool_file_nodepool_deleter_service_src }}"
-  when: nodepool_file_nodepool_deleter_service_src is not defined
-
-- name: Define nodepool_file_nodepool_deleter_service_config_dest.
-  set_fact:
-    nodepool_file_nodepool_deleter_service_config_dest: "{{ __nodepool_file_nodepool_deleter_service_config_dest  }}"
-  when: nodepool_file_nodepool_deleter_service_config_dest is not defined
-
-- name: Define nodepool_file_nodepool_deleter_service_config_mode.
-  set_fact:
-    nodepool_file_nodepool_deleter_service_config_mode: "{{ __nodepool_file_nodepool_deleter_service_config_mode  }}"
-  when: nodepool_file_nodepool_deleter_service_config_mode is not defined
-
-- name: Define nodepool_file_nodepool_deleter_service_config_src.
-  set_fact:
-    nodepool_file_nodepool_deleter_service_config_src: "{{ __nodepool_file_nodepool_deleter_service_config_src  }}"
-  when: nodepool_file_nodepool_deleter_service_config_src is not defined
 
 - name: Define nodepool_file_nodepool_launcher_service_dest.
   set_fact:
@@ -132,28 +72,6 @@
     nodepool_file_nodepool_launcher_service_config_src: "{{ __nodepool_file_nodepool_launcher_service_config_src  }}"
   when: nodepool_file_nodepool_launcher_service_config_src is not defined
 
-- name: Install nodepool service script into place.
-  become: yes
-  template:
-    dest: "{{ nodepool_file_nodepool_service_dest }}"
-    group: "{{ nodepool_file_nodepool_service_group }}"
-    mode: "{{ nodepool_file_nodepool_service_mode }}"
-    owner: "{{ nodepool_file_nodepool_service_owner }}"
-    src: "{{ nodepool_file_nodepool_service_src }}"
-  register: nodepool_file_nodepool_service
-  when: nodepool_service_nodepool_manage
-
-- name: Install nodepool service config into place.
-  become: yes
-  template:
-    dest: "{{ nodepool_file_nodepool_service_config_dest  }}"
-    group: "{{ nodepool_file_nodepool_service_config_group  }}"
-    mode: "{{ nodepool_file_nodepool_service_config_mode  }}"
-    owner: "{{ nodepool_file_nodepool_service_config_owner  }}"
-    src: "{{ nodepool_file_nodepool_service_config_src  }}"
-  register: nodepool_file_nodepool_service_config
-  when: nodepool_service_nodepool_manage
-
 - name: Install nodepool-builder service script into place.
   become: yes
   template:
@@ -175,28 +93,6 @@
     src: "{{ nodepool_file_nodepool_builder_service_config_src  }}"
   register: nodepool_file_nodepool_builder_service_config
   when: nodepool_service_nodepool_builder_manage
-
-- name: Install nodepool-deleter service script into place.
-  become: yes
-  template:
-    dest: "{{ nodepool_file_nodepool_deleter_service_dest }}"
-    group: "{{ nodepool_file_nodepool_deleter_service_group }}"
-    mode: "{{ nodepool_file_nodepool_deleter_service_mode }}"
-    owner: "{{ nodepool_file_nodepool_deleter_service_owner }}"
-    src: "{{ nodepool_file_nodepool_deleter_service_src }}"
-  register: nodepool_file_nodepool_deleter_service
-  when: nodepool_service_nodepool_deleter_manage
-
-- name: Install nodepool-deleter service config into place.
-  become: yes
-  template:
-    dest: "{{ nodepool_file_nodepool_deleter_service_config_dest  }}"
-    group: "{{ nodepool_file_nodepool_deleter_service_config_group  }}"
-    mode: "{{ nodepool_file_nodepool_deleter_service_config_mode  }}"
-    owner: "{{ nodepool_file_nodepool_deleter_service_config_owner  }}"
-    src: "{{ nodepool_file_nodepool_deleter_service_config_src  }}"
-  register: nodepool_file_nodepool_deleter_service_config
-  when: nodepool_service_nodepool_deleter_manage
 
 - name: Install nodepool-launcher service script into place.
   become: yes
@@ -220,15 +116,6 @@
   register: nodepool_file_nodepool_launcher_service_config
   when: nodepool_service_nodepool_launcher_manage
 
-- name: Enable nodepool service.
-  become: yes
-  service:
-    enabled: "{{ nodepool_service_nodepool_enabled }}"
-    name: "{{ nodepool_service_nodepool_name }}"
-    state: "{{ nodepool_service_nodepool_state }}"
-  register: nodepool_service_nodepool
-  when: nodepool_service_nodepool_manage
-
 - name: Enable nodepool-builder service.
   become: yes
   service:
@@ -237,15 +124,6 @@
     state: "{{ nodepool_service_nodepool_builder_state }}"
   register: nodepool_service_nodepool_builder
   when: nodepool_service_nodepool_builder_manage
-
-- name: Enable nodepool-deleter service.
-  become: yes
-  service:
-    enabled: "{{ nodepool_service_nodepool_deleter_enabled }}"
-    name: "{{ nodepool_service_nodepool_deleter_name }}"
-    state: "{{ nodepool_service_nodepool_deleter_state }}"
-  register: nodepool_service_nodepool_deleter
-  when: nodepool_service_nodepool_deleter_manage
 
 - name: Enable nodepool-launcher service.
   become: yes
