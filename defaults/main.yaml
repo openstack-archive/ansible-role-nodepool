@@ -69,8 +69,8 @@ nodepool_file_launcher_logging_conf_src: etc/nodepool/launcher-logging.conf
 # tasks/install.yaml
 nodepool_git_dest: /opt/ansible-role-nodepool/git/openstack-infra/nodepool
 nodepool_git_uri: https://git.openstack.org/openstack-infra/nodepool
+nodepool_git_version: feature/zuulv3
 # nodepool_git_refspec:
-# nodepool_git_version:
 
 nodepool_install_method: git
 
