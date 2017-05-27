@@ -18,4 +18,5 @@
     extra_args: "{{ nodepool_pip_extra_args|default(omit) }}"
     name: "{{ nodepool_pip_name }}"
     version: "{{ nodepool_pip_version|default(omit) }}"
+    virtualenv_python: "{{ nodepool_pip_virtualenv_python|default(omit) }}"
     virtualenv: "{{ nodepool_pip_virtualenv|default(omit) }}"
