@@ -22,6 +22,7 @@
   with_items:
     - /etc/nodepool
     - /opt/nodepool/images
+    - /opt/nodepool/tmp
     - /var/log/nodepool
     - /var/log/nodepool/images
 
