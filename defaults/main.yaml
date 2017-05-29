@@ -69,15 +69,19 @@ nodepool_pip_name: nodepool
 # nodepool_pip_virtualenv:
 
 # tasks/service.yaml
+nodepool_file_nodepool_builder_service_manage: true
 nodepool_file_nodepool_builder_service_group: root
 nodepool_file_nodepool_builder_service_owner: root
 
+nodepool_file_nodepool_builder_service_config_manage: true
 nodepool_file_nodepool_builder_service_config_group: root
 nodepool_file_nodepool_builder_service_config_owner: root
 
+nodepool_file_nodepool_launcher_service_manage: true
 nodepool_file_nodepool_launcher_service_group: root
 nodepool_file_nodepool_launcher_service_owner: root
 
+nodepool_file_nodepool_launcher_service_config_manage: true
 nodepool_file_nodepool_launcher_service_config_group: root
 nodepool_file_nodepool_launcher_service_config_owner: root
 
