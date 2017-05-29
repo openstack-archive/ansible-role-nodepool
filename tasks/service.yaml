@@ -81,7 +81,7 @@
     owner: "{{ nodepool_file_nodepool_builder_service_owner }}"
     src: "{{ nodepool_file_nodepool_builder_service_src }}"
   register: nodepool_file_nodepool_builder_service
-  when: nodepool_service_nodepool_builder_manage
+  when: nodepool_file_nodepool_builder_service_manage
 
 - name: Install nodepool-builder service config into place.
   become: yes
@@ -92,7 +92,7 @@
     owner: "{{ nodepool_file_nodepool_builder_service_config_owner  }}"
     src: "{{ nodepool_file_nodepool_builder_service_config_src  }}"
   register: nodepool_file_nodepool_builder_service_config
-  when: nodepool_service_nodepool_builder_manage
+  when: nodepool_file_nodepool_builder_service_config_manage
 
 - name: Install nodepool-launcher service script into place.
   become: yes
@@ -103,7 +103,7 @@
     owner: "{{ nodepool_file_nodepool_launcher_service_owner }}"
     src: "{{ nodepool_file_nodepool_launcher_service_src }}"
   register: nodepool_file_nodepool_launcher_service
-  when: nodepool_service_nodepool_launcher_manage
+  when: nodepool_file_nodepool_launcher_service_manage
 
 - name: Install nodepool-launcher service config into place.
   become: yes
@@ -114,7 +114,7 @@
     owner: "{{ nodepool_file_nodepool_launcher_service_config_owner  }}"
     src: "{{ nodepool_file_nodepool_launcher_service_config_src  }}"
   register: nodepool_file_nodepool_launcher_service_config
-  when: nodepool_service_nodepool_launcher_manage
+  when: nodepool_file_nodepool_launcher_service_config_manage
 
 - name: Enable nodepool-builder service.
   become: yes
