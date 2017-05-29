@@ -151,44 +151,10 @@
           - nodepool_git_dest_stat.stat.exists
           - nodepool_git_dest_stat.stat.isdir
 
-    - name: Register /etc/default/nodepool-builder
-      stat:
-        path: /etc/default/nodepool-builder
-      register: debian_nodepool_builder_sysconfig_stat
-      when: ansible_os_family == 'Debian'
-
-    - name: Assert debian_nodepool_builder_sysconfig_stat tests.
-      assert:
-        that:
-          - debian_nodepool_builder_sysconfig_stat.stat.exists
-          - debian_nodepool_builder_sysconfig_stat.stat.isreg
-          - debian_nodepool_builder_sysconfig_stat.stat.pw_name == 'root'
-          - debian_nodepool_builder_sysconfig_stat.stat.gr_name == 'root'
-          - debian_nodepool_builder_sysconfig_stat.stat.mode == '0644'
-      when: ansible_os_family == 'Debian'
-
-    - name: Register /etc/sysconfig/nodepool-builder
-      stat:
-        path: /etc/sysconfig/nodepool-builder
-      register: redhat_nodepool_builder_sysconfig_stat
-      when: ansible_os_family == 'RedHat'
-
-    - name: Assert redhat_nodepool_builder_sysconfig_stat tests.
-      assert:
-        that:
-          - redhat_nodepool_builder_sysconfig_stat.stat.exists
-          - redhat_nodepool_builder_sysconfig_stat.stat.isreg
-          - redhat_nodepool_builder_sysconfig_stat.stat.pw_name == 'root'
-          - redhat_nodepool_builder_sysconfig_stat.stat.gr_name == 'root'
-          - redhat_nodepool_builder_sysconfig_stat.stat.mode == '0644'
-      when: ansible_os_family == 'RedHat'
-
     - name: Register /etc/systemd/system/nodepool-builder.service
       stat:
         path: /etc/systemd/system/nodepool-builder.service
       register: _nodepool_builder_service_systemd_stat
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Assert _nodepool_builder_service_systemd_stat tests.
       assert:
@@ -198,52 +164,16 @@
           - _nodepool_builder_service_systemd_stat.stat.pw_name == 'root'
           - _nodepool_builder_service_systemd_stat.stat.gr_name == 'root'
           - _nodepool_builder_service_systemd_stat.stat.mode == '0644'
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Ensure nodepool-builder is running.
       become: yes
       shell: /usr/sbin/service nodepool-builder status
       tags: skip_ansible_lint
 
-    - name: Register /etc/default/nodepool-launcher
-      stat:
-        path: /etc/default/nodepool-launcher
-      register: debian_nodepool_launcher_sysconfig_stat
-      when: ansible_os_family == 'Debian'
-
-    - name: Assert debian_nodepool_launcher_sysconfig_stat tests.
-      assert:
-        that:
-          - debian_nodepool_launcher_sysconfig_stat.stat.exists
-          - debian_nodepool_launcher_sysconfig_stat.stat.isreg
-          - debian_nodepool_launcher_sysconfig_stat.stat.pw_name == 'root'
-          - debian_nodepool_launcher_sysconfig_stat.stat.gr_name == 'root'
-          - debian_nodepool_launcher_sysconfig_stat.stat.mode == '0644'
-      when: ansible_os_family == 'Debian'
-
-    - name: Register /etc/sysconfig/nodepool-launcher
-      stat:
-        path: /etc/sysconfig/nodepool-launcher
-      register: redhat_nodepool_launcher_sysconfig_stat
-      when: ansible_os_family == 'RedHat'
-
-    - name: Assert redhat_nodepool_launcher_sysconfig_stat tests.
-      assert:
-        that:
-          - redhat_nodepool_launcher_sysconfig_stat.stat.exists
-          - redhat_nodepool_launcher_sysconfig_stat.stat.isreg
-          - redhat_nodepool_launcher_sysconfig_stat.stat.pw_name == 'root'
-          - redhat_nodepool_launcher_sysconfig_stat.stat.gr_name == 'root'
-          - redhat_nodepool_launcher_sysconfig_stat.stat.mode == '0644'
-      when: ansible_os_family == 'RedHat'
-
     - name: Register /etc/systemd/system/nodepool-launcher.service
       stat:
         path: /etc/systemd/system/nodepool-launcher.service
       register: _nodepool_launcher_service_systemd_stat
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Assert _nodepool_launcher_service_systemd_stat tests.
       assert:
@@ -253,8 +183,6 @@
           - _nodepool_launcher_service_systemd_stat.stat.pw_name == 'root'
           - _nodepool_launcher_service_systemd_stat.stat.gr_name == 'root'
           - _nodepool_launcher_service_systemd_stat.stat.mode == '0644'
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Ensure nodepool-launcher is running.
       become: yes
