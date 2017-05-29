@@ -83,6 +83,15 @@
   register: nodepool_file_nodepool_builder_service
   when: nodepool_file_nodepool_builder_service_manage
 
+- name: Create nodepool-builder service config directory.
+  become: yes
+  file:
+    group: "{{ nodepool_file_nodepool_builder_service_config_group }}"
+    owner: "{{ nodepool_file_nodepool_builder_service_config_owner }}"
+    path: "{{ nodepool_file_nodepool_builder_service_dest }}.d"
+    state: directory
+  when: nodepool_file_nodepool_builder_service_config_manage
+
 - name: Install nodepool-builder service config into place.
   become: yes
   template:
@@ -104,6 +113,15 @@
     src: "{{ nodepool_file_nodepool_launcher_service_src }}"
   register: nodepool_file_nodepool_launcher_service
   when: nodepool_file_nodepool_launcher_service_manage
+
+- name: Create nodepool-launcher service config directory.
+  become: yes
+  file:
+    group: "{{ nodepool_file_nodepool_launcher_service_config_group }}"
+    owner: "{{ nodepool_file_nodepool_launcher_service_config_owner }}"
+    path: "{{ nodepool_file_nodepool_launcher_service_dest }}.d"
+    state: directory
+  when: nodepool_file_nodepool_launcher_service_config_manage
 
 - name: Install nodepool-launcher service config into place.
   become: yes
