@@ -63,6 +63,7 @@ nodepool_git_version: feature/zuulv3
 nodepool_install_method: git
 
 nodepool_pip_name: nodepool
+# nodepool_pip_executable:
 # nodepool_pip_extra_args:
 # nodepool_pip_version:
 # nodepool_pip_virtualenv_python:
