@@ -1,0 +1,184 @@
+# Copyright 2015 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+---
+- hosts: all
+  vars:
+    nodepool_git_dest: "{{ ansible_user_dir }}/src/git.openstack.org/openstack-infra/nodepool"
+    nodepool_git_update: false
+
+  roles:
+    - ansible-role-nodepool
+
+  post_tasks:
+    - name: Assert results are registered.
+      assert:
+        that:
+          - nodepool_file_nodepool_yaml
+          - nodepool_file_secure_conf
+          - nodepool_file_builder_logging_conf
+          - nodepool_file_launcher_logging_conf
+          - nodepool_file_nodepool_builder_service
+          - nodepool_file_nodepool_builder_service_config
+          - nodepool_file_nodepool_launcher_service
+          - nodepool_file_nodepool_launcher_service_config
+          - nodepool_service_nodepool_builder
+          - nodepool_service_nodepool_launcher
+
+    - name: Ensure nodepool_user_name is nodepool.
+      shell: /usr/bin/getent passwd nodepool
+      tags: skip_ansible_lint
+
+    - name: Ensure nodepool_user_group is nodepool.
+      shell: /usr/bin/getent group nodepool
+      tags: skip_ansible_lint
+
+    - name: Register nodepool_user_home_getent.
+      shell: '/usr/bin/getent passwd nodepool | cut -d: -f6'
+      register: nodepool_user_home_getent
+      tags: skip_ansible_lint
+
+    - name: Assert nodepool_user_home is /var/lib/nodepool.
+      assert:
+        that:
+          - nodepool_user_home_getent.stdout == '/var/lib/nodepool'
+
+    - name: Register /opt/nodepool/images
+      stat:
+        path: /opt/nodepool/images
+      register: _nodepool_images_dir_stat
+
+    - name: Assert /opt/nodepool/images tests.
+      assert:
+        that:
+          - _nodepool_images_dir_stat.stat.exists
+          - _nodepool_images_dir_stat.stat.isdir
+          - _nodepool_images_dir_stat.stat.pw_name == 'nodepool'
+          - _nodepool_images_dir_stat.stat.gr_name == 'nodepool'
+          - _nodepool_images_dir_stat.stat.mode == '0755'
+
+    - name: Register /etc/nodepool/nodepool.yaml
+      stat:
+        path: /etc/nodepool/nodepool.yaml
+      register: nodepool_yaml_stat
+
+    - name: Assert nodepool_yaml_stat tests.
+      assert:
+        that:
+          - nodepool_yaml_stat.stat.exists
+          - nodepool_yaml_stat.stat.isreg
+          - nodepool_yaml_stat.stat.pw_name == 'nodepool'
+          - nodepool_yaml_stat.stat.gr_name == 'nodepool'
+          - nodepool_yaml_stat.stat.mode == '0644'
+
+    - name: Register /etc/nodepool/builder-logging.conf
+      stat:
+        path: /etc/nodepool/builder-logging.conf
+      register: builder_logging_conf_stat
+
+    - name: Assert buidler_logging_conf_stat tests.
+      assert:
+        that:
+          - builder_logging_conf_stat.stat.exists
+          - builder_logging_conf_stat.stat.isreg
+          - builder_logging_conf_stat.stat.pw_name == 'nodepool'
+          - builder_logging_conf_stat.stat.gr_name == 'nodepool'
+          - builder_logging_conf_stat.stat.mode == '0644'
+
+    - name: Register /etc/nodepool/launcher-logging.conf
+      stat:
+        path: /etc/nodepool/launcher-logging.conf
+      register: launcher_logging_conf_stat
+
+    - name: Assert buidler_logging_conf_stat tests.
+      assert:
+        that:
+          - launcher_logging_conf_stat.stat.exists
+          - launcher_logging_conf_stat.stat.isreg
+          - launcher_logging_conf_stat.stat.pw_name == 'nodepool'
+          - launcher_logging_conf_stat.stat.gr_name == 'nodepool'
+          - launcher_logging_conf_stat.stat.mode == '0644'
+
+    - name: Register /etc/nodepool/secure.conf
+      stat:
+        path: /etc/nodepool/secure.conf
+      register: secure_conf_stat
+
+    - name: Assert secure_conf_stat tests.
+      assert:
+        that:
+          - secure_conf_stat.stat.exists
+          - secure_conf_stat.stat.isreg
+          - secure_conf_stat.stat.pw_name == 'nodepool'
+          - secure_conf_stat.stat.gr_name == 'nodepool'
+          - secure_conf_stat.stat.mode == '0600'
+
+    - name: Register nodepool_user_home_stat.
+      stat:
+        path: /var/lib/nodepool
+      register: nodepool_user_home_stat
+
+    - name: Assert nodepool_user_home tests.
+      assert:
+        that:
+          - nodepool_user_home_stat.stat.exists
+          - nodepool_user_home_stat.stat.isdir
+
+    - name: Register nodepool_git_dest_stat.
+      stat:
+        path: /opt/ansible-role-nodepool/git/openstack-infra/nodepool
+      register: nodepool_git_dest_stat
+
+    - name: Assert nodepool_git_dest tests.
+      assert:
+        that:
+          - nodepool_git_dest_stat.stat.exists
+          - nodepool_git_dest_stat.stat.isdir
+
+    - name: Register /etc/systemd/system/nodepool-builder.service
+      stat:
+        path: /etc/systemd/system/nodepool-builder.service
+      register: _nodepool_builder_service_systemd_stat
+
+    - name: Assert _nodepool_builder_service_systemd_stat tests.
+      assert:
+        that:
+          - _nodepool_builder_service_systemd_stat.stat.exists
+          - _nodepool_builder_service_systemd_stat.stat.isreg
+          - _nodepool_builder_service_systemd_stat.stat.pw_name == 'root'
+          - _nodepool_builder_service_systemd_stat.stat.gr_name == 'root'
+          - _nodepool_builder_service_systemd_stat.stat.mode == '0644'
+
+    - name: Ensure nodepool-builder is running.
+      become: yes
+      shell: /usr/sbin/service nodepool-builder status
+      tags: skip_ansible_lint
+
+    - name: Register /etc/systemd/system/nodepool-launcher.service
+      stat:
+        path: /etc/systemd/system/nodepool-launcher.service
+      register: _nodepool_launcher_service_systemd_stat
+
+    - name: Assert _nodepool_launcher_service_systemd_stat tests.
+      assert:
+        that:
+          - _nodepool_launcher_service_systemd_stat.stat.exists
+          - _nodepool_launcher_service_systemd_stat.stat.isreg
+          - _nodepool_launcher_service_systemd_stat.stat.pw_name == 'root'
+          - _nodepool_launcher_service_systemd_stat.stat.gr_name == 'root'
+          - _nodepool_launcher_service_systemd_stat.stat.mode == '0644'
+
+    - name: Ensure nodepool-launcher is running.
+      become: yes
+      shell: /usr/sbin/service nodepool-launcher status
+      tags: skip_ansible_lint
