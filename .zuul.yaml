@@ -1,0 +1,41 @@
+- job:
+    name: ansible-role-nodepool
+    run: tests/test
+    required-projects:
+      - name: openstack-infra/nodepool
+        override-branch: feature/zuulv3
+    roles:
+      - zuul: openstack/ansible-role-nodepool
+
+- job:
+    name: ansible-role-nodepool-centos-7
+    parent: ansible-role-nodepool
+    nodeset: centos-7
+
+- job:
+    name: ansible-role-nodepool-fedora-26
+    parent: ansible-role-nodepool
+    nodeset: fedora-26
+
+- job:
+    name: ansible-role-nodepool-ubuntu-xenial
+    parent: ansible-role-nodepool
+    nodeset: ubuntu-xenial
+
+- project:
+    name: openstack/ansible-role-nodepool
+    templates:
+      - windmill-jobs-fedora-26
+      - windmill-jobs-xenial
+    check:
+      jobs:
+        - ansible-role-nodepool-centos-7
+        - ansible-role-nodepool-fedora-26
+        - ansible-role-nodepool-ubuntu-xenial
+        - tox-linters
+    gate:
+      jobs:
+        - ansible-role-nodepool-centos-7
+        - ansible-role-nodepool-fedora-26
+        - ansible-role-nodepool-ubuntu-xenial
+        - tox-linters
