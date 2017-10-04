@@ -1,0 +1,29 @@
+- job:
+    name: ansible-role-nodepool
+    nodeset: ubuntu-xenial
+    run: tests/test001
+    roles:
+      - zuul: openstack/ansible-role-nodepool
+
+- job:
+    name: ansible-role-nodepool-centos-7
+    parent: ansible-role-nodepool
+    nodeset: centos-7
+
+- job:
+    name: ansible-role-nodepool-fedora-26
+    parent: ansible-role-nodepool
+    nodeset: fedora-26
+
+- project:
+    name: openstack/ansible-role-nodepool
+    check:
+      jobs:
+        - ansible-role-nodepool
+        - ansible-role-nodepool-centos-7
+        - ansible-role-nodepool-fedora-26
+    gate:
+      jobs:
+        - ansible-role-nodepool
+        - ansible-role-nodepool-centos-7
+        - ansible-role-nodepool-fedora-26
