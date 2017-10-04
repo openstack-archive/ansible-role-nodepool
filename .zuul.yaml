@@ -1,0 +1,11 @@
+- job:
+    name: ansible-role-nodepool-ubuntu-xenial
+    run: tests/test
+    roles:
+      - zuul: openstack/ansible-role-nodepool
+
+- project:
+    name: openstack/ansible-role-nodepool
+    check:
+      jobs:
+        - ansible-role-nodepool-ubuntu-xenial
