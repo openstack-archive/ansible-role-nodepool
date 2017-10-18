@@ -59,6 +59,7 @@ nodepool_git_dest: /opt/ansible-role-nodepool/git/openstack-infra/nodepool
 nodepool_git_uri: https://git.openstack.org/openstack-infra/nodepool
 nodepool_git_version: feature/zuulv3
 # nodepool_git_refspec:
+# nodepool_git_update:
 
 nodepool_install_method: git
 
