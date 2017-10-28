@@ -1,6 +1,6 @@
 - job:
     name: ansible-role-nodepool
-    run: tests/test
+    run: tests/test.yaml
     required-projects:
       - name: openstack-infra/nodepool
         override-branch: feature/zuulv3
