@@ -24,9 +24,6 @@
 
 - project:
     name: openstack/ansible-role-nodepool
-    templates:
-      - windmill-jobs-fedora-26
-      - windmill-jobs-xenial
     check:
       jobs:
         - ansible-role-nodepool-centos-7
