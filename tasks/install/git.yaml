@@ -13,7 +13,6 @@
 # under the License.
 ---
 - name: Git clone nodepool.
-  become: yes
   git:
     dest: "{{ nodepool_git_dest }}"
     refspec: "{{ nodepool_git_refspec|default(omit) }}"

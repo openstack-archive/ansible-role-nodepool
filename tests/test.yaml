@@ -14,7 +14,6 @@
 ---
 - hosts: all
   vars:
-    nodepool_git_dest: "{{ ansible_user_dir }}/src/git.openstack.org/openstack-infra/nodepool"
     nodepool_git_update: false
     nodepool_pip_executable: pip3
     rolename: ansible-role-nodepool
