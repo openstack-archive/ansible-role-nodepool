@@ -13,6 +13,11 @@
     nodeset: fedora-27
 
 - job:
+    name: ansible-role-nodepool-ubuntu-bionic
+    parent: ansible-role-nodepool
+    nodeset: ubuntu-bionic
+
+- job:
     name: ansible-role-nodepool-ubuntu-xenial
     parent: ansible-role-nodepool
     nodeset: ubuntu-xenial
@@ -25,6 +30,7 @@
     check:
       jobs:
         - ansible-role-nodepool-fedora-27
+        - ansible-role-nodepool-ubuntu-bionic
         - ansible-role-nodepool-ubuntu-xenial
         - tox-linters
     gate:
