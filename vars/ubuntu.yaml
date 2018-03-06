@@ -30,7 +30,7 @@ __nodepool_build_depends:
   - libssl-dev
   - libxml2-dev
   - libxslt1-dev
-  - python-dev
+  - python3-dev
   - zlib1g-dev
 
 __nodepool_file_nodepool_builder_service_dest: /etc/systemd/system/nodepool-builder.service
