@@ -26,6 +26,7 @@
     name: openstack/ansible-role-nodepool
     templates:
       - windmill-jobs-fedora-27
+      - windmill-jobs-bionic
       - windmill-jobs-xenial
     check:
       jobs:
