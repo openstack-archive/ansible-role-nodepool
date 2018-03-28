@@ -35,19 +35,10 @@ creating DIBs.
 Role Variables
 --------------
 
-.. code-block:: yaml
 
-    # Name of the user to be created.
-    # Default: nodepool
-    nodepool_user_name: nodepool
-
-    # Name of the group to be created.
-    # Default: nodepool
-    nodepool_user_group: nodepool
-
-    # Path of home directory to be created.
-    # Default: /var/lib/nodepool
-    nodepool_user_home: /var/lib/nodepool
+.. literalinclude:: ../../defaults/main.yaml
+   :language: yaml
+   :start-after: under the License.
 
 Dependencies
 ------------
