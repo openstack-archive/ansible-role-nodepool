@@ -1,0 +1,9 @@
+Code-Review+1: zhangpeng <zhangpeng@awcloud.com>
+Code-Review+2: Paul Belanger <pabelanger@redhat.com>
+Workflow+1: Paul Belanger <pabelanger@redhat.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Wed, 28 Mar 2018 02:45:46 +0000
+Reviewed-on: https://review.openstack.org/557105
+Project: openstack/ansible-role-nodepool
+Branch: refs/heads/master
