@@ -28,7 +28,7 @@ __nodepool_file_nodepool_builder_service_src: etc/systemd/system/nodepool-builde
 
 __nodepool_file_nodepool_builder_service_config_dest: /etc/systemd/system/nodepool-builder.service.d/override.conf
 __nodepool_file_nodepool_builder_service_config_mode: 0644
-__nodepool_file_nodepool_builder_service_config_src: etc/systemd/system/nodepool-builder.service.d/redhat.conf
+__nodepool_file_nodepool_builder_service_config_src: etc/systemd/system/nodepool-builder.service.d/override.conf
 
 __nodepool_file_nodepool_launcher_service_dest: /etc/systemd/system/nodepool-launcher.service
 __nodepool_file_nodepool_launcher_service_mode: 0644
@@ -36,4 +36,4 @@ __nodepool_file_nodepool_launcher_service_src: etc/systemd/system/nodepool-launc
 
 __nodepool_file_nodepool_launcher_service_config_dest: /etc/systemd/system/nodepool-launcher.service.d/override.conf
 __nodepool_file_nodepool_launcher_service_config_mode: 0644
-__nodepool_file_nodepool_launcher_service_config_src: etc/systemd/system/nodepool-launcher.service.d/redhat.conf
+__nodepool_file_nodepool_launcher_service_config_src: etc/systemd/system/nodepool-launcher.service.d/override.conf
