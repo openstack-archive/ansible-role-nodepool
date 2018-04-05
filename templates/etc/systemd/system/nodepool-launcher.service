@@ -6,12 +6,9 @@ After=syslog.target network.target
 Type=simple
 # Options to pass to nodepool-launcher.
 Environment="ARGS=-l /etc/nodepool/launcher-logging.conf --no-webapp"
-# The prefix used when nodepool-launcher was installed. Be sure to update this
-# value if you are using a virtualenv.
-Environment="PREFIX=/usr/local"
 Group=nodepool
 User=nodepool
-ExecStart=/bin/sh -c "${PREFIX}/bin/nodepool-launcher -d ${ARGS}"
+ExecStart={{ nodepool_pip_virtualenv | default('/usr/local') }}/bin/nodepool-launcher -d $ARGS
 
 [Install]
 WantedBy=multi-user.target
