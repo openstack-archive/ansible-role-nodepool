@@ -24,7 +24,6 @@
     - /opt/nodepool/images
     - /opt/nodepool/tmp
     - /var/log/nodepool
-    - /var/log/nodepool/images
 
 - name: Install nodepool configuration.
   become: yes
