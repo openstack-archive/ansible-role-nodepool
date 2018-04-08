@@ -21,8 +21,7 @@
     state: directory
   with_items:
     - /etc/nodepool
-    - /opt/nodepool/images
-    - /opt/nodepool/tmp
+    - /opt/nodepool
     - /var/log/nodepool
 
 - name: Install nodepool configuration.
