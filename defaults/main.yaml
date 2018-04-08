@@ -24,12 +24,6 @@ nodepool_user_name: nodepool
 nodepool_user_group: nodepool
 nodepool_user_home: /var/lib/nodepool
 
-nodepool_file_nodepool_elements_dest: /etc/nodepool/elements
-nodepool_file_nodepool_elements_group: "{{ nodepool_user_group }}"
-nodepool_file_nodepool_elements_mode: 0755
-nodepool_file_nodepool_elements_owner: "{{ nodepool_user_name }}"
-nodepool_file_nodepool_elements_src: etc/nodepool/elements/
-
 nodepool_file_nodepool_yaml_dest: /etc/nodepool/nodepool.yaml
 nodepool_file_nodepool_yaml_group: "{{ nodepool_user_group }}"
 nodepool_file_nodepool_yaml_mode: 0644
