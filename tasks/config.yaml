@@ -21,6 +21,7 @@
     state: directory
   with_items:
     - /etc/nodepool
+    - /opt/nodepool/cache
     - /opt/nodepool/images
     - /opt/nodepool/tmp
     - /var/log/nodepool
