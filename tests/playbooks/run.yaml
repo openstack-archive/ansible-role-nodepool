@@ -14,8 +14,6 @@
 ---
 - hosts: all
   vars:
-    nodepool_git_update: false
-    nodepool_pip_executable: pip3
     rolename: ansible-role-nodepool
 
   roles:
@@ -139,12 +137,14 @@
       stat:
         path: /home/zuul/src/git.openstack.org/openstack-infra/nodepool
       register: nodepool_git_dest_stat
+      when: nodepool_install_method == 'git'
 
     - name: Assert nodepool_git_dest tests.
       assert:
         that:
           - nodepool_git_dest_stat.stat.exists
           - nodepool_git_dest_stat.stat.isdir
+      when: nodepool_install_method == 'git'
 
     - name: Register /etc/systemd/system/nodepool-builder.service
       stat:
