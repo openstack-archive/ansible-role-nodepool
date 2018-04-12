@@ -15,8 +15,6 @@
 - job:
     name: ansible-role-nodepool
     parent: ansible-role-nodepool-base
-    vars:
-      nodepool_install_method: pip
 
 - job:
     name: ansible-role-nodepool-fedora-27

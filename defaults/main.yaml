@@ -55,7 +55,7 @@ nodepool_git_version: master
 # nodepool_git_refspec:
 # nodepool_git_update:
 
-nodepool_install_method: git
+nodepool_install_method: pip
 
 nodepool_pip_name: nodepool
 # nodepool_pip_executable:
