@@ -1,11 +1,22 @@
 - job:
-    name: ansible-role-nodepool
-    run: tests/test.yaml
+    name: ansible-role-nodepool-base
+    run: tests/playbooks/run.yaml
     post-run: tests/collect-logs.yaml
     required-projects:
       - name: openstack-infra/nodepool
     roles:
       - zuul: openstack/ansible-role-nodepool
+    vars:
+      # TODO(pabelanger): This needs to fix to defaut to this when not using
+      # a virtualenv.
+      nodepool_pip_executable: pip3
+
+# Testing for nodepool_install_method: pip
+- job:
+    name: ansible-role-nodepool
+    parent: ansible-role-nodepool-base
+    vars:
+      nodepool_install_method: pip
 
 - job:
     name: ansible-role-nodepool-fedora-27
@@ -22,6 +33,29 @@
     parent: ansible-role-nodepool
     nodeset: ubuntu-xenial
 
+# Testing for nodepool_install_method: git
+- job:
+    name: ansible-role-nodepool-src
+    parent: ansible-role-nodepool-base
+    vars:
+      nodepool_git_update: false
+      nodepool_install_method: git
+
+- job:
+    name: ansible-role-nodepool-src-fedora-27
+    parent: ansible-role-nodepool-src
+    nodeset: fedora-27
+
+- job:
+    name: ansible-role-nodepool-src-ubuntu-bionic
+    parent: ansible-role-nodepool-src
+    nodeset: ubuntu-bionic
+
+- job:
+    name: ansible-role-nodepool-src-ubuntu-xenial
+    parent: ansible-role-nodepool-src
+    nodeset: ubuntu-xenial
+
 - project:
     name: openstack/ansible-role-nodepool
     templates:
@@ -32,10 +66,15 @@
       jobs:
         - ansible-role-nodepool-fedora-27
         - ansible-role-nodepool-ubuntu-bionic
-        - ansible-role-nodepool-ubuntu-xenial
+        - ansible-role-nodepool-ubuntu-bionic
+        - ansible-role-nodepool-src-fedora-27
+        - ansible-role-nodepool-src-ubuntu-bionic
+        - ansible-role-nodepool-src-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
         - ansible-role-nodepool-fedora-27
         - ansible-role-nodepool-ubuntu-xenial
+        - ansible-role-nodepool-src-fedora-27
+        - ansible-role-nodepool-src-ubuntu-xenial
         - tox-linters
