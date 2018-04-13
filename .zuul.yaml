@@ -1,5 +1,6 @@
 - job:
     name: ansible-role-nodepool-base
+    pre-run: tests/playbooks/pre.yaml
     run: tests/playbooks/run.yaml
     post-run: tests/collect-logs.yaml
     roles:
