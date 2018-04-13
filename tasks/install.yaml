@@ -25,4 +25,12 @@
   with_items: "{{ nodepool_build_depends }}"
   when: nodepool_install_method == 'git'
 
+- name: Define nodepool_pip_executable if needed.
+  set_fact:
+    nodepool_pip_executable: pip3
+  when:
+    - nodepool_install_method == 'git' or nodepool_install_method == 'pip'
+    - nodepool_pip_virtualenv_python is not defined
+    - nodepool_pip_executable is not defined
+
 - include: "install/{{ nodepool_install_method }}.yaml"

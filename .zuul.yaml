@@ -6,10 +6,6 @@
       - name: openstack-infra/nodepool
     roles:
       - zuul: openstack/ansible-role-nodepool
-    vars:
-      # TODO(pabelanger): This needs to fix to defaut to this when not using
-      # a virtualenv.
-      nodepool_pip_executable: pip3
 
 # Testing for nodepool_install_method: pip
 - job:

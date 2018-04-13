@@ -20,6 +20,8 @@ including Jenkins and Zuul.
 Requirements
 ------------
 
+* pip3 to be installed if using nodepool_install_method: (git|pip)
+
 Packages
 ~~~~~~~~
 
