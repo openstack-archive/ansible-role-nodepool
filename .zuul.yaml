@@ -2,8 +2,6 @@
     name: ansible-role-nodepool-base
     run: tests/playbooks/run.yaml
     post-run: tests/collect-logs.yaml
-    required-projects:
-      - name: openstack-infra/nodepool
     roles:
       - zuul: openstack/ansible-role-nodepool
 
@@ -31,6 +29,8 @@
 - job:
     name: ansible-role-nodepool-src
     parent: ansible-role-nodepool-base
+    required-projects:
+      - name: openstack-infra/nodepool
     vars:
       nodepool_git_update: false
       nodepool_install_method: git
