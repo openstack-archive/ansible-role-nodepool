@@ -59,6 +59,7 @@ nodepool_install_method: pip
 
 nodepool_pip_name: nodepool
 # nodepool_pip_executable:
+# nodepool_pip_editable:
 # nodepool_pip_extra_args:
 # nodepool_pip_version:
 # nodepool_pip_virtualenv_python:

@@ -16,6 +16,7 @@
   become: yes
   pip:
     executable: "{{ nodepool_pip_executable|default(omit) }}"
+    editable : "{{ nodepool_pip_editable|default(omit) }}"
     extra_args: "{{ nodepool_pip_extra_args|default(omit) }}"
     name: "{{ nodepool_pip_name }}"
     version: "{{ nodepool_pip_version|default(omit) }}"
