@@ -1,5 +1,9 @@
 - hosts: all
   tasks:
+    - name: Execute fetch-zuul-logs role
+      include_role:
+        name: fetch-zuul-logs
+
     - name: Collect nodepool log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs"
