@@ -1,5 +1,9 @@
 - hosts: all
   tasks:
+    - name: Execute ensure-output-dirs role
+      include_role:
+        name: ensure-output-dirs
+
     - name: Collect nodepool log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs"
