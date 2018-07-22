@@ -1,10 +1,18 @@
 - hosts: all
   tasks:
-    - name: Collect nodepool log files
+    - name: Prepare nodepool log files
+      becomes: True
       synchronize:
-        dest: "{{ zuul.executor.log_root }}/logs"
-        mode: pull
+        dest: "{{ zuul_output_dir }}/logs/logs"
         rsync_opts:
           - "--relative"
-        src: /var/log/nodepool
+        src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
+      with_items:
+        - /etc/nodepool
+        - /var/log/nodepool
+
+    - name: Execute fetch-zuul-logs role
+      include_role:
+        name: fetch-zuul-logs
