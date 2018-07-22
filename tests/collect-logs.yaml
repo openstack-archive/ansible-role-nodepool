@@ -1,10 +1,24 @@
 - hosts: all
   tasks:
-    - name: Collect nodepool log files
+    - name: Prepare nodepool log files
+      become: yes
       synchronize:
-        dest: "{{ zuul.executor.log_root }}/logs"
-        mode: pull
+        dest: "{{ zuul_output_dir }}/logs/logs"
         rsync_opts:
           - "--relative"
-        src: /var/log/nodepool
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
+        src: "{{ item }}"
+        verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
+      with_items:
+        - /etc/nodepool
+        - /var/log/nodepool
+
+    # TODO: Migrate to fetch-zuul-logs when
+    # https://review.openstack.org/#/c/583346/ is merged.
+    - name: Collect log output
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/"
+        mode: pull
+        src: "{{ zuul_output_dir }}/logs/"
         verify_host: true
