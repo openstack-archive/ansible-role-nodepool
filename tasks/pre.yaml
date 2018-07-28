@@ -24,3 +24,4 @@
     group: "{{ nodepool_user_group }}"
     home: "{{ nodepool_user_home }}"
     name: "{{ nodepool_user_name }}"
+    shell: "{{ nodepool_user_shell|default(omit) }}"

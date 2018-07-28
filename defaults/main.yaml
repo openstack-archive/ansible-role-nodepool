@@ -23,6 +23,7 @@ nodepool_task_manager:
 nodepool_user_name: nodepool
 nodepool_user_group: nodepool
 nodepool_user_home: /var/lib/nodepool
+# nodepool_user_shell:
 
 nodepool_file_nodepool_yaml_dest: /etc/nodepool/nodepool.yaml
 nodepool_file_nodepool_yaml_group: "{{ nodepool_user_group }}"
