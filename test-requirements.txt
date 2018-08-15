@@ -1,2 +1,3 @@
 ansible-lint
 hacking<0.11,>=0.10
+junit2html

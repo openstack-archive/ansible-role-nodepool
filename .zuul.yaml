@@ -2,7 +2,9 @@
     name: ansible-role-nodepool-base
     pre-run: tests/playbooks/pre.yaml
     run: tests/playbooks/run.yaml
-    post-run: tests/collect-logs.yaml
+    post-run:
+      - tests/playbooks/post.yaml
+      - tests/collect-logs.yaml
     roles:
       - zuul: openstack/ansible-role-nodepool
       - zuul: openstack/zuul-jobs
