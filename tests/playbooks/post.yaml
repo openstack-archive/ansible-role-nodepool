@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - name: Run testinfra validation
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      shell: tox -etestinfra
