@@ -1,5 +1,18 @@
 - hosts: all
   tasks:
+    - name: Ensure journald logs directory exists
+      file:
+        path: "{{ zuul_output_dir }}/logs/logs/var/log/journal"
+        state: directory
+
+    - name: Collect journald logs
+      shell: "sudo journalctl -u {{ item }}.service | tee ~/logs/{{ inventory_hostname }}/var/log/journal/{{ item }}.service.log"
+      args:
+        creates: "{{ zuul_output_dir }}/logs/logs/var/log/journal/{{ item }}.service.log"
+      with_items:
+        - nodepool-builder
+        - nodepool-launcher
+
     - name: Prepare nodepool log files
       become: yes
       synchronize:
