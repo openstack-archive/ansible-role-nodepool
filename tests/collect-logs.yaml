@@ -13,6 +13,16 @@
         - nodepool-builder
         - nodepool-launcher
 
+    - name: Collect testinfra reports
+      synchronize:
+        dest: "{{ zuul_output_dir }}/logs"
+        src: "{{ item }}"
+        verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
+      with_items:
+        - "{{ ansible_user_dir }}/{{ zuul.project.src_dir }}/junit.xml"
+        - "{{ ansible_user_dir }}/{{ zuul.project.src_dir }}/junit.xml.html"
+
     - name: Prepare nodepool log files
       become: yes
       synchronize:
