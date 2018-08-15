@@ -5,6 +5,7 @@
     post-run: tests/collect-logs.yaml
     roles:
       - zuul: openstack/ansible-role-nodepool
+      - zuul: openstack/zuul-jobs
 
 # Testing for nodepool_install_method: pip
 - job:
