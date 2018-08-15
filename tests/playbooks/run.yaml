@@ -160,11 +160,6 @@
           - _nodepool_builder_service_systemd_stat.stat.gr_name == 'root'
           - _nodepool_builder_service_systemd_stat.stat.mode == '0644'
 
-    - name: Ensure nodepool-builder is running.
-      become: yes
-      shell: /usr/sbin/service nodepool-builder status
-      tags: skip_ansible_lint
-
     - name: Register /etc/systemd/system/nodepool-launcher.service
       stat:
         path: /etc/systemd/system/nodepool-launcher.service
@@ -178,8 +173,3 @@
           - _nodepool_launcher_service_systemd_stat.stat.pw_name == 'root'
           - _nodepool_launcher_service_systemd_stat.stat.gr_name == 'root'
           - _nodepool_launcher_service_systemd_stat.stat.mode == '0644'
-
-    - name: Ensure nodepool-launcher is running.
-      become: yes
-      shell: /usr/sbin/service nodepool-launcher status
-      tags: skip_ansible_lint
