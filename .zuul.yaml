@@ -1,3 +1,4 @@
+---
 - job:
     name: ansible-role-nodepool-base
     pre-run: tests/playbooks/pre.yaml
@@ -7,7 +8,6 @@
       - tests/collect-logs.yaml
     roles:
       - zuul: openstack/ansible-role-nodepool
-      - zuul: openstack/zuul-jobs
 
 # Testing for nodepool_install_method: pip
 - job:
@@ -69,6 +69,7 @@
         - ansible-role-nodepool-src-ubuntu-bionic
         - ansible-role-nodepool-src-ubuntu-xenial
         - tox-linters
+        - windmill-tox-molecule
     gate:
       jobs:
         - ansible-role-nodepool-fedora-latest
@@ -78,3 +79,4 @@
         - ansible-role-nodepool-src-ubuntu-bionic
         - ansible-role-nodepool-src-ubuntu-xenial
         - tox-linters
+        - windmill-tox-molecule
