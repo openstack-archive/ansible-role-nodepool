@@ -1,3 +1,4 @@
+---
 - job:
     name: ansible-role-nodepool-base
     pre-run: tests/playbooks/pre.yaml
