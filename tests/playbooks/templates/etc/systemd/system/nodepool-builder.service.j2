@@ -1,0 +1,14 @@
+[Unit]
+Description=Nodepool Builder Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+# Options to pass to nodepool-builder.
+Environment="ARGS=-l /etc/nodepool/builder-logging.conf"
+ExecStart=/usr/bin/docker run --rm --name nodepool-builder -u 1001:1001 -v /var/lib/nodepool:/var/lib/nodepool -v /etc/nodepool:/etc/nodepool -v /opt/nodepool:/opt/nodepool -v /var/log/nodepool:/var/log/nodepool -h nodepool-builder zuul/nodepool-builder nodepool-builder -d $ARGS
+ExecStop=/usr/bin/docker stop nodepool-builder
+
+[Install]
+WantedBy=multi-user.target
