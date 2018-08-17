@@ -1,10 +1,8 @@
+---
 - job:
     name: ansible-role-nodepool-base
     pre-run: tests/playbooks/pre.yaml
     run: tests/playbooks/run.yaml
-    post-run:
-      - tests/playbooks/post.yaml
-      - tests/collect-logs.yaml
     roles:
       - zuul: openstack/ansible-role-nodepool
       - zuul: openstack/zuul-jobs
@@ -13,6 +11,9 @@
 - job:
     name: ansible-role-nodepool
     parent: ansible-role-nodepool-base
+    post-run:
+      - tests/playbooks/post.yaml
+      - tests/collect-logs.yaml
 
 - job:
     name: ansible-role-nodepool-fedora-latest
@@ -33,6 +34,9 @@
 - job:
     name: ansible-role-nodepool-src
     parent: ansible-role-nodepool-base
+    post-run:
+      - tests/playbooks/post.yaml
+      - tests/collect-logs.yaml
     required-projects:
       - name: openstack-infra/nodepool
     vars:
@@ -69,6 +73,7 @@
         - ansible-role-nodepool-src-ubuntu-bionic
         - ansible-role-nodepool-src-ubuntu-xenial
         - tox-linters
+        - windmill-tox-molecule
     gate:
       jobs:
         - ansible-role-nodepool-fedora-latest
@@ -78,3 +83,4 @@
         - ansible-role-nodepool-src-ubuntu-bionic
         - ansible-role-nodepool-src-ubuntu-xenial
         - tox-linters
+        - windmill-tox-molecule
