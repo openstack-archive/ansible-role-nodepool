@@ -54,6 +54,16 @@
     parent: ansible-role-nodepool-src
     nodeset: ubuntu-xenial
 
+# Testing for nodepool_install_method: docker
+- job:
+    name: ansible-role-nodepool-docker
+    parent: ansible-role-nodepool-base
+    nodeset: ubuntu-bionic
+    vars:
+      nodepool_install_method: docker
+      nodepool_file_nodepool_builder_service_src: etc/systemd/system/nodepool-builder.service.j2
+      nodepool_file_nodepool_launcher_service_src: etc/systemd/system/nodepool-launcher.service.j2
+
 - project:
     name: openstack/ansible-role-nodepool
     templates:
@@ -62,6 +72,7 @@
       - windmill-jobs-xenial
     check:
       jobs:
+        - ansible-role-nodepool-docker
         - ansible-role-nodepool-fedora-latest
         - ansible-role-nodepool-ubuntu-bionic
         - ansible-role-nodepool-ubuntu-xenial
@@ -72,6 +83,7 @@
         - windmill-tox-molecule
     gate:
       jobs:
+        - ansible-role-nodepool-docker
         - ansible-role-nodepool-fedora-latest
         - ansible-role-nodepool-ubuntu-bionic
         - ansible-role-nodepool-ubuntu-xenial

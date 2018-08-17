@@ -3,3 +3,4 @@
 
 docker.io [test platform:dpkg]
 docker [test platform:fedora]
+python-docker [test platform:dpkg]
