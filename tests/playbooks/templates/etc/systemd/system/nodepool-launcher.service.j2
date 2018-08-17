@@ -1,0 +1,14 @@
+[Unit]
+Description=Nodepool Launcher Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+# Options to pass to nodepool-launcher.
+Environment="ARGS=-l /etc/nodepool/launcher-logging.conf --no-webapp"
+ExecStart=/usr/bin/docker run --rm --name nodepool-launcher -u 1001:1001 -v /var/lib/nodepool:/var/lib/nodepool -v /etc/nodepool:/etc/nodepool -v /opt/nodepool:/opt/nodepool -v /var/log/nodepool:/var/log/nodepool -h nodepool-launcher zuul/nodepool-launcher nodepool-launcher -d $ARGS
+ExecStop=/usr/bin/docker stop nodepool-launcher
+
+[Install]
+WantedBy=multi-user.target
