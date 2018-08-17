@@ -21,7 +21,6 @@
       delegate_to: "{{ inventory_hostname }}"
       with_items:
         - "{{ ansible_user_dir }}/{{ zuul.project.src_dir }}/junit.xml"
-        - "{{ ansible_user_dir }}/{{ zuul.project.src_dir }}/junit.xml.html"
 
     - name: Prepare nodepool log files
       become: yes
