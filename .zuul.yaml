@@ -1,10 +1,19 @@
+---
+- job:
+    name: tox-molecule
+    parent: tox-with-sudo
+    description: |
+      Runs code linting tests.
+
+      Uses tox with the ``molecule`` environment.
+    vars:
+      tox_envlist: molecule
+
 - job:
     name: ansible-role-nodepool-base
     pre-run: tests/playbooks/pre.yaml
     run: tests/playbooks/run.yaml
-    post-run:
-      - tests/playbooks/post.yaml
-      - tests/collect-logs.yaml
+    post-run: tests/collect-logs.yaml
     roles:
       - zuul: openstack/ansible-role-nodepool
       - zuul: openstack/zuul-jobs
@@ -69,6 +78,7 @@
         - ansible-role-nodepool-src-ubuntu-bionic
         - ansible-role-nodepool-src-ubuntu-xenial
         - tox-linters
+        - tox-molecule
     gate:
       jobs:
         - ansible-role-nodepool-fedora-latest

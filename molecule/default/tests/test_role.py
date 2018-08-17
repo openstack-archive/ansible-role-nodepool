@@ -80,8 +80,12 @@ def test_nodepool_builder_service(host):
     assert f.mode == 0o644
 
     service = host.service('nodepool-builder')
-    assert service.is_running
-    assert service.is_enabled
+    if host.exists('systemd'):
+        assert service.is_running
+        assert service.is_enabled
+    else:
+        assert not service.is_running
+        assert not service.is_enabled
 
 
 def test_nodepool_launcher_logging_config(host):
@@ -102,5 +106,9 @@ def test_nodepool_launcher_service(host):
     assert f.mode == 0o644
 
     service = host.service('nodepool-launcher')
-    assert service.is_running
-    assert service.is_enabled
+    if host.exists('systemd'):
+        assert service.is_running
+        assert service.is_enabled
+    else:
+        assert not service.is_running
+        assert not service.is_enabled
