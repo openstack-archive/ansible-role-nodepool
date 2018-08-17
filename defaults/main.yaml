@@ -66,6 +66,8 @@ nodepool_pip_name: nodepool
 # nodepool_pip_virtualenv_python:
 # nodepool_pip_virtualenv:
 
+nodepool_docker_name: nicolast/nodepool
+
 # tasks/service.yaml
 nodepool_file_nodepool_builder_service_manage: true
 nodepool_file_nodepool_builder_service_group: root
