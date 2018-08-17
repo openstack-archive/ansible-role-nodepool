@@ -1,17 +1,9 @@
 - hosts: all
   tasks:
-    - block:
-      - name: Run testinfra validation
-        include_role:
-          name: tox
-        vars:
-          tox_envlist: testinfra
-          tox_install_siblings: false
-      always:
-      - name: Run junit2html
-        include_role:
-          name: tox
-        vars:
-          tox_envlist: venv
-          tox_extra_args: -vv junit2html junit.xml
-          tox_install_siblings: false
+    - name: Run testinfra validation
+      include_role:
+        name: tox
+      vars:
+        tox_envlist: venv
+        tox_extra_args: -vv molecule verify
+        tox_install_siblings: false
