@@ -73,7 +73,7 @@
   when: nodepool_file_nodepool_launcher_service_config_src is not defined
 
 - name: Install nodepool-builder service script into place.
-  become: yes
+  become: true
   template:
     dest: "{{ nodepool_file_nodepool_builder_service_dest }}"
     group: "{{ nodepool_file_nodepool_builder_service_group }}"
@@ -84,7 +84,7 @@
   when: nodepool_file_nodepool_builder_service_manage
 
 - name: Create nodepool-builder service config directory.
-  become: yes
+  become: true
   file:
     group: "{{ nodepool_file_nodepool_builder_service_config_group }}"
     owner: "{{ nodepool_file_nodepool_builder_service_config_owner }}"
@@ -93,7 +93,7 @@
   when: nodepool_file_nodepool_builder_service_config_manage
 
 - name: Install nodepool-builder service config into place.
-  become: yes
+  become: true
   template:
     dest: "{{ nodepool_file_nodepool_builder_service_config_dest  }}"
     group: "{{ nodepool_file_nodepool_builder_service_config_group  }}"
@@ -104,7 +104,7 @@
   when: nodepool_file_nodepool_builder_service_config_manage
 
 - name: Install nodepool-launcher service script into place.
-  become: yes
+  become: true
   template:
     dest: "{{ nodepool_file_nodepool_launcher_service_dest }}"
     group: "{{ nodepool_file_nodepool_launcher_service_group }}"
@@ -115,7 +115,7 @@
   when: nodepool_file_nodepool_launcher_service_manage
 
 - name: Create nodepool-launcher service config directory.
-  become: yes
+  become: true
   file:
     group: "{{ nodepool_file_nodepool_launcher_service_config_group }}"
     owner: "{{ nodepool_file_nodepool_launcher_service_config_owner }}"
@@ -124,7 +124,7 @@
   when: nodepool_file_nodepool_launcher_service_config_manage
 
 - name: Install nodepool-launcher service config into place.
-  become: yes
+  become: true
   template:
     dest: "{{ nodepool_file_nodepool_launcher_service_config_dest  }}"
     group: "{{ nodepool_file_nodepool_launcher_service_config_group  }}"
@@ -135,7 +135,7 @@
   when: nodepool_file_nodepool_launcher_service_config_manage
 
 - name: Enable nodepool-builder service.
-  become: yes
+  become: true
   systemd:
     daemon_reload: "{{ nodepool_service_nodepool_builder_daemon_reload }}"
     enabled: "{{ nodepool_service_nodepool_builder_enabled }}"
@@ -145,7 +145,7 @@
   when: nodepool_service_nodepool_builder_manage
 
 - name: Enable nodepool-launcher service.
-  become: yes
+  become: true
   systemd:
     daemon_reload: "{{ nodepool_service_nodepool_launcher_daemon_reload }}"
     enabled: "{{ nodepool_service_nodepool_launcher_enabled }}"

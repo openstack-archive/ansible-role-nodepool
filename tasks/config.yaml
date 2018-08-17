@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Create required directories.
-  become: yes
+  become: true
   file:
     group: "{{ nodepool_user_group }}"
     owner: "{{ nodepool_user_name }}"
@@ -26,7 +26,7 @@
     - /var/log/nodepool
 
 - name: Install nodepool configuration.
-  become: yes
+  become: true
   template:
     dest: "{{ nodepool_file_nodepool_yaml_dest }}"
     group: "{{ nodepool_file_nodepool_yaml_group }}"
@@ -36,7 +36,7 @@
   register: nodepool_file_nodepool_yaml
 
 - name: Install nodepool secure configuration.
-  become: yes
+  become: true
   template:
     dest: "{{ nodepool_file_secure_conf_dest }}"
     group: "{{ nodepool_file_secure_conf_group }}"
@@ -46,7 +46,7 @@
   register: nodepool_file_secure_conf
 
 - name: Install builder logging configuration file.
-  become: yes
+  become: true
   template:
     dest: "{{ nodepool_file_builder_logging_conf_dest }}"
     group: "{{ nodepool_file_builder_logging_conf_group }}"
@@ -56,7 +56,7 @@
   register: nodepool_file_builder_logging_conf
 
 - name: Install launcher logging configuration file.
-  become: yes
+  become: true
   template:
     dest: "{{ nodepool_file_launcher_logging_conf_dest }}"
     group: "{{ nodepool_file_launcher_logging_conf_group }}"

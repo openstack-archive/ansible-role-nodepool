@@ -13,14 +13,14 @@
 # under the License.
 ---
 - name: Create group account.
-  become: yes
+  become: true
   group:
     name: "{{ nodepool_user_group }}"
 
 - name: Create user account.
-  become: yes
+  become: true
   user:
-    createhome: yes
+    createhome: true
     group: "{{ nodepool_user_group }}"
     home: "{{ nodepool_user_home }}"
     name: "{{ nodepool_user_name }}"
