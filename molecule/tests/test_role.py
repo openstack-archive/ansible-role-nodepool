@@ -12,6 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import pytest
+
 
 def test_nodepool_user(host):
     user = host.user('nodepool')
@@ -62,6 +64,15 @@ def test_nodepool_images_directory(host):
     assert f.mode == 0o755
 
 
+def test_nodepool_logs_directory(host):
+    f = host.file('/var/log/nodepool')
+    assert f.exists
+    assert f.is_directory
+    assert f.user == 'nodepool'
+    assert f.group == 'nodepool'
+    assert f.mode == 0o755
+
+
 def test_nodepool_builder_logging_config(host):
     f = host.file('/etc/nodepool/builder-logging.conf')
     assert f.exists
@@ -71,14 +82,34 @@ def test_nodepool_builder_logging_config(host):
     assert f.mode == 0o644
 
 
-def test_nodepool_builder_service(host):
+def test_nodepool_builder_service_config(host):
     f = host.file('/etc/systemd/system/nodepool-builder.service')
     assert f.exists
     assert f.is_file
     assert f.user == 'root'
     assert f.group == 'root'
     assert f.mode == 0o644
+    del f
 
+    f = host.file('/etc/systemd/system/nodepool-builder.service.d')
+    assert f.exists
+    assert f.is_directory
+    assert f.user == 'root'
+    assert f.group == 'root'
+    assert f.mode == 0o755
+    del f
+
+    f = host.file(
+        '/etc/systemd/system/nodepool-builder.service.d/override.conf')
+    assert f.exists
+    assert f.is_file
+    assert f.user == 'root'
+    assert f.group == 'root'
+    assert f.mode == 0o644
+
+
+@pytest.mark.skip_if_docker()
+def test_nodepool_builder_service(host):
     service = host.service('nodepool-builder')
     assert service.is_running
     assert service.is_enabled
@@ -93,14 +124,34 @@ def test_nodepool_launcher_logging_config(host):
     assert f.mode == 0o644
 
 
-def test_nodepool_launcher_service(host):
+def test_nodepool_launcher_service_config(host):
     f = host.file('/etc/systemd/system/nodepool-launcher.service')
     assert f.exists
     assert f.is_file
     assert f.user == 'root'
     assert f.group == 'root'
     assert f.mode == 0o644
+    del f
 
+    f = host.file('/etc/systemd/system/nodepool-launcher.service.d')
+    assert f.exists
+    assert f.is_directory
+    assert f.user == 'root'
+    assert f.group == 'root'
+    assert f.mode == 0o755
+    del f
+
+    f = host.file(
+        '/etc/systemd/system/nodepool-launcher.service.d/override.conf')
+    assert f.exists
+    assert f.is_file
+    assert f.user == 'root'
+    assert f.group == 'root'
+    assert f.mode == 0o644
+
+
+@pytest.mark.skip_if_docker()
+def test_nodepool_launcher_service(host):
     service = host.service('nodepool-launcher')
     assert service.is_running
     assert service.is_enabled
