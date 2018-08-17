@@ -12,3 +12,10 @@
         dest: /etc/pip.conf
         regexp: ^extra-index-url
         state: absent
+
+    - name: Execute bindep role
+      become: yes
+      include_role:
+        name: bindep
+      vars:
+        bindep_profile: ansible
