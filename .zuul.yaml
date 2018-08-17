@@ -54,6 +54,18 @@
     parent: ansible-role-nodepool-src
     nodeset: ubuntu-xenial
 
+- job:
+    name: ansible-role-nodepool-docker
+    parent: ansible-role-nodepool-base
+    vars:
+      nodepool_install_method: docker
+
+# Testing for nodepool_install_method: docker
+- job:
+    name: ansible-role-nodepool-docker-ubuntu-bionic
+    parent: ansible-role-nodepool-docker
+    nodeset: ubuntu-bionic
+
 - project:
     name: openstack/ansible-role-nodepool
     templates:
@@ -62,6 +74,7 @@
       - windmill-jobs-xenial
     check:
       jobs:
+        - ansible-role-nodepool-docker-ubuntu-bionic
         - ansible-role-nodepool-fedora-latest
         - ansible-role-nodepool-ubuntu-bionic
         - ansible-role-nodepool-ubuntu-xenial
