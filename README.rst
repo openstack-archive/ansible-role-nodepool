@@ -21,6 +21,12 @@ Requirements
 ------------
 
 * pip3 to be installed if using nodepool_install_method: (git|pip)
+* docker to be installed if using nodepool_install_method: docker
+  *NOTE*
+  Docker support should be consider experimental. You will need to create
+  systemd service files manually. There are too many possible settings
+  for docker, which make is almost impossible to support via Ansible.
+
 
 Packages
 ~~~~~~~~
