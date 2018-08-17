@@ -1,4 +1,4 @@
-# Copyright 2015 Red Hat, Inc.
+# Copyright 2018 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,14 +11,17 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
----
-- name: Install nodepool using pip.
-  become: true
-  pip:
-    executable: "{{ nodepool_pip_executable|default(omit) }}"
-    editable: "{{ nodepool_pip_editable|default(omit) }}"
-    extra_args: "{{ nodepool_pip_extra_args|default(omit) }}"
-    name: "{{ nodepool_pip_name }}"
-    version: "{{ nodepool_pip_version|default(omit) }}"
-    virtualenv_python: "{{ nodepool_pip_virtualenv_python|default(omit) }}"
-    virtualenv: "{{ nodepool_pip_virtualenv|default(omit) }}"
+
+import pytest
+
+
+@pytest.fixture
+def platform_docker(host):
+    return host.file('/.dockerenv').exists
+
+
+@pytest.fixture(autouse=True)
+def skip_platform_docker(request, platform_docker):
+    marker = request.node.get_marker('skip_if_docker')
+    if marker and platform_docker:
+        pytest.skip('Skipping docker')
