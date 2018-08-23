@@ -27,7 +27,7 @@ def test_nodepool_user(host):
     assert f.is_directory
     assert f.user == 'nodepool'
     assert f.group == 'nodepool'
-    # TODO(pabelanger): Validate mode
+    assert f.mode == 0o755
 
 
 def test_nodepool_config(host):
