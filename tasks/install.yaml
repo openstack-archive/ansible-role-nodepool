@@ -32,4 +32,4 @@
     - nodepool_pip_virtualenv_python is not defined
     - nodepool_pip_executable is not defined
 
-- include: "install/{{ nodepool_install_method }}.yaml"
+- include_tasks: "install/{{ nodepool_install_method }}.yaml"

@@ -24,4 +24,4 @@
   set_fact:
     nodepool_pip_name: "file://{{ nodepool_git_dest }}"
 
-- include: pip.yaml
+- include_tasks: pip.yaml
