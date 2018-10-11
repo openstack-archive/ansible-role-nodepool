@@ -15,7 +15,7 @@
 - name: Include OS-specific variables
   include_vars: "{{ ansible_os_family | lower }}.yaml"
 
-- include: "{{ nodepool_task }}.yaml"
+- include_tasks: "{{ nodepool_task }}.yaml"
   with_items: "{{ nodepool_task_manager }}"
   loop_control:
     loop_var: nodepool_task
