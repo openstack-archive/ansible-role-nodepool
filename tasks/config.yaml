@@ -54,6 +54,7 @@
     owner: "{{nodepool_file_builder_logging_conf_owner }}"
     src: "{{ nodepool_file_builder_logging_conf_src }}"
   register: nodepool_file_builder_logging_conf
+  when: nodepool_file_builder_logging_conf_manage
 
 - name: Install launcher logging configuration file.
   become: true
@@ -64,3 +65,4 @@
     owner: "{{nodepool_file_launcher_logging_conf_owner }}"
     src: "{{ nodepool_file_launcher_logging_conf_src }}"
   register: nodepool_file_launcher_logging_conf
+  when: nodepool_file_launcher_logging_conf_manage
