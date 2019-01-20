@@ -140,9 +140,19 @@
     daemon_reload: "{{ nodepool_service_nodepool_builder_daemon_reload }}"
     enabled: "{{ nodepool_service_nodepool_builder_enabled }}"
     name: "{{ nodepool_service_nodepool_builder_name }}"
-    state: "{{ nodepool_service_nodepool_builder_state }}"
   register: nodepool_service_nodepool_builder
   when: nodepool_service_nodepool_builder_manage
+
+- name: Set nodepool-builder service state
+  become: true
+  systemd:
+    daemon_reload: "{{ nodepool_service_nodepool_builder_daemon_reload }}"
+    name: "{{ nodepool_service_nodepool_builder_name }}"
+    state: "{{ nodepool_service_nodepool_builder_state }}"
+  register: nodepool_service_nodepool_builder_state_info
+  when:
+    - nodepool_service_nodepool_builder_manage
+    - nodepool_service_nodepool_builder_state in ['reloaded', 'restarted', 'started', 'stopped']
 
 - name: Enable nodepool-launcher service
   become: true
@@ -150,6 +160,16 @@
     daemon_reload: "{{ nodepool_service_nodepool_launcher_daemon_reload }}"
     enabled: "{{ nodepool_service_nodepool_launcher_enabled }}"
     name: "{{ nodepool_service_nodepool_launcher_name }}"
-    state: "{{ nodepool_service_nodepool_launcher_state }}"
   register: nodepool_service_nodepool_launcher
   when: nodepool_service_nodepool_launcher_manage
+
+- name: Set nodepool-launcher service state
+  become: true
+  systemd:
+    daemon_reload: "{{ nodepool_service_nodepool_launcher_daemon_reload }}"
+    name: "{{ nodepool_service_nodepool_launcher_name }}"
+    state: "{{ nodepool_service_nodepool_launcher_state }}"
+  register: nodepool_service_nodepool_launcher_state_info
+  when:
+    - nodepool_service_nodepool_launcher_manage
+    - nodepool_service_nodepool_launcher_state in ['reloaded', 'restarted', 'started', 'stopped']
