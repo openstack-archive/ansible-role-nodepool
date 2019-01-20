@@ -22,6 +22,6 @@ def platform_docker(host):
 
 @pytest.fixture(autouse=True)
 def skip_platform_docker(request, platform_docker):
-    marker = request.node.get_marker('skip_if_docker')
+    marker = request.node.get_closest_marker('skip_if_docker')
     if marker and platform_docker:
         pytest.skip('Skipping docker')
