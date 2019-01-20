@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Define nodepool_build_depends.
+- name: Define nodepool_build_depends
   set_fact:
     nodepool_build_depends: "{{ __nodepool_build_depends | list }}"
   when: nodepool_build_depends is not defined
@@ -24,7 +24,7 @@
     state: installed
   when: nodepool_install_method == 'git'
 
-- name: Define nodepool_pip_executable if needed.
+- name: Define nodepool_pip_executable if needed
   set_fact:
     nodepool_pip_executable: pip3
   when:
