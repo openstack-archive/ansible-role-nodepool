@@ -16,8 +16,8 @@ provisioner:
   inventory:
     group_vars:
       all:
-        nodepool_service_nodepool_builder_manage: false
-        nodepool_service_nodepool_launcher_manage: false
+        nodepool_service_nodepool_builder_state: false
+        nodepool_service_nodepool_launcher_state: false
   lint:
     name: ansible-lint
   log: true
