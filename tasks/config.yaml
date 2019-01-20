@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Create required directories.
+- name: Create required directories
   become: true
   file:
     group: "{{ nodepool_user_group }}"
@@ -25,7 +25,7 @@
     - /opt/nodepool/tmp
     - /var/log/nodepool
 
-- name: Install nodepool configuration.
+- name: Install nodepool configuration
   become: true
   template:
     dest: "{{ nodepool_file_nodepool_yaml_dest }}"
@@ -35,7 +35,7 @@
     src: "{{ nodepool_file_nodepool_yaml_src }}"
   register: nodepool_file_nodepool_yaml
 
-- name: Install nodepool secure configuration.
+- name: Install nodepool secure configuration
   become: true
   template:
     dest: "{{ nodepool_file_secure_conf_dest }}"
@@ -45,7 +45,7 @@
     src: "{{ nodepool_file_secure_conf_src }}"
   register: nodepool_file_secure_conf
 
-- name: Install builder logging configuration file.
+- name: Install builder logging configuration file
   become: true
   template:
     dest: "{{ nodepool_file_builder_logging_conf_dest }}"
@@ -56,7 +56,7 @@
   register: nodepool_file_builder_logging_conf
   when: nodepool_file_builder_logging_conf_manage
 
-- name: Install launcher logging configuration file.
+- name: Install launcher logging configuration file
   become: true
   template:
     dest: "{{ nodepool_file_launcher_logging_conf_dest }}"

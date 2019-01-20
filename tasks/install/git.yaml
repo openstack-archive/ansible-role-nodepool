@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Git clone nodepool.
+- name: Git clone nodepool
   git:
     dest: "{{ nodepool_git_dest }}"
     refspec: "{{ nodepool_git_refspec|default(omit) }}"
@@ -20,7 +20,7 @@
     update: "{{ nodepool_git_update|default(omit) }}"
     version: "{{ nodepool_git_version|default(omit) }}"
 
-- name: Set nodepool_pip_name to local git repo.
+- name: Set nodepool_pip_name to local git repo
   set_fact:
     nodepool_pip_name: "file://{{ nodepool_git_dest }}"
 

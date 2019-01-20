@@ -12,67 +12,67 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Define nodepool_file_nodepool_builder_service_dest.
+- name: Define nodepool_file_nodepool_builder_service_dest
   set_fact:
     nodepool_file_nodepool_builder_service_dest: "{{ __nodepool_file_nodepool_builder_service_dest }}"
   when: nodepool_file_nodepool_builder_service_dest is not defined
 
-- name: Define nodepool_file_nodepool_builder_service_mode.
+- name: Define nodepool_file_nodepool_builder_service_mode
   set_fact:
     nodepool_file_nodepool_builder_service_mode: "{{ __nodepool_file_nodepool_builder_service_mode }}"
   when: nodepool_file_nodepool_builder_service_mode is not defined
 
-- name: Define nodepool_file_nodepool_builder_service_src.
+- name: Define nodepool_file_nodepool_builder_service_src
   set_fact:
     nodepool_file_nodepool_builder_service_src: "{{ __nodepool_file_nodepool_builder_service_src }}"
   when: nodepool_file_nodepool_builder_service_src is not defined
 
-- name: Define nodepool_file_nodepool_builder_service_config_dest.
+- name: Define nodepool_file_nodepool_builder_service_config_dest
   set_fact:
     nodepool_file_nodepool_builder_service_config_dest: "{{ __nodepool_file_nodepool_builder_service_config_dest  }}"
   when: nodepool_file_nodepool_builder_service_config_dest is not defined
 
-- name: Define nodepool_file_nodepool_builder_service_config_mode.
+- name: Define nodepool_file_nodepool_builder_service_config_mode
   set_fact:
     nodepool_file_nodepool_builder_service_config_mode: "{{ __nodepool_file_nodepool_builder_service_config_mode  }}"
   when: nodepool_file_nodepool_builder_service_config_mode is not defined
 
-- name: Define nodepool_file_nodepool_builder_service_config_src.
+- name: Define nodepool_file_nodepool_builder_service_config_src
   set_fact:
     nodepool_file_nodepool_builder_service_config_src: "{{ __nodepool_file_nodepool_builder_service_config_src  }}"
   when: nodepool_file_nodepool_builder_service_config_src is not defined
 
-- name: Define nodepool_file_nodepool_launcher_service_dest.
+- name: Define nodepool_file_nodepool_launcher_service_dest
   set_fact:
     nodepool_file_nodepool_launcher_service_dest: "{{ __nodepool_file_nodepool_launcher_service_dest }}"
   when: nodepool_file_nodepool_launcher_service_dest is not defined
 
-- name: Define nodepool_file_nodepool_launcher_service_mode.
+- name: Define nodepool_file_nodepool_launcher_service_mode
   set_fact:
     nodepool_file_nodepool_launcher_service_mode: "{{ __nodepool_file_nodepool_launcher_service_mode }}"
   when: nodepool_file_nodepool_launcher_service_mode is not defined
 
-- name: Define nodepool_file_nodepool_launcher_service_src.
+- name: Define nodepool_file_nodepool_launcher_service_src
   set_fact:
     nodepool_file_nodepool_launcher_service_src: "{{ __nodepool_file_nodepool_launcher_service_src }}"
   when: nodepool_file_nodepool_launcher_service_src is not defined
 
-- name: Define nodepool_file_nodepool_launcher_service_config_dest.
+- name: Define nodepool_file_nodepool_launcher_service_config_dest
   set_fact:
     nodepool_file_nodepool_launcher_service_config_dest: "{{ __nodepool_file_nodepool_launcher_service_config_dest  }}"
   when: nodepool_file_nodepool_launcher_service_config_dest is not defined
 
-- name: Define nodepool_file_nodepool_launcher_service_config_mode.
+- name: Define nodepool_file_nodepool_launcher_service_config_mode
   set_fact:
     nodepool_file_nodepool_launcher_service_config_mode: "{{ __nodepool_file_nodepool_launcher_service_config_mode  }}"
   when: nodepool_file_nodepool_launcher_service_config_mode is not defined
 
-- name: Define nodepool_file_nodepool_launcher_service_config_src.
+- name: Define nodepool_file_nodepool_launcher_service_config_src
   set_fact:
     nodepool_file_nodepool_launcher_service_config_src: "{{ __nodepool_file_nodepool_launcher_service_config_src  }}"
   when: nodepool_file_nodepool_launcher_service_config_src is not defined
 
-- name: Install nodepool-builder service script into place.
+- name: Install nodepool-builder service script into place
   become: true
   template:
     dest: "{{ nodepool_file_nodepool_builder_service_dest }}"
@@ -83,7 +83,7 @@
   register: nodepool_file_nodepool_builder_service
   when: nodepool_file_nodepool_builder_service_manage
 
-- name: Create nodepool-builder service config directory.
+- name: Create nodepool-builder service config directory
   become: true
   file:
     group: "{{ nodepool_file_nodepool_builder_service_config_group }}"
@@ -92,7 +92,7 @@
     state: directory
   when: nodepool_file_nodepool_builder_service_config_manage
 
-- name: Install nodepool-builder service config into place.
+- name: Install nodepool-builder service config into place
   become: true
   template:
     dest: "{{ nodepool_file_nodepool_builder_service_config_dest  }}"
@@ -103,7 +103,7 @@
   register: nodepool_file_nodepool_builder_service_config
   when: nodepool_file_nodepool_builder_service_config_manage
 
-- name: Install nodepool-launcher service script into place.
+- name: Install nodepool-launcher service script into place
   become: true
   template:
     dest: "{{ nodepool_file_nodepool_launcher_service_dest }}"
@@ -114,7 +114,7 @@
   register: nodepool_file_nodepool_launcher_service
   when: nodepool_file_nodepool_launcher_service_manage
 
-- name: Create nodepool-launcher service config directory.
+- name: Create nodepool-launcher service config directory
   become: true
   file:
     group: "{{ nodepool_file_nodepool_launcher_service_config_group }}"
@@ -123,7 +123,7 @@
     state: directory
   when: nodepool_file_nodepool_launcher_service_config_manage
 
-- name: Install nodepool-launcher service config into place.
+- name: Install nodepool-launcher service config into place
   become: true
   template:
     dest: "{{ nodepool_file_nodepool_launcher_service_config_dest  }}"
@@ -134,7 +134,7 @@
   register: nodepool_file_nodepool_launcher_service_config
   when: nodepool_file_nodepool_launcher_service_config_manage
 
-- name: Enable nodepool-builder service.
+- name: Enable nodepool-builder service
   become: true
   systemd:
     daemon_reload: "{{ nodepool_service_nodepool_builder_daemon_reload }}"
@@ -144,7 +144,7 @@
   register: nodepool_service_nodepool_builder
   when: nodepool_service_nodepool_builder_manage
 
-- name: Enable nodepool-launcher service.
+- name: Enable nodepool-launcher service
   become: true
   systemd:
     daemon_reload: "{{ nodepool_service_nodepool_launcher_daemon_reload }}"
