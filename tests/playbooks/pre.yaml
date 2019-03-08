@@ -1,3 +1,4 @@
+---
 - hosts: all
   tasks:
     # TODO(pabelanger): Remove once this lands in our base job in
@@ -7,7 +8,7 @@
         name: ensure-output-dirs
 
     - name: Disable extra wheels mirror
-      become: yes
+      become: true
       lineinfile:
         dest: /etc/pip.conf
         regexp: ^extra-index-url

@@ -1,3 +1,4 @@
+---
 - hosts: all
   tasks:
     - name: Ensure journald logs directory exists
@@ -23,7 +24,7 @@
         - "{{ ansible_user_dir }}/{{ zuul.project.src_dir }}/junit.xml"
 
     - name: Prepare nodepool log files
-      become: yes
+      become: true
       synchronize:
         dest: "{{ zuul_output_dir }}/logs/logs"
         rsync_opts:
