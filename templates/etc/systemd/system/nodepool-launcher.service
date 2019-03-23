@@ -5,7 +5,7 @@ After=syslog.target network.target
 [Service]
 Type=simple
 # Options to pass to nodepool-launcher.
-Environment="ARGS=-l /etc/nodepool/launcher-logging.conf --no-webapp"
+Environment="ARGS=-l /etc/nodepool/launcher-logging.conf -s /etc/nodepool/secure.conf --no-webapp"
 Group=nodepool
 User=nodepool
 ExecStart={{ nodepool_pip_virtualenv | default('/usr/local') }}/bin/nodepool-launcher -d $ARGS
