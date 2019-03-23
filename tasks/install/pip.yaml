@@ -22,3 +22,14 @@
     version: "{{ nodepool_pip_version|default(omit) }}"
     virtualenv_python: "{{ nodepool_pip_virtualenv_python|default(omit) }}"
     virtualenv: "{{ nodepool_pip_virtualenv|default(omit) }}"
+
+- name: Symlink nodepool virtualenv
+  become: true
+  file:
+    src: "{{ nodepool_pip_virtualenv }}"
+    dest: "{{ nodepool_pip_virtualenv_symlink }}"
+    state: link
+  when:
+    - nodepool_pip_virtualenv is defined
+    - nodepool_pip_virtualenv_symlink is defined
+    - nodepool_pip_virtualenv != nodepool_pip_virtualenv_symlink

@@ -68,6 +68,7 @@ nodepool_pip_name: nodepool
 # nodepool_pip_version:
 # nodepool_pip_virtualenv_python:
 # nodepool_pip_virtualenv:
+# nodepool_pip_virtualenv_symlink:
 
 nodepool_docker_name:
   - zuul/nodepool-builder
